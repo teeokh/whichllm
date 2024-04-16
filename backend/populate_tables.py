@@ -47,6 +47,20 @@ def populate_llm_table():
 
 # populate_llm_table()
 
+def drop_llm_row(row_id):
+    row = LLM.query.get(row_id)
+    
+    if row:
+        db.session.delete(row)
+        print('Row deleted')
+    else:
+        print('Row not deleted')
+        
+    db.session.commit()
+
+# with app.app_context():
+#     drop_llm_row(3)
+
 benchmark_data = [
     # {'name': 'MMLU', 'subject': 'General'},
     # {'name': 'HellaSwag', 'subject': 'General', 'notes': 'Sentence completion'},
@@ -74,6 +88,8 @@ benchmark_data = [
     # {'name': 'VATEX', 'subject': 'Video Understanding'},
     # {'name': 'CoVoST 2', 'subject': 'Speech Translation'},
     # {'name': 'FLEURS', 'subject': 'Speech Recognition'}
+    # {'name': 'MAWPS', 'subject': 'Maths'}
+    # {'name': 'PubMedQA', 'subject': 'Medicine'}
 ]
 
 def populate_benchmark_table():
@@ -89,6 +105,8 @@ def populate_benchmark_table():
     session.commit()
     print('New Benchmark(s) added!')
     
+# populate_benchmark_table()
+    
     
 def update_benchmark(benchmark_name, new_subject):
     benchmark = Benchmark.query.filter_by(name=benchmark_name).first()
@@ -102,8 +120,21 @@ def update_benchmark(benchmark_name, new_subject):
 # with app.app_context():
 #     update_benchmark('GPQA', 'Science')
 
+def drop_benchmark_row(row_id):
+    row = Benchmark.query.get(row_id)
+    
+    if row:
+        db.session.delete(row)
+        print('Row deleted')
+    else:
+        print('Row not deleted')
+        
+    db.session.commit()
 
-# populate_benchmark_table()
+# with app.app_context():
+#     drop_benchmark_row(16)
+
+
 
 usecase_data = [
     # {'name': 'Text generation'},
@@ -139,10 +170,44 @@ def populate_usecase_table():
 llm_benchmark_data = [
     # {'llm_id': 1, 'benchmark_id': 1, 'score': 70.0},
     # {'llm_id': 1, 'benchmark_id': 2, 'score': 85.5},
-    {'llm_id': 1, 'benchmark_id': 3, 'score': 78.3},
-    {'llm_id': 1, 'benchmark_id': 4, 'score': 81.6},
-    {'llm_id': 1, 'benchmark_id': 5, 'score': 85.2},
-    {'llm_id': 1, 'benchmark_id': 1, 'score': 70.0}
+    # {'llm_id': 1, 'benchmark_id': 3, 'score': 78.3},
+    # {'llm_id': 1, 'benchmark_id': 4, 'score': 81.6},
+    # {'llm_id': 1, 'benchmark_id': 5, 'score': 85.2},
+    # {'llm_id': 1, 'benchmark_id': 8, 'score': 71.0},
+    # {'llm_id': 1, 'benchmark_id': 12, 'score': 57.1},
+    # {'llm_id': 1, 'benchmark_id': 14, 'score': 48.1},
+    # {'llm_id': 1, 'benchmark_id': 15, 'score': 83.2},
+    # {'llm_id': 1, 'benchmark_id': 17, 'score': 50.3},
+    # {'llm_id': 1, 'benchmark_id': 27, 'score': 60.2},
+    # {'llm_id': 1, 'benchmark_id': 18, 'score': 82.8},
+    # {'llm_id': 1, 'benchmark_id': 19, 'score': 53.3},
+    # {'llm_id': 1, 'benchmark_id': 11, 'score': 34.1},
+    # {'llm_id': 1, 'benchmark_id': 20, 'score': 88.5},
+    {'llm_id': 1, 'benchmark_id': 6, 'score': 28.1},
+    {'llm_id': 2, 'benchmark_id': 1, 'score': 86.4},
+    {'llm_id': 2, 'benchmark_id': 2, 'score': 95.3},
+    {'llm_id': 2, 'benchmark_id': 3, 'score': 89.5},
+    {'llm_id': 2, 'benchmark_id': 4, 'score': 87.5},
+    {'llm_id': 2, 'benchmark_id': 5, 'score': 96.3},
+    {'llm_id': 2, 'benchmark_id': 6, 'score': 46.5},
+    {'llm_id': 2, 'benchmark_id': 7, 'score': 95.9},
+    {'llm_id': 2, 'benchmark_id': 8, 'score': 83.9},
+    {'llm_id': 2, 'benchmark_id': 11, 'score': 54.0},
+    {'llm_id': 2, 'benchmark_id': 12, 'score': 96.0},
+    {'llm_id': 2, 'benchmark_id': 13, 'score': 74.5},
+    {'llm_id': 2, 'benchmark_id': 14, 'score': 67.0},
+    {'llm_id': 2, 'benchmark_id': 15, 'score': 87.5},
+    {'llm_id': 2, 'benchmark_id': 17, 'score': 90.2},
+    {'llm_id': 2, 'benchmark_id': 18, 'score': 88.9},
+    {'llm_id': 2, 'benchmark_id': 19, 'score': 74.5},
+    {'llm_id': 2, 'benchmark_id': 20, 'score': 97.6},
+    {'llm_id': 2, 'benchmark_id': 21, 'score': 88.4},
+    {'llm_id': 2, 'benchmark_id': 22, 'score': 56.8},
+    {'llm_id': 2, 'benchmark_id': 23, 'score': 78.0},
+    {'llm_id': 2, 'benchmark_id': 24, 'score': 56.0},
+    {'llm_id': 2, 'benchmark_id': 25, 'score': 29.1},
+    {'llm_id': 2, 'benchmark_id': 26, 'score': 82.4},
+    {'llm_id': 2, 'benchmark_id': 27, 'score': 74.4}
 ]
 
 def populate_llm_benchmark_table():
@@ -157,4 +222,4 @@ def populate_llm_benchmark_table():
     session.commit()
     print('New LLM-Benchmark association(s) added!')
 
-# populate_llm_benchmark_table()
+populate_llm_benchmark_table()
