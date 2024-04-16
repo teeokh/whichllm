@@ -44,7 +44,7 @@ class Usecase(db.Model):
 llm_benchmark = db.Table('llm_benchmark',
 	db.Column('llm_id', db.Integer, db.ForeignKey('llm.id'), primary_key=True),
 	db.Column('benchmark_id', db.Integer, db.ForeignKey('benchmark.id'), primary_key=True), # Primary key needed?
-	db.Column('score', db.Integer)
+	db.Column('score', db.Float)
 )
 
 # Retrieving scores of LLMs in benchmarks in python interpreter:

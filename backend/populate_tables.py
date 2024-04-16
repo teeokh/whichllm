@@ -47,7 +47,7 @@ def populate_llm_table():
 # populate_llm_table()
 
 benchmark_data = [
-    # {'name': 'MMLU', 'subject': 'General'}
+    # {'name': 'MMLU', 'subject': 'General'},
     # {'name': 'HellaSwag', 'subject': 'General', 'notes': 'Sentence completion'},
     # {'name': 'SuperGLUE', 'subject': 'General'},
     # {'name': 'WinoGrande', 'subject': 'General'},
@@ -89,3 +89,34 @@ def populate_benchmark_table():
     print('New Benchmark(s) added!')
 
 # populate_benchmark_table()
+
+usecase_data = [
+    {'name': 'Text generation'},
+    {'name': 'Text summation'},
+    {'name': 'General Knowledge'},
+    {'name': 'Conversation'},
+    {'name': 'Translation'},
+    {'name': 'Maths'},
+    {'name': 'Coding'},
+    {'name': 'Science'},
+    {'name': 'Medical knowledge'},
+    {'name': 'Law knowledge'},
+    {'name': 'Advanced reasoning'},
+    {'name': 'Reading documents'},
+    {'name': 'Image input'},
+    {'name': 'Video input'},
+    {'name': 'Audio input'}
+]
+
+def populate_usecase_table():
+    for usecase in usecase_data:
+        name = usecase['name']
+        
+        new_usecase = Usecase(name=name)
+        
+        session.add(new_usecase)
+    
+    session.commit()
+    print('New Usecase(s) added!')
+    
+populate_usecase_table()
