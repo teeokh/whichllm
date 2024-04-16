@@ -48,31 +48,31 @@ def populate_llm_table():
 
 benchmark_data = [
     # {'name': 'MMLU', 'subject': 'General'}
-    {'name': 'HellaSwag', 'subject': 'General', 'notes': 'Sentence completion'},
-    {'name': 'SuperGLUE', 'subject': 'General'},
-    {'name': 'WinoGrande', 'subject': 'General'},
-    {'name': 'ARC', 'subject': 'General'},
-    {'name': 'GPQA', 'subject': 'General'},
-    {'name': 'OpenBookQA', 'subject': 'General'},
-    {'name': 'BIG Bench Hard', 'subject': 'Advanced Reasoning'},
-    {'name': 'Chatbot Arena Elo', 'subject': 'Conversation', 'notes': 'User-based / Relative'},
-    {'name': 'MT-Bench', 'subject': 'Conversation'},
-    {'name': 'MATH', 'subject': 'Maths'},
-    {'name': 'GSM8K', 'subject': 'Maths'},
-    {'name': 'MGSM', 'subject': 'Maths'},
-    {'name': 'HumanEval', 'subject': 'Coding'},
-    {'name': 'MBPP', 'subject': 'Coding'},
-    {'name': 'USMLE', 'subject': 'Medicine'},
-    {'name': 'MedQA', 'subject': 'Medicine'},
-    {'name': 'LSAT', 'subject': 'Law'},
-    {'name': 'Bar Exam', 'subject': 'Law'},
-    {'name': 'Graduate Record Exam', 'subject': 'Law'},
-    {'name': 'DocVQA', 'subject': 'Image Understanding'},
-    {'name': 'MMMU', 'subject': 'Image Understanding'},
-    {'name': 'TextVQA', 'subject': 'Image Understanding'},
-    {'name': 'VATEX', 'subject': 'Video Understanding'},
-    {'name': 'CoVoST 2', 'subject': 'Speech Translation'},
-    {'name': 'FLEURS', 'subject': 'Speech Recognition'}
+    # {'name': 'HellaSwag', 'subject': 'General', 'notes': 'Sentence completion'},
+    # {'name': 'SuperGLUE', 'subject': 'General'},
+    # {'name': 'WinoGrande', 'subject': 'General'},
+    # {'name': 'ARC', 'subject': 'General'},
+    # {'name': 'GPQA', 'subject': 'General'},
+    # {'name': 'OpenBookQA', 'subject': 'General'},
+    # {'name': 'BIG Bench Hard', 'subject': 'Advanced Reasoning'},
+    # {'name': 'Chatbot Arena Elo', 'subject': 'Conversation', 'notes': 'User-based / Relative'},
+    # {'name': 'MT-Bench', 'subject': 'Conversation'},
+    # {'name': 'MATH', 'subject': 'Maths'},
+    # {'name': 'GSM8K', 'subject': 'Maths'},
+    # {'name': 'MGSM', 'subject': 'Maths'},
+    # {'name': 'HumanEval', 'subject': 'Coding'},
+    # {'name': 'MBPP', 'subject': 'Coding'},
+    # {'name': 'USMLE', 'subject': 'Medicine'},
+    # {'name': 'MedQA', 'subject': 'Medicine'},
+    # {'name': 'LSAT', 'subject': 'Law'},
+    # {'name': 'Bar Exam', 'subject': 'Law'},
+    # {'name': 'Graduate Record Exam', 'subject': 'Law'},
+    # {'name': 'DocVQA', 'subject': 'Image Understanding'},
+    # {'name': 'MMMU', 'subject': 'Image Understanding'},
+    # {'name': 'TextVQA', 'subject': 'Image Understanding'},
+    # {'name': 'VATEX', 'subject': 'Video Understanding'},
+    # {'name': 'CoVoST 2', 'subject': 'Speech Translation'},
+    # {'name': 'FLEURS', 'subject': 'Speech Recognition'}
 ]
 
 def populate_benchmark_table():
@@ -88,4 +88,4 @@ def populate_benchmark_table():
     session.commit()
     print('New Benchmark(s) added!')
 
-populate_benchmark_table()
+# populate_benchmark_table()
