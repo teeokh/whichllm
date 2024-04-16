@@ -91,21 +91,21 @@ def populate_benchmark_table():
 # populate_benchmark_table()
 
 usecase_data = [
-    {'name': 'Text generation'},
-    {'name': 'Text summation'},
-    {'name': 'General Knowledge'},
-    {'name': 'Conversation'},
-    {'name': 'Translation'},
-    {'name': 'Maths'},
-    {'name': 'Coding'},
-    {'name': 'Science'},
-    {'name': 'Medical knowledge'},
-    {'name': 'Law knowledge'},
-    {'name': 'Advanced reasoning'},
-    {'name': 'Reading documents'},
-    {'name': 'Image input'},
-    {'name': 'Video input'},
-    {'name': 'Audio input'}
+    # {'name': 'Text generation'},
+    # {'name': 'Text summation'},
+    # {'name': 'General Knowledge'},
+    # {'name': 'Conversation'},
+    # {'name': 'Translation'},
+    # {'name': 'Maths'},
+    # {'name': 'Coding'},
+    # {'name': 'Science'},
+    # {'name': 'Medical knowledge'},
+    # {'name': 'Law knowledge'},
+    # {'name': 'Advanced reasoning'},
+    # {'name': 'Reading documents'},
+    # {'name': 'Image input'},
+    # {'name': 'Video input'},
+    # {'name': 'Audio input'}
 ]
 
 def populate_usecase_table():
@@ -119,4 +119,4 @@ def populate_usecase_table():
     session.commit()
     print('New Usecase(s) added!')
     
-populate_usecase_table()
+# populate_usecase_table()
