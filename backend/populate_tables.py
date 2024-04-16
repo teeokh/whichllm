@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import LLM, Benchmark, Usecase, llm_benchmark, benchmark_usecase, LLMStatus
 from config import db_path
+from config import app, db
 
 engine = create_engine(f'sqlite:///{db_path}')
 Session = sessionmaker(bind=engine)
@@ -87,6 +88,20 @@ def populate_benchmark_table():
         
     session.commit()
     print('New Benchmark(s) added!')
+    
+    
+def update_benchmark(benchmark_name, new_subject):
+    benchmark = Benchmark.query.filter_by(name=benchmark_name).first()
+    if benchmark:
+        benchmark.subject = new_subject
+        db.session.commit()
+        print(f"Subject for benchmark '{benchmark_name}' updated to '{new_subject}'.")
+    else:
+        print(f"Benchmark '{benchmark_name}' not found.")
+       
+# with app.app_context():
+#     update_benchmark('GPQA', 'Science')
+
 
 # populate_benchmark_table()
 
@@ -120,3 +135,26 @@ def populate_usecase_table():
     print('New Usecase(s) added!')
     
 # populate_usecase_table()
+
+llm_benchmark_data = [
+    # {'llm_id': 1, 'benchmark_id': 1, 'score': 70.0},
+    # {'llm_id': 1, 'benchmark_id': 2, 'score': 85.5},
+    {'llm_id': 1, 'benchmark_id': 3, 'score': 78.3},
+    {'llm_id': 1, 'benchmark_id': 4, 'score': 81.6},
+    {'llm_id': 1, 'benchmark_id': 5, 'score': 85.2},
+    {'llm_id': 1, 'benchmark_id': 1, 'score': 70.0}
+]
+
+def populate_llm_benchmark_table():
+    for row in llm_benchmark_data:
+        llm_bench_row = llm_benchmark.insert().values(
+        llm_id=row['llm_id'],
+        benchmark_id=row['benchmark_id'],
+        score=row['score']
+    )
+        session.execute(llm_bench_row)
+    
+    session.commit()
+    print('New LLM-Benchmark association(s) added!')
+
+# populate_llm_benchmark_table()

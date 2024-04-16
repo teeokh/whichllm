@@ -29,7 +29,7 @@ class Benchmark(db.Model):
     notes = db.Column(db.String(220), nullable=True)
     
     def __repr__(self):
-            return f'<Benchmark {self.id}: {self.name} ({self.type}). {self.notes}>' # String representation when printing an ID - for debugging / visualisation
+            return f'<Benchmark {self.id}: {self.name} ({self.subject}). {self.notes}>' # String representation when printing an ID - for debugging / visualisation
 
 
 class Usecase(db.Model):
