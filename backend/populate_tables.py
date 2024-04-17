@@ -25,6 +25,7 @@ llm_data = [
     # {'name': 'InternLM-XComposer2-4KHD', 'link': 'https://github.com/InternLM/InternLM-XComposer', 'status': 'free', 'provider': 'InternLM', 'speciality': 'Vision'},
     # {'name': 'LawGPT', 'link': 'https://github.com/LiuHC0428/LAW-GPT', 'status': 'free', 'provider': 'InternLM', 'speciality': 'Law'},
     # {'name': 'CogVLM', 'link': 'https://github.com/THUDM/CogVLM', 'status': 'free', 'provider': 'CogVLM', 'notes': 'Through API access', 'speciality': 'Vision'}
+    # {'name': 'Gemini 1.5 Pro', 'link': 'https://gemini.google.com/app', 'status': 'free', 'provider': 'Google'}
 ]
 
 def populate_llm_table():
@@ -59,7 +60,7 @@ def drop_llm_row(row_id):
     db.session.commit()
 
 # with app.app_context():
-#     drop_llm_row(3)
+#     drop_llm_row(7)
 
 benchmark_data = [
     # {'name': 'MMLU', 'subject': 'General'},
@@ -268,6 +269,33 @@ llm_benchmark_data = [
     # {'llm_id': 6, 'benchmark_id': 27, 'score': 75.8},
     # {'llm_id': 6, 'benchmark_id': 28, 'score': 80.8},
     # {'llm_id': 6, 'benchmark_id': 29, 'score': 88.1}
+    # {'llm_id': 17, 'benchmark_id': 1, 'score': 81.9},
+    # {'llm_id': 17, 'benchmark_id': 2, 'score': 92.5},
+    # {'llm_id': 17, 'benchmark_id': 8, 'score': 84.0},
+    # {'llm_id': 17, 'benchmark_id': 11, 'score': 58.5},
+    # {'llm_id': 17, 'benchmark_id': 12, 'score': 91.7},
+    # {'llm_id': 17, 'benchmark_id': 13, 'score': 88.7},
+    # {'llm_id': 17, 'benchmark_id': 14, 'score': 71.9},
+    # {'llm_id': 17, 'benchmark_id': 21, 'score': 86.5},
+    # {'llm_id': 17, 'benchmark_id': 22, 'score': 58.5},
+    # {'llm_id': 17, 'benchmark_id': 28, 'score': 81.3},
+    # {'llm_id': 17, 'benchmark_id': 29, 'score': 80.3}
+    {'llm_id': 8, 'benchmark_id': 1, 'score': 90.0},
+    {'llm_id': 8, 'benchmark_id': 2, 'score': 87.8},
+    {'llm_id': 8, 'benchmark_id': 8, 'score': 83.6},
+    {'llm_id': 8, 'benchmark_id': 11, 'score': 53.2},
+    {'llm_id': 8, 'benchmark_id': 12, 'score': 94.4},
+    {'llm_id': 8, 'benchmark_id': 13, 'score': 79.0},
+    {'llm_id': 8, 'benchmark_id': 14, 'score': 74.4},
+    {'llm_id': 8, 'benchmark_id': 21, 'score': 90.9},
+    {'llm_id': 8, 'benchmark_id': 22, 'score': 59.4},
+    {'llm_id': 8, 'benchmark_id': 23, 'score': 82.3},
+    {'llm_id': 8, 'benchmark_id': 24, 'score': 62.7},
+    {'llm_id': 8, 'benchmark_id': 25, 'score': 40.1},
+    {'llm_id': 8, 'benchmark_id': 26, 'score': 92.4},
+    {'llm_id': 8, 'benchmark_id': 28, 'score': 80.8},
+    {'llm_id': 8, 'benchmark_id': 29, 'score': 79.5}
+    
 ]
 
 def populate_llm_benchmark_table():
