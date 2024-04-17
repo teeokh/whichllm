@@ -90,6 +90,8 @@ benchmark_data = [
     # {'name': 'FLEURS', 'subject': 'Speech Recognition'}
     # {'name': 'MAWPS', 'subject': 'Maths'}
     # {'name': 'PubMedQA', 'subject': 'Medicine'}
+    # {'name': 'ChartQA', 'subject': 'Image Understanding', 'notes': 'Chart understanding'}
+    # {'name': 'AI2D', 'subject': 'Image Understanding', 'notes': 'Science diagram understanding'}
 ]
 
 def populate_benchmark_table():
@@ -183,31 +185,89 @@ llm_benchmark_data = [
     # {'llm_id': 1, 'benchmark_id': 19, 'score': 53.3},
     # {'llm_id': 1, 'benchmark_id': 11, 'score': 34.1},
     # {'llm_id': 1, 'benchmark_id': 20, 'score': 88.5},
-    {'llm_id': 1, 'benchmark_id': 6, 'score': 28.1},
-    {'llm_id': 2, 'benchmark_id': 1, 'score': 86.4},
-    {'llm_id': 2, 'benchmark_id': 2, 'score': 95.3},
-    {'llm_id': 2, 'benchmark_id': 3, 'score': 89.5},
-    {'llm_id': 2, 'benchmark_id': 4, 'score': 87.5},
-    {'llm_id': 2, 'benchmark_id': 5, 'score': 96.3},
-    {'llm_id': 2, 'benchmark_id': 6, 'score': 46.5},
-    {'llm_id': 2, 'benchmark_id': 7, 'score': 95.9},
-    {'llm_id': 2, 'benchmark_id': 8, 'score': 83.9},
-    {'llm_id': 2, 'benchmark_id': 11, 'score': 54.0},
-    {'llm_id': 2, 'benchmark_id': 12, 'score': 96.0},
-    {'llm_id': 2, 'benchmark_id': 13, 'score': 74.5},
-    {'llm_id': 2, 'benchmark_id': 14, 'score': 67.0},
-    {'llm_id': 2, 'benchmark_id': 15, 'score': 87.5},
-    {'llm_id': 2, 'benchmark_id': 17, 'score': 90.2},
-    {'llm_id': 2, 'benchmark_id': 18, 'score': 88.9},
-    {'llm_id': 2, 'benchmark_id': 19, 'score': 74.5},
-    {'llm_id': 2, 'benchmark_id': 20, 'score': 97.6},
-    {'llm_id': 2, 'benchmark_id': 21, 'score': 88.4},
-    {'llm_id': 2, 'benchmark_id': 22, 'score': 56.8},
-    {'llm_id': 2, 'benchmark_id': 23, 'score': 78.0},
-    {'llm_id': 2, 'benchmark_id': 24, 'score': 56.0},
-    {'llm_id': 2, 'benchmark_id': 25, 'score': 29.1},
-    {'llm_id': 2, 'benchmark_id': 26, 'score': 82.4},
-    {'llm_id': 2, 'benchmark_id': 27, 'score': 74.4}
+    # {'llm_id': 1, 'benchmark_id': 6, 'score': 28.1},
+    # {'llm_id': 2, 'benchmark_id': 1, 'score': 86.4},
+    # {'llm_id': 2, 'benchmark_id': 2, 'score': 95.3},
+    # {'llm_id': 2, 'benchmark_id': 3, 'score': 89.5},
+    # {'llm_id': 2, 'benchmark_id': 4, 'score': 87.5},
+    # {'llm_id': 2, 'benchmark_id': 5, 'score': 96.3},
+    # {'llm_id': 2, 'benchmark_id': 6, 'score': 46.5},
+    # {'llm_id': 2, 'benchmark_id': 7, 'score': 95.9},
+    # {'llm_id': 2, 'benchmark_id': 8, 'score': 83.9},
+    # {'llm_id': 2, 'benchmark_id': 11, 'score': 54.0},
+    # {'llm_id': 2, 'benchmark_id': 12, 'score': 96.0},
+    # {'llm_id': 2, 'benchmark_id': 13, 'score': 74.5},
+    # {'llm_id': 2, 'benchmark_id': 14, 'score': 67.0},
+    # {'llm_id': 2, 'benchmark_id': 15, 'score': 87.5},
+    # {'llm_id': 2, 'benchmark_id': 17, 'score': 90.2},
+    # {'llm_id': 2, 'benchmark_id': 18, 'score': 88.9},
+    # {'llm_id': 2, 'benchmark_id': 19, 'score': 74.5},
+    # {'llm_id': 2, 'benchmark_id': 20, 'score': 97.6},
+    # {'llm_id': 2, 'benchmark_id': 21, 'score': 88.4},
+    # {'llm_id': 2, 'benchmark_id': 22, 'score': 56.8},
+    # {'llm_id': 2, 'benchmark_id': 23, 'score': 78.0},
+    # {'llm_id': 2, 'benchmark_id': 24, 'score': 56.0},
+    # {'llm_id': 2, 'benchmark_id': 25, 'score': 29.1},
+    # {'llm_id': 2, 'benchmark_id': 26, 'score': 82.4},
+    # {'llm_id': 2, 'benchmark_id': 27, 'score': 74.4}
+    # {'llm_id': 2, 'benchmark_id': 28, 'score': 78.5},
+    # {'llm_id': 2, 'benchmark_id': 29, 'score': 78.2},
+    # {'llm_id': 4, 'benchmark_id': 1, 'score': 75.2},
+    # {'llm_id': 4, 'benchmark_id': 2, 'score': 85.9},
+    # {'llm_id': 4, 'benchmark_id': 4, 'score': 74.2},
+    # {'llm_id': 4, 'benchmark_id': 5, 'score': 89.2},
+    # {'llm_id': 4, 'benchmark_id': 6, 'score': 33.3},
+    # {'llm_id': 4, 'benchmark_id': 8, 'score': 73.7},
+    # {'llm_id': 4, 'benchmark_id': 11, 'score': 40.9},
+    # {'llm_id': 4, 'benchmark_id': 12, 'score': 88.9},
+    # {'llm_id': 4, 'benchmark_id': 13, 'score': 75.1},
+    # {'llm_id': 4, 'benchmark_id': 14, 'score': 75.9},
+    # {'llm_id': 4, 'benchmark_id': 15, 'score': 80.4},
+    # {'llm_id': 4, 'benchmark_id': 27, 'score': 76.0},
+    # {'llm_id': 4, 'benchmark_id': 18, 'score': 86.8},
+    # {'llm_id': 4, 'benchmark_id': 19, 'score': 64.0},
+    # {'llm_id': 4, 'benchmark_id': 21, 'score': 88.8},
+    # {'llm_id': 4, 'benchmark_id': 22, 'score': 50.2}
+    # {'llm_id': 4, 'benchmark_id': 28, 'score': 50.2},
+    # {'llm_id': 4, 'benchmark_id': 29, 'score': 86.7},
+    # {'llm_id': 5, 'benchmark_id': 1, 'score': 79.0},
+    # {'llm_id': 5, 'benchmark_id': 2, 'score': 89.0},
+    # {'llm_id': 5, 'benchmark_id': 4, 'score': 75.1},
+    # {'llm_id': 5, 'benchmark_id': 5, 'score': 93.2},
+    # {'llm_id': 5, 'benchmark_id': 6, 'score': 40.4},
+    # {'llm_id': 5, 'benchmark_id': 8, 'score': 82.9},
+    # {'llm_id': 5, 'benchmark_id': 11, 'score': 40.5},
+    # {'llm_id': 5, 'benchmark_id': 12, 'score': 92.3},
+    # {'llm_id': 5, 'benchmark_id': 13, 'score': 83.5},
+    # {'llm_id': 5, 'benchmark_id': 14, 'score': 73.0},
+    # {'llm_id': 5, 'benchmark_id': 15, 'score': 79.4},
+    # {'llm_id': 5, 'benchmark_id': 27, 'score': 78.3},
+    # {'llm_id': 5, 'benchmark_id': 18, 'score': 87.9},
+    # {'llm_id': 5, 'benchmark_id': 19, 'score': 71.0},
+    # {'llm_id': 5, 'benchmark_id': 21, 'score': 89.5},
+    # {'llm_id': 5, 'benchmark_id': 22, 'score': 53.1},
+    # {'llm_id': 5, 'benchmark_id': 28, 'score': 81.1},
+    # {'llm_id': 5, 'benchmark_id': 29, 'score': 88.7},
+    # {'llm_id': 6, 'benchmark_id': 1, 'score': 86.8},
+    # {'llm_id': 6, 'benchmark_id': 2, 'score': 95.4},
+    # {'llm_id': 6, 'benchmark_id': 4, 'score': 88.5},
+    # {'llm_id': 6, 'benchmark_id': 5, 'score': 96.4},
+    # {'llm_id': 6, 'benchmark_id': 6, 'score': 50.4},
+    # {'llm_id': 6, 'benchmark_id': 8, 'score': 86.8},
+    # {'llm_id': 6, 'benchmark_id': 11, 'score': 61.0},
+    # {'llm_id': 6, 'benchmark_id': 12, 'score': 95.0},
+    # {'llm_id': 6, 'benchmark_id': 13, 'score': 90.7},
+    # {'llm_id': 6, 'benchmark_id': 14, 'score': 84.9},
+    # {'llm_id': 6, 'benchmark_id': 15, 'score': 86.4},
+    # {'llm_id': 6, 'benchmark_id': 18, 'score': 89.4},
+    # {'llm_id': 6, 'benchmark_id': 19, 'score': 85.0},
+    # {'llm_id': 6, 'benchmark_id': 20, 'score': 95.6},
+    # {'llm_id': 6, 'benchmark_id': 21, 'score': 89.3},
+    # {'llm_id': 6, 'benchmark_id': 22, 'score': 59.4},
+    # {'llm_id': 6, 'benchmark_id': 23, 'score': 86.8},
+    # {'llm_id': 6, 'benchmark_id': 27, 'score': 75.8},
+    # {'llm_id': 6, 'benchmark_id': 28, 'score': 80.8},
+    # {'llm_id': 6, 'benchmark_id': 29, 'score': 88.1}
 ]
 
 def populate_llm_benchmark_table():
@@ -223,3 +283,15 @@ def populate_llm_benchmark_table():
     print('New LLM-Benchmark association(s) added!')
 
 populate_llm_benchmark_table()
+
+
+def delete_llm_benchmark(llm_id):
+    llm_benchmark_row = llm_benchmark.delete().where(
+        llm_benchmark.c.llm_id == llm_id
+    )
+    
+    session.execute(llm_benchmark_row)
+    session.commit()
+    print(f"Rows for LLM ID {llm_id} deleted.")
+
+# delete_llm_benchmark()
