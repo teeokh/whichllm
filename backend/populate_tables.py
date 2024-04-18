@@ -26,6 +26,10 @@ llm_data = [
     # {'name': 'LawGPT', 'link': 'https://github.com/LiuHC0428/LAW-GPT', 'status': 'free', 'provider': 'InternLM', 'speciality': 'Law'},
     # {'name': 'CogVLM', 'link': 'https://github.com/THUDM/CogVLM', 'status': 'free', 'provider': 'CogVLM', 'notes': 'Through API access', 'speciality': 'Vision'}
     # {'name': 'Gemini 1.5 Pro', 'link': 'https://gemini.google.com/app', 'status': 'free', 'provider': 'Google'}
+    # {'name': 'Llama 2', 'link': 'https://llama.meta.com/', 'status': 'free', 'provider': 'Meta'},
+    # {'name': 'Code Llama', 'link': 'https://llama.meta.com/', 'status': 'free', 'provider': 'Meta', 'speciality': 'Coding'},
+    # {'name': 'Mistral 7B', 'link': 'https://mistral.ai/', 'status': 'free', 'provider': 'Mitral AI'}
+
 ]
 
 def populate_llm_table():
@@ -60,7 +64,25 @@ def drop_llm_row(row_id):
     db.session.commit()
 
 # with app.app_context():
-#     drop_llm_row(7)
+#     drop_llm_row()
+
+
+def update_cell(row_id, column_name, new_value):
+    # Retrieve the specific row from the table
+    row = LLM.query.get(row_id)
+
+    if row:
+        # Update the value of the cell in that row
+        setattr(row, column_name, new_value)
+
+        # Commit the changes to the database session
+        db.session.commit()
+        print(f"Cell in row {row_id} updated successfully.")
+    else:
+        print(f"Row with ID {row_id} not found.")
+
+# with app.app_context():
+#     update_cell(18, 'link', 'https://llama.meta.com/llama3/')
 
 benchmark_data = [
     # {'name': 'MMLU', 'subject': 'General'},
@@ -71,7 +93,7 @@ benchmark_data = [
     # {'name': 'GPQA', 'subject': 'General'},
     # {'name': 'OpenBookQA', 'subject': 'General'},
     # {'name': 'BIG Bench Hard', 'subject': 'Advanced Reasoning'},
-    # {'name': 'Chatbot Arena Elo', 'subject': 'Conversation', 'notes': 'User-based / Relative'},
+    # {'name': 'Chatbot Arena Elo', 'subject': 'Relative Performance', 'notes': 'User-based / Relative'}
     # {'name': 'MT-Bench', 'subject': 'Conversation'},
     # {'name': 'MATH', 'subject': 'Maths'},
     # {'name': 'GSM8K', 'subject': 'Maths'},
@@ -93,6 +115,8 @@ benchmark_data = [
     # {'name': 'PubMedQA', 'subject': 'Medicine'}
     # {'name': 'ChartQA', 'subject': 'Image Understanding', 'notes': 'Chart understanding'}
     # {'name': 'AI2D', 'subject': 'Image Understanding', 'notes': 'Science diagram understanding'}
+    # {'name': 'MMLU Medicine', 'subject': 'Medicine', 'notes': 'Average score'}
+    # {'name': 'MedMCQA', 'subject': 'Medicine'}
 ]
 
 def populate_benchmark_table():
@@ -135,7 +159,7 @@ def drop_benchmark_row(row_id):
     db.session.commit()
 
 # with app.app_context():
-#     drop_benchmark_row(16)
+#     drop_benchmark_row(10)
 
 
 
@@ -155,6 +179,7 @@ usecase_data = [
     # {'name': 'Image input'},
     # {'name': 'Video input'},
     # {'name': 'Audio input'}
+    # {'name': 'Basic reasoning'}
 ]
 
 def populate_usecase_table():
@@ -167,8 +192,18 @@ def populate_usecase_table():
     
     session.commit()
     print('New Usecase(s) added!')
-    
+
 # populate_usecase_table()
+
+def update_usecase(usecase_name, new_name):
+    usecase = Usecase.query.filter_by(name=usecase_name).first()
+    if usecase:
+        usecase.name = new_name
+        db.session.commit()
+        print(f"Usecase '{usecase_name}' updated to '{new_name}'.")
+    else:
+        print(f"Usecase '{usecase_name}' not found.")
+        
 
 llm_benchmark_data = [
     # {'llm_id': 1, 'benchmark_id': 1, 'score': 70.0},
@@ -184,9 +219,10 @@ llm_benchmark_data = [
     # {'llm_id': 1, 'benchmark_id': 27, 'score': 60.2},
     # {'llm_id': 1, 'benchmark_id': 18, 'score': 82.8},
     # {'llm_id': 1, 'benchmark_id': 19, 'score': 53.3},
-    # {'llm_id': 1, 'benchmark_id': 11, 'score': 34.1},
+    # {'llm_id': 1, 'benchmark_id': 32, 'score': 34.1},
     # {'llm_id': 1, 'benchmark_id': 20, 'score': 88.5},
     # {'llm_id': 1, 'benchmark_id': 6, 'score': 28.1},
+    # {'llm_id': 1, 'benchmark_id': 33, 'score': 1119},
     # {'llm_id': 2, 'benchmark_id': 1, 'score': 86.4},
     # {'llm_id': 2, 'benchmark_id': 2, 'score': 95.3},
     # {'llm_id': 2, 'benchmark_id': 3, 'score': 89.5},
@@ -195,12 +231,12 @@ llm_benchmark_data = [
     # {'llm_id': 2, 'benchmark_id': 6, 'score': 46.5},
     # {'llm_id': 2, 'benchmark_id': 7, 'score': 95.9},
     # {'llm_id': 2, 'benchmark_id': 8, 'score': 83.9},
-    # {'llm_id': 2, 'benchmark_id': 11, 'score': 54.0},
+    # {'llm_id': 2, 'benchmark_id': 32, 'score': 54.0},
     # {'llm_id': 2, 'benchmark_id': 12, 'score': 96.0},
     # {'llm_id': 2, 'benchmark_id': 13, 'score': 74.5},
     # {'llm_id': 2, 'benchmark_id': 14, 'score': 67.0},
     # {'llm_id': 2, 'benchmark_id': 15, 'score': 87.5},
-    # {'llm_id': 2, 'benchmark_id': 17, 'score': 90.2},
+    # {'llm_id': 2, 'benchmark_id': 17, 'score': 81.4},
     # {'llm_id': 2, 'benchmark_id': 18, 'score': 88.9},
     # {'llm_id': 2, 'benchmark_id': 19, 'score': 74.5},
     # {'llm_id': 2, 'benchmark_id': 20, 'score': 97.6},
@@ -213,13 +249,16 @@ llm_benchmark_data = [
     # {'llm_id': 2, 'benchmark_id': 27, 'score': 74.4}
     # {'llm_id': 2, 'benchmark_id': 28, 'score': 78.5},
     # {'llm_id': 2, 'benchmark_id': 29, 'score': 78.2},
+    # {'llm_id': 2, 'benchmark_id': 30, 'score': 87.4},
+    # {'llm_id': 2, 'benchmark_id': 31, 'score': 72.4},
+    # {'llm_id': 2, 'benchmark_id': 33, 'score': 1260},
     # {'llm_id': 4, 'benchmark_id': 1, 'score': 75.2},
     # {'llm_id': 4, 'benchmark_id': 2, 'score': 85.9},
     # {'llm_id': 4, 'benchmark_id': 4, 'score': 74.2},
     # {'llm_id': 4, 'benchmark_id': 5, 'score': 89.2},
     # {'llm_id': 4, 'benchmark_id': 6, 'score': 33.3},
     # {'llm_id': 4, 'benchmark_id': 8, 'score': 73.7},
-    # {'llm_id': 4, 'benchmark_id': 11, 'score': 40.9},
+    # {'llm_id': 4, 'benchmark_id': 32, 'score': 40.9},
     # {'llm_id': 4, 'benchmark_id': 12, 'score': 88.9},
     # {'llm_id': 4, 'benchmark_id': 13, 'score': 75.1},
     # {'llm_id': 4, 'benchmark_id': 14, 'score': 75.9},
@@ -231,13 +270,14 @@ llm_benchmark_data = [
     # {'llm_id': 4, 'benchmark_id': 22, 'score': 50.2}
     # {'llm_id': 4, 'benchmark_id': 28, 'score': 50.2},
     # {'llm_id': 4, 'benchmark_id': 29, 'score': 86.7},
+    # {'llm_id': 4, 'benchmark_id': 33, 'score': 1182},
     # {'llm_id': 5, 'benchmark_id': 1, 'score': 79.0},
     # {'llm_id': 5, 'benchmark_id': 2, 'score': 89.0},
     # {'llm_id': 5, 'benchmark_id': 4, 'score': 75.1},
     # {'llm_id': 5, 'benchmark_id': 5, 'score': 93.2},
     # {'llm_id': 5, 'benchmark_id': 6, 'score': 40.4},
     # {'llm_id': 5, 'benchmark_id': 8, 'score': 82.9},
-    # {'llm_id': 5, 'benchmark_id': 11, 'score': 40.5},
+    # {'llm_id': 5, 'benchmark_id': 32, 'score': 40.5},
     # {'llm_id': 5, 'benchmark_id': 12, 'score': 92.3},
     # {'llm_id': 5, 'benchmark_id': 13, 'score': 83.5},
     # {'llm_id': 5, 'benchmark_id': 14, 'score': 73.0},
@@ -249,13 +289,14 @@ llm_benchmark_data = [
     # {'llm_id': 5, 'benchmark_id': 22, 'score': 53.1},
     # {'llm_id': 5, 'benchmark_id': 28, 'score': 81.1},
     # {'llm_id': 5, 'benchmark_id': 29, 'score': 88.7},
+    # {'llm_id': 5, 'benchmark_id': 33, 'score': 1203},
     # {'llm_id': 6, 'benchmark_id': 1, 'score': 86.8},
     # {'llm_id': 6, 'benchmark_id': 2, 'score': 95.4},
     # {'llm_id': 6, 'benchmark_id': 4, 'score': 88.5},
     # {'llm_id': 6, 'benchmark_id': 5, 'score': 96.4},
     # {'llm_id': 6, 'benchmark_id': 6, 'score': 50.4},
     # {'llm_id': 6, 'benchmark_id': 8, 'score': 86.8},
-    # {'llm_id': 6, 'benchmark_id': 11, 'score': 61.0},
+    # {'llm_id': 6, 'benchmark_id': 32, 'score': 61.0},
     # {'llm_id': 6, 'benchmark_id': 12, 'score': 95.0},
     # {'llm_id': 6, 'benchmark_id': 13, 'score': 90.7},
     # {'llm_id': 6, 'benchmark_id': 14, 'score': 84.9},
@@ -269,10 +310,11 @@ llm_benchmark_data = [
     # {'llm_id': 6, 'benchmark_id': 27, 'score': 75.8},
     # {'llm_id': 6, 'benchmark_id': 28, 'score': 80.8},
     # {'llm_id': 6, 'benchmark_id': 29, 'score': 88.1}
+    # {'llm_id': 6, 'benchmark_id': 33, 'score': 1255},
     # {'llm_id': 17, 'benchmark_id': 1, 'score': 81.9},
     # {'llm_id': 17, 'benchmark_id': 2, 'score': 92.5},
     # {'llm_id': 17, 'benchmark_id': 8, 'score': 84.0},
-    # {'llm_id': 17, 'benchmark_id': 11, 'score': 58.5},
+    # {'llm_id': 17, 'benchmark_id': 32, 'score': 58.5},
     # {'llm_id': 17, 'benchmark_id': 12, 'score': 91.7},
     # {'llm_id': 17, 'benchmark_id': 13, 'score': 88.7},
     # {'llm_id': 17, 'benchmark_id': 14, 'score': 71.9},
@@ -280,21 +322,51 @@ llm_benchmark_data = [
     # {'llm_id': 17, 'benchmark_id': 22, 'score': 58.5},
     # {'llm_id': 17, 'benchmark_id': 28, 'score': 81.3},
     # {'llm_id': 17, 'benchmark_id': 29, 'score': 80.3}
-    {'llm_id': 8, 'benchmark_id': 1, 'score': 90.0},
-    {'llm_id': 8, 'benchmark_id': 2, 'score': 87.8},
-    {'llm_id': 8, 'benchmark_id': 8, 'score': 83.6},
-    {'llm_id': 8, 'benchmark_id': 11, 'score': 53.2},
-    {'llm_id': 8, 'benchmark_id': 12, 'score': 94.4},
-    {'llm_id': 8, 'benchmark_id': 13, 'score': 79.0},
-    {'llm_id': 8, 'benchmark_id': 14, 'score': 74.4},
-    {'llm_id': 8, 'benchmark_id': 21, 'score': 90.9},
-    {'llm_id': 8, 'benchmark_id': 22, 'score': 59.4},
-    {'llm_id': 8, 'benchmark_id': 23, 'score': 82.3},
-    {'llm_id': 8, 'benchmark_id': 24, 'score': 62.7},
-    {'llm_id': 8, 'benchmark_id': 25, 'score': 40.1},
-    {'llm_id': 8, 'benchmark_id': 26, 'score': 92.4},
-    {'llm_id': 8, 'benchmark_id': 28, 'score': 80.8},
-    {'llm_id': 8, 'benchmark_id': 29, 'score': 79.5}
+    # {'llm_id': 17, 'benchmark_id': 33, 'score': 1209},
+    # {'llm_id': 8, 'benchmark_id': 1, 'score': 90.0},
+    # {'llm_id': 8, 'benchmark_id': 2, 'score': 87.8},
+    # {'llm_id': 8, 'benchmark_id': 8, 'score': 83.6},
+    # {'llm_id': 8, 'benchmark_id': 32, 'score': 53.2},
+    # {'llm_id': 8, 'benchmark_id': 12, 'score': 94.4},
+    # {'llm_id': 8, 'benchmark_id': 13, 'score': 79.0},
+    # {'llm_id': 8, 'benchmark_id': 14, 'score': 74.4},
+    # {'llm_id': 8, 'benchmark_id': 21, 'score': 90.9},
+    # {'llm_id': 8, 'benchmark_id': 22, 'score': 59.4},
+    # {'llm_id': 8, 'benchmark_id': 23, 'score': 82.3},
+    # {'llm_id': 8, 'benchmark_id': 24, 'score': 62.7},
+    # {'llm_id': 8, 'benchmark_id': 25, 'score': 40.1},
+    # {'llm_id': 8, 'benchmark_id': 26, 'score': 92.4},
+    # {'llm_id': 8, 'benchmark_id': 28, 'score': 80.8},
+    # {'llm_id': 8, 'benchmark_id': 29, 'score': 79.5}
+    # {'llm_id': 10, 'benchmark_id': 17, 'score': 86.5},
+    # {'llm_id': 10, 'benchmark_id': 27, 'score': 81.8},
+    # {'llm_id': 10, 'benchmark_id': 30, 'score': 89.9},
+    # {'llm_id': 10, 'benchmark_id': 31, 'score': 72.3}
+    # {'llm_id': 16, 'benchmark_id': 21, 'score': 81.6},
+    # {'llm_id': 16, 'benchmark_id': 23, 'score': 76.1},
+    # {'llm_id': 16, 'benchmark_id': 28, 'score': 68.4}
+    # {'llm_id': 18, 'benchmark_id': 1, 'score': 82.0},
+    # {'llm_id': 18, 'benchmark_id': 4, 'score': 83.1},
+    # {'llm_id': 18, 'benchmark_id': 5, 'score': 93.0},
+    # {'llm_id': 18, 'benchmark_id': 6, 'score': 39.5},
+    # {'llm_id': 18, 'benchmark_id': 8, 'score': 81.3},
+    # {'llm_id': 18, 'benchmark_id': 12, 'score': 93.0},
+    # {'llm_id': 18, 'benchmark_id': 14, 'score': 81.7},
+    # {'llm_id': 18, 'benchmark_id': 32, 'score': 50.4}
+    # {'llm_id': 19, 'benchmark_id': 14, 'score': 53.0},
+    # {'llm_id': 19, 'benchmark_id': 15, 'score': 62.4}
+    # {'llm_id': 20, 'benchmark_id': 1, 'score': 62.5},
+    # {'llm_id': 20, 'benchmark_id': 2, 'score': 81.3},
+    # {'llm_id': 20, 'benchmark_id': 4, 'score': 75.3},
+    # {'llm_id': 20, 'benchmark_id': 5, 'score': 78.7},
+    # {'llm_id': 20, 'benchmark_id': 6, 'score': 26.3},
+    # {'llm_id': 20, 'benchmark_id': 8, 'score': 56.0},
+    # {'llm_id': 20, 'benchmark_id': 12, 'score': 39.9},
+    # {'llm_id': 20, 'benchmark_id': 32, 'score': 13.1},
+    # {'llm_id': 20, 'benchmark_id': 14, 'score': 30.5},
+    # {'llm_id': 20, 'benchmark_id': 15, 'score': 47.5}
+    # {'llm_id': 20, 'benchmark_id': 33, 'score': 1158}
+
     
 ]
 
@@ -310,7 +382,7 @@ def populate_llm_benchmark_table():
     session.commit()
     print('New LLM-Benchmark association(s) added!')
 
-populate_llm_benchmark_table()
+# populate_llm_benchmark_table()
 
 
 def delete_llm_benchmark(llm_id):
@@ -323,3 +395,51 @@ def delete_llm_benchmark(llm_id):
     print(f"Rows for LLM ID {llm_id} deleted.")
 
 # delete_llm_benchmark()
+
+
+benchmark_usecase_data = [
+    # {'benchmark_id': 1, 'usecase_id': 3},
+    # {'benchmark_id': 2, 'usecase_id': 16},
+    # {'benchmark_id': 4, 'usecase_id': 16},
+    # {'benchmark_id': 5, 'usecase_id': 16},
+    # {'benchmark_id': 6, 'usecase_id': 8},
+    # {'benchmark_id': 29, 'usecase_id': 8},
+    # {'benchmark_id': 7, 'usecase_id': 16},
+    # {'benchmark_id': 8, 'usecase_id': 11},
+    # {'benchmark_id': 12, 'usecase_id': 6},
+    # {'benchmark_id': 13, 'usecase_id': 6},
+    # {'benchmark_id': 32, 'usecase_id': 6},
+    # {'benchmark_id': 14, 'usecase_id': 7},
+    # {'benchmark_id': 15, 'usecase_id': 7},
+    # {'benchmark_id': 17, 'usecase_id': 9},
+    # {'benchmark_id': 27, 'usecase_id': 9},
+    # {'benchmark_id': 18, 'usecase_id': 10},
+    # {'benchmark_id': 19, 'usecase_id': 10},
+    # {'benchmark_id': 20, 'usecase_id': 10},
+    # {'benchmark_id': 21, 'usecase_id': 12},
+    # {'benchmark_id': 21, 'usecase_id': 13},
+    # {'benchmark_id': 22, 'usecase_id': 13},
+    # {'benchmark_id': 23, 'usecase_id': 13},
+    # {'benchmark_id': 24, 'usecase_id': 14},
+    # {'benchmark_id': 25, 'usecase_id': 15},
+    # {'benchmark_id': 26, 'usecase_id': 15},
+    # {'benchmark_id': 27, 'usecase_id': 10},
+    # {'benchmark_id': 28, 'usecase_id': 12},
+    # {'benchmark_id': 29, 'usecase_id': 12},
+    # {'benchmark_id': 30, 'usecase_id': 9},
+    # {'benchmark_id': 31, 'usecase_id': 9}
+]
+
+
+def populate_benchmark_usecase_table():
+    for row in benchmark_usecase_data:
+        benchmark_usecase_row = benchmark_usecase.insert().values(
+        benchmark_id=row['benchmark_id'],
+        usecase_id=row['usecase_id']
+    )
+        session.execute(benchmark_usecase_row)
+    
+    session.commit()
+    print('New Benchmark-Usecase association(s) added!')
+    
+# populate_benchmark_usecase_table()
