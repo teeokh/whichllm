@@ -117,6 +117,7 @@ benchmark_data = [
     # {'name': 'AI2D', 'subject': 'Image Understanding', 'notes': 'Science diagram understanding'}
     # {'name': 'MMLU Medicine', 'subject': 'Medicine', 'notes': 'Average score'}
     # {'name': 'MedMCQA', 'subject': 'Medicine'}
+    # {'name' : 'EQ Bench', 'subject': 'Emotional intelligence / creativity'}
 ]
 
 def populate_benchmark_table():
@@ -159,7 +160,7 @@ def drop_benchmark_row(row_id):
     db.session.commit()
 
 # with app.app_context():
-#     drop_benchmark_row(10)
+#     drop_benchmark_row()
 
 
 
@@ -180,6 +181,7 @@ usecase_data = [
     # {'name': 'Video input'},
     # {'name': 'Audio input'}
     # {'name': 'Basic reasoning'}
+    # {'name': 'Creative writing'}
 ]
 
 def populate_usecase_table():
@@ -223,6 +225,7 @@ llm_benchmark_data = [
     # {'llm_id': 1, 'benchmark_id': 20, 'score': 88.5},
     # {'llm_id': 1, 'benchmark_id': 6, 'score': 28.1},
     # {'llm_id': 1, 'benchmark_id': 33, 'score': 1119},
+    {'llm_id': 1, 'benchmark_id': 34, 'score': 49.08},
     # {'llm_id': 2, 'benchmark_id': 1, 'score': 86.4},
     # {'llm_id': 2, 'benchmark_id': 2, 'score': 95.3},
     # {'llm_id': 2, 'benchmark_id': 3, 'score': 89.5},
@@ -252,6 +255,7 @@ llm_benchmark_data = [
     # {'llm_id': 2, 'benchmark_id': 30, 'score': 87.4},
     # {'llm_id': 2, 'benchmark_id': 31, 'score': 72.4},
     # {'llm_id': 2, 'benchmark_id': 33, 'score': 1260},
+    {'llm_id': 2, 'benchmark_id': 34, 'score': 74.67},
     # {'llm_id': 4, 'benchmark_id': 1, 'score': 75.2},
     # {'llm_id': 4, 'benchmark_id': 2, 'score': 85.9},
     # {'llm_id': 4, 'benchmark_id': 4, 'score': 74.2},
@@ -271,6 +275,7 @@ llm_benchmark_data = [
     # {'llm_id': 4, 'benchmark_id': 28, 'score': 50.2},
     # {'llm_id': 4, 'benchmark_id': 29, 'score': 86.7},
     # {'llm_id': 4, 'benchmark_id': 33, 'score': 1182},
+    {'llm_id': 4, 'benchmark_id': 34, 'score': 74.58},
     # {'llm_id': 5, 'benchmark_id': 1, 'score': 79.0},
     # {'llm_id': 5, 'benchmark_id': 2, 'score': 89.0},
     # {'llm_id': 5, 'benchmark_id': 4, 'score': 75.1},
@@ -290,6 +295,7 @@ llm_benchmark_data = [
     # {'llm_id': 5, 'benchmark_id': 28, 'score': 81.1},
     # {'llm_id': 5, 'benchmark_id': 29, 'score': 88.7},
     # {'llm_id': 5, 'benchmark_id': 33, 'score': 1203},
+    {'llm_id': 5, 'benchmark_id': 34, 'score': 75.06},
     # {'llm_id': 6, 'benchmark_id': 1, 'score': 86.8},
     # {'llm_id': 6, 'benchmark_id': 2, 'score': 95.4},
     # {'llm_id': 6, 'benchmark_id': 4, 'score': 88.5},
@@ -311,6 +317,7 @@ llm_benchmark_data = [
     # {'llm_id': 6, 'benchmark_id': 28, 'score': 80.8},
     # {'llm_id': 6, 'benchmark_id': 29, 'score': 88.1}
     # {'llm_id': 6, 'benchmark_id': 33, 'score': 1255},
+    {'llm_id': 6, 'benchmark_id': 34, 'score': 76.55},
     # {'llm_id': 17, 'benchmark_id': 1, 'score': 81.9},
     # {'llm_id': 17, 'benchmark_id': 2, 'score': 92.5},
     # {'llm_id': 17, 'benchmark_id': 8, 'score': 84.0},
@@ -338,6 +345,7 @@ llm_benchmark_data = [
     # {'llm_id': 8, 'benchmark_id': 26, 'score': 92.4},
     # {'llm_id': 8, 'benchmark_id': 28, 'score': 80.8},
     # {'llm_id': 8, 'benchmark_id': 29, 'score': 79.5}
+    {'llm_id': 8, 'benchmark_id': 34, 'score': 77.68},
     # {'llm_id': 10, 'benchmark_id': 17, 'score': 86.5},
     # {'llm_id': 10, 'benchmark_id': 27, 'score': 81.8},
     # {'llm_id': 10, 'benchmark_id': 30, 'score': 89.9},
@@ -366,6 +374,7 @@ llm_benchmark_data = [
     # {'llm_id': 20, 'benchmark_id': 14, 'score': 30.5},
     # {'llm_id': 20, 'benchmark_id': 15, 'score': 47.5}
     # {'llm_id': 20, 'benchmark_id': 33, 'score': 1158}
+    {'llm_id': 20, 'benchmark_id': 34, 'score': 71.18}
 
     
 ]
@@ -382,7 +391,7 @@ def populate_llm_benchmark_table():
     session.commit()
     print('New LLM-Benchmark association(s) added!')
 
-# populate_llm_benchmark_table()
+populate_llm_benchmark_table()
 
 
 def delete_llm_benchmark(llm_id):
@@ -428,6 +437,7 @@ benchmark_usecase_data = [
     # {'benchmark_id': 29, 'usecase_id': 12},
     # {'benchmark_id': 30, 'usecase_id': 9},
     # {'benchmark_id': 31, 'usecase_id': 9}
+    #  {'benchmark_id': 2, 'usecase_id': 1}
 ]
 
 
@@ -442,4 +452,4 @@ def populate_benchmark_usecase_table():
     session.commit()
     print('New Benchmark-Usecase association(s) added!')
     
-# populate_benchmark_usecase_table()
+#populate_benchmark_usecase_table()
