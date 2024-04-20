@@ -1,5 +1,5 @@
 from config import app, db
-from models import LLM, Benchmark, Usecase, llm_benchmark, benchmark_usecase, LLMStatus
+from models import *
 
 if __name__ == "__main__":
     with app.app_context():
