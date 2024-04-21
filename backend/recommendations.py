@@ -2,7 +2,7 @@ from models import *
 from config import db, app
 from populate_tables import session
 
-def top_llms_for_usecase(usecase_id, top_n=3):
+def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     
     usecase = Usecase.query.filter_by(id=usecase_id).first()
     
@@ -12,10 +12,17 @@ def top_llms_for_usecase(usecase_id, top_n=3):
     # Iterate through each benchmark and extract their benchmark ID
     benchmark_ids = [b.id for b in benchmarks if b.id != 33]
     
-    # Return a list of all LLMs with any of those benchmarks
-    llms = LLM.query.join(llm_benchmark, LLM.id == llm_benchmark.c.llm_id) \
+    # Return a list of all LLMs with any of those benchmarks. Filter for free vs paid
+    if status_filter != None:
+        llms = LLM.query.join(llm_benchmark, LLM.id == llm_benchmark.c.llm_id) \
                         .filter(llm_benchmark.c.benchmark_id.in_(benchmark_ids)) \
+                        .filter(LLM.status == status_filter) \
                         .all()
+    
+    else:   
+        llms = LLM.query.join(llm_benchmark, LLM.id == llm_benchmark.c.llm_id) \
+                            .filter(llm_benchmark.c.benchmark_id.in_(benchmark_ids)) \
+                            .all()
                         
     # Return average scores on these benchmarks for each LLM
     llm_scores = []
@@ -36,12 +43,12 @@ def top_llms_for_usecase(usecase_id, top_n=3):
     # Sort the LLM scores in reverse order (highest to lowest)
     llm_scores.sort(key=lambda x: x[1], reverse=True)
     
-    # Return the top n LLMs
+    # Return the top n LLMs for the usecase
     print(llm_scores[:top_n])
     return llm_scores[:top_n]
-        
         
 
 if __name__ == "__main__":
     with app.app_context():
-        top_llms_for_usecase(7, 4)
+        top_llms_for_usecase(7, None, 4)
+        
