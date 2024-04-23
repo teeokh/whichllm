@@ -182,6 +182,7 @@ usecase_data = [
     # {'name': 'Audio input'}
     # {'name': 'Basic reasoning'}
     # {'name': 'Creative writing'}
+    # {'name': 'Relative User Preference'}
 ]
 
 def populate_usecase_table():
@@ -361,7 +362,7 @@ llm_benchmark_data = [
     # {'llm_id': 18, 'benchmark_id': 12, 'score': 93.0},
     # {'llm_id': 18, 'benchmark_id': 14, 'score': 81.7},
     # {'llm_id': 18, 'benchmark_id': 32, 'score': 50.4}
-    {'llm_id': 18, 'benchmark_id': 33, 'score': 1213}
+    # {'llm_id': 18, 'benchmark_id': 33, 'score': 1213}
     # {'llm_id': 19, 'benchmark_id': 14, 'score': 53.0},
     # {'llm_id': 19, 'benchmark_id': 15, 'score': 62.4}
     # {'llm_id': 20, 'benchmark_id': 1, 'score': 62.5},
@@ -391,7 +392,7 @@ def populate_llm_benchmark_table():
     session.commit()
     print('New LLM-Benchmark association(s) added!')
 
-populate_llm_benchmark_table()
+# populate_llm_benchmark_table()
 
 
 def delete_llm_benchmark(llm_id):
@@ -439,6 +440,7 @@ benchmark_usecase_data = [
     # {'benchmark_id': 31, 'usecase_id': 9}
     # {'benchmark_id': 2, 'usecase_id': 1}
     # {'benchmark_id': 34, 'usecase_id': 17}
+    # {'benchmark_id': 33, 'usecase_id': 18}
 ]
 
 
