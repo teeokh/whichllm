@@ -2,7 +2,7 @@ from config import app, db, db_path
 import enum
 from sqlalchemy import Enum
 
-class LLMStatus(enum.Enum):
+class LLMStatus(str, enum.Enum):
     free = 'free'
     paid = 'paid'
 

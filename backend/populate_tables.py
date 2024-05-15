@@ -10,7 +10,7 @@ llm_data = [
     {'name': 'Claude 3 Sonnet', 'link': 'https://claude.ai/', 'status': 'free', 'provider': 'Anthropic'},
     {'name': 'Claude 3 Opus', 'link': 'https://claude.ai/', 'status': 'paid', 'provider': 'Anthropic'},
     {'name': 'Gemini 1.0 Pro', 'link': 'https://gemini.google.com/app', 'status': 'free', 'provider': 'Google'},
-    {'name': 'Gemini Advanced', 'link': 'https://gemini.google.com/advanced', 'status': 'paid', 'provider': 'Google'},
+    {'name': 'Gemini Ultra', 'link': 'https://deepmind.google/technologies/gemini/ultra/', 'status': 'paid', 'provider': 'Google'},
     {'name': 'Github CoPilot', 'link': 'https://github.com/features/copilot', 'status': 'paid', 'provider': 'Github', 'speciality': 'Coding'},
     {'name': 'MedLM', 'link': 'https://cloud.google.com/vertex-ai/generative-ai/docs/medlm/overview', 'status': 'paid', 'provider': 'Google', 'notes': 'Only available in the US to Google Cloud users', 'speciality': 'Medicine'},
     {'name': 'GPT4-Medprompt', 'link': 'https://openai.com/gpt-4', 'status': 'paid', 'provider': 'OpenAI', 'speciality': 'Medicine'},
@@ -78,7 +78,7 @@ def update_cell(row_id, column_name, new_value):
         print(f"Row with ID {row_id} not found.")
 
 # with app.app_context():
-#     update_cell(18, 'link', 'https://llama.meta.com/llama3/')
+#     update_cell(8, 'name', 'Gemini Ultra')
 
 benchmark_data = [
     {'name': 'MMLU', 'subject': 'General'},
