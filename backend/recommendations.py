@@ -1,6 +1,5 @@
 from models import *
 from config import db, app
-from populate_tables import session
 
 def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     
@@ -11,10 +10,10 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     
     # Iterate through each benchmark and extract their benchmark ID (excluding elo benchmark unless elo_only)
     if usecase_id == 18:
-        benchmark_ids = [b.id for b in benchmarks if b.id == 33]
+        benchmark_ids = [b.id for b in benchmarks if b.id == 9]
         
     else:
-        benchmark_ids = [b.id for b in benchmarks if b.id != 33]
+        benchmark_ids = [b.id for b in benchmarks if b.id != 9]
 
     
     # Return a list of all LLMs with any of those benchmarks. Filter for free vs paid

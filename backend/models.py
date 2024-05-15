@@ -1,4 +1,4 @@
-from config import db
+from config import app, db, db_path
 import enum
 from sqlalchemy import Enum
 
