@@ -51,7 +51,7 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     llm_scores.sort(key=lambda x: x[1], reverse=True)
     
     # Return the top n LLMs for the usecase. Returns a list of tuples (which is not serializable innately)
-    print(f'These are the top {top_n} LLMs for {usecase.name}: {llm_scores[:top_n]}')
+    # print(f'These are the top {top_n} LLMs for {usecase.name}: {llm_scores[:top_n]}')
     return llm_scores[:top_n]
         
 
