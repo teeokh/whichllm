@@ -6,7 +6,7 @@ from recommendations import top_llms_for_usecase
 @app.route('/')
 @app.route('/home')
 def home():
-    return 'Hello, whichLLM coming soon... This is the home page'
+    return jsonify({'message': 'Hello, whichLLM coming soon... This is the home page'})
 
 @app.route('/test', methods=['GET'])
 def get_test():
