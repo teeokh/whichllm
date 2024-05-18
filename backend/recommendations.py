@@ -55,7 +55,6 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     return llm_scores[:top_n]
         
 
-if __name__ == "__main__":
-    with app.app_context():
-        top_llms_for_usecase(usecase_id=3, status_filter='free', top_n=4)
-        
+# if __name__ == "__main__":
+#     with app.app_context():
+#         top_llms_for_usecase()
