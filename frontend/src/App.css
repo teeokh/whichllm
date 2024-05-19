@@ -1,5 +1,7 @@
 .App {
   text-align: center;
   padding: 20px;
-  background-color: rgb(150, 142, 168);
+  background-color: rgb(255, 255, 255);
+  /* display: flex; */
+  /* justify-content: center; */
 }

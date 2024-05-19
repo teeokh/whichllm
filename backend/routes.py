@@ -6,13 +6,19 @@ from recommendations import top_llms_for_usecase
 @app.route('/')
 @app.route('/home')
 def home():
-    return jsonify({'message': 'Hello, whichLLM coming soon... This is the home page'})
+    return jsonify({'message': 'WhichLLM coming soon...'})
 
-@app.route('/test', methods=['GET'])
-def get_test():
-    test = Benchmark.query.all()
-    json_test = list(map(lambda x: x.to_json(), test))
-    return jsonify(json_test)
+@app.route('/usecases')
+def get_all_usecases():
+    usecases = db.session.query(Usecase).join(benchmark_usecase, Usecase.id == benchmark_usecase.c.usecase_id).distinct().all()
+    json_usecases = [usecase.to_json() for usecase in usecases]
+    return jsonify(json_usecases)
+
+@app.route('/usecase/<int:usecase_id>', methods=['GET'])
+def get_usecase(usecase_id):
+    usecase = Usecase.query.get_or_404(usecase_id)
+    json_usecase = usecase.to_json()
+    return jsonify(json_usecase)
 
 # Recommendations route, displaying top LLMs with score in JSON format
 @app.route('/recommendations', methods=['GET'])
@@ -25,7 +31,7 @@ def get_recommendations():
     
     # If usecase ID is not entered
     if usecase_id is None:
-        return jsonify({'message': 'usecase_id is required'}), 400
+        return jsonify({'message': 'A usecase must be selected'}), 400
     
     # If usecase ID is not recognised
     usecase = Usecase.query.filter_by(id=usecase_id).first()
@@ -40,5 +46,3 @@ def get_recommendations():
         return jsonify({'message': 'No recommendations found for this usecase'}), 404
     
     return jsonify({'recommendations':json_recommendations})
-
-

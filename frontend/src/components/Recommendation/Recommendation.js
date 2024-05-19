@@ -1,53 +1,44 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import useRecommendation from '../hooks/useRecommendation.js';
+import useUsecaseName from '../hooks/useUsecaseName.js';
+import Filter from '../Filter/Filter.js'
+import './Recommendation.css';
 
-const Recommendation = () => {
+const Recommendation = ({ usecaseId, statusFilter, topN }) => {
+    const { recommendation, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
+    const { usecaseName, error: nameError } = useUsecaseName(usecaseId);
 
-    const [recommendation, setRecommendation] = useState()
-    const [usecaseId, setUsecaseId] = useState(2); 
-    const [statusFilter, setStatusFilter] = useState(null); 
-    const [topN, setTopN] = useState(3); 
-    const [error, setError] = useState('');
+    if (recError || nameError) {
+        return <p>{recError || nameError}</p>;
+    }
 
-    useEffect(() => {
-        const fetchRecommendation = async() => {
-            try {
-                const response = await axios.get('/recommendations', {
-                    params: {
-                        usecase_id: usecaseId,
-                        status_filter: statusFilter,
-                        top_n: topN
-                    }
-                })
-                setRecommendation(response.data.recommendations)
-            } catch (error) {
-                setError(error.response.data.message)
-                console.log(error)
-            }
-        }
+    const bestLLM = recommendation[0]
+    const nextBestLLMs = recommendation.slice(1, 3)
 
-        if (usecaseId) {
-            fetchRecommendation()
-        }
+    if (!recommendation.length) {
+        return <p>Loading...</p>;
+    }
 
-    }, [usecaseId, statusFilter, topN]);
+    const handleClick = () => {
+        window.open(bestLLM.llm.link, "_blank");
+    }
 
     return (
-        <div>
-            {error ? <p>{error}</p> : null}
-            {recommendation && recommendation.length > 0 ? (
-                <ul>
-                    {recommendation.map(( {llm} ) => (
-                        <li key={llm.id}>
-                            <h3>{llm.name}</h3>
-                            <p>Link: {llm.link}</p>
-                            <p>Provider: {llm.provider}</p>
-                        </li>
-                    ))}
-                </ul>
-            ) : null}
-        </div>
+            <div className='App'>
+                <h1>The best tool for you is...</h1>
+                <div>
+                    <h2 className='recommendation' onClick={handleClick} style={{ cursor: 'pointer' }}>{bestLLM.llm.name}</h2>
+                    <p>It scored an average of {bestLLM.score} on the {usecaseName} benchmarks</p>
+                    <p>Link: <a href={bestLLM.llm.link} target="_blank" rel="noopener noreferrer">{bestLLM.llm.link}</a></p>
+                    <p>Provider: {bestLLM.llm.provider}</p>
+                </div>
+                {nextBestLLMs.length === (topN - 1) && (
+                    <div>
+                        <p>Compared to {nextBestLLMs[0].llm.name} ({nextBestLLMs[0].score}) and {nextBestLLMs[1].llm.name} ({nextBestLLMs[1].score})</p>
+                    </div>
+                )}
+            </div>
     );
-}
- 
+};
+
 export default Recommendation;
