@@ -4,7 +4,6 @@ const Filter = ({ onSelect }) => {
     const handleSelect = (event) => {
         const value = event.target.value === 'null' ? null : event.target.value
         onSelect(value)
-        console.log(value)
     }
 
     return ( 
