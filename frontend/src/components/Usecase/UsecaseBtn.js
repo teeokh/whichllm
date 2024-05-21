@@ -10,9 +10,9 @@ const UsecaseBtn = ({ onSelect }) => {
     }
 
     return (
-        <div className="App">
+        <div className='grid grid-cols-4 align-items-center'>
             {usecases.map((usecase) => (
-                <button className="usecaseBtn"key={usecase.id} onClick={() => onSelect(usecase.id)}>
+                <button className='bg-sky-400 text-white font-small p-4 m-1 rounded hover:bg-sky-500' key={usecase.id} onClick={() => onSelect(usecase.id)}>
                     {usecase.name}
                 </button>
             ))}

@@ -7,7 +7,7 @@ const Filter = ({ onSelect }) => {
     }
 
     return ( 
-        <div className='App'>
+        <div>
             <label htmlFor='statusFilter'>Filter</label>
 
             <select name='statusFilter' id='statusFilter' onChange={handleSelect}>

@@ -24,19 +24,19 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
     }
 
     return (
-            <div className='App'>
+            <div>
                 <h1>The best tool for you is...</h1>
                 <div>
-                    <h2 className='recommendation' onClick={handleClick} style={{ cursor: 'pointer' }}>{bestLLM.llm.name}</h2>
-                    <p>It scored an average of {bestLLM.score} on the {usecaseName} benchmarks</p>
+                    <h2 onClick={handleClick} style={{ cursor: 'pointer' }}>{bestLLM.llm.name}</h2>
+                    <p>It scored an average of {bestLLM.score} on the {usecaseName} benchmarks
+                    {nextBestLLMs.length === (topN - 1) && (
+                        <p>Compared to {nextBestLLMs[0].llm.name} ({nextBestLLMs[0].score}) and {nextBestLLMs[1].llm.name} ({nextBestLLMs[1].score})</p>
+                )}
+                    </p>
                     <p>Link: <a href={bestLLM.llm.link} target="_blank" rel="noopener noreferrer">{bestLLM.llm.link}</a></p>
                     <p>Provider: {bestLLM.llm.provider}</p>
                 </div>
-                {nextBestLLMs.length === (topN - 1) && (
-                    <div>
-                        <p>Compared to {nextBestLLMs[0].llm.name} ({nextBestLLMs[0].score}) and {nextBestLLMs[1].llm.name} ({nextBestLLMs[1].score})</p>
-                    </div>
-                )}
+                
             </div>
     );
 };

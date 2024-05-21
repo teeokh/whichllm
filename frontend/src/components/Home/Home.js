@@ -20,8 +20,8 @@ useEffect(() => {
 
     return (
         <div>
-            <h1 className='App'>{message}</h1>
-            <Link to='/main' className='App'>Main page</Link>
+            <h1>{message}</h1>
+            <Link to='/main'>Main page</Link>
         </div>
     );
 }
