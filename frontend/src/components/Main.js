@@ -16,24 +16,19 @@ const Main = () => {
     const { usecases, error } = useUsecases();
     const { recommendation, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
 
-    if (!recommendation.length || !usecases.length) {
-        return <p className='flex justify-center items-center min-h-screen'>Loading...</p>;
-    }
-
     return (
         <div className='flex flex-col justify-center items-center min-h-screen'>
-            <div className='mb-8'>
+            <div className='mb-10'>
                 <UsecaseBtn onSelect={setUsecaseId} />
             </div>
-            <div className='mb-8'>
+            <div className='mb-10'>
                 <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
             </div>
             <div>
                 <Filter onSelect={setStatusFilter} />
-                {/* <Test /> */}
             </div>
         </div>
-    );
+    )
 }
 
 export default Main;

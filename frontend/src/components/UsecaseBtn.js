@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import useUsecases from '../components/hooks/useUsecases';
+import { icons } from '../assets/icons.js';
+import { IconContext } from 'react-icons';
+import UsecaseIcon from './UsecaseIcon.js';
 
 const UsecaseBtn = ({ onSelect }) => {
     const { usecases, error } = useUsecases();
@@ -12,6 +15,11 @@ const UsecaseBtn = ({ onSelect }) => {
 
     if (usecases.length === 0) {
         return <p></p>;
+    }
+
+    const getUsecaseIcon = (usecaseName) => {
+        const IconComponent = icons[usecaseName];
+        return IconComponent ? <IconComponent /> : null;
     }
 
     // For carousel effect
@@ -34,48 +42,55 @@ const UsecaseBtn = ({ onSelect }) => {
     );
 
     return (
+
+        
         <div className='flex flex-col items-center'>
-            <div className="flex items-center p-4">
+            <div className='flex flex-col items-center mb-10'>
+                <h1 className='font-bold text-3xl'>Which LLM?</h1>
+                <p>Select your desired usecase to find out which AI tool is best for you</p>
+            </div>
+            
+            <div className="flex items-center">
+            
 
                 {/* Carousel previous slide  */}
-                <button className="px-2 py-1 mr-2 text-white bg-blue-500 hover:bg-teal-300 rounded-full"
+                <button className="px-2 py-1 mr-2 text-white bg-black hover:text-black hover:bg-white hover:border-solid hover:border-black border rounded-full size-2xl"
                     onClick={prevSlide}
-                    // disabled={currentIndex === 0}
+                // disabled={currentIndex === 0}
                 >&#8592;
                 </button>
 
                 <div className="flex overflow-hidden">
                     {visibleUsecases.map((usecase) => (
-                        <div key={usecase.id} className="px-2">
+                        <div key={usecase.id} className="flex flex-col items-center px-2">
+
                             {/* Button to indicate which use-case is selected */}
+                            <IconContext.Provider value={{ size: 50 }}>
+                                <button onClick={() => onSelect(usecase.id)} className='m-4'>
+                                    {getUsecaseIcon(usecase.name)}
+                                </button>
+                            </IconContext.Provider>
+                            <div className='flex justify-center w-56 p-2'>
                             <button
-                                className="text-white bg-blue-500 hover:to-blue-500 font-small rounded-md hover:bg-teal-300 w-56 p-2"
+                                className="text-black"
                                 onClick={() => onSelect(usecase.id)}
                             >
                                 {usecase.name}
                             </button>
+                            </div>
+                            
                         </div>
                     ))}
                 </div>
 
                 {/* Carousel next slide */}
-                <button className="px-2 py-1 ml-2 text-white bg-blue-500 hover:bg-teal-300 rounded-full"
+                <button className="px-2 py-1 mr-2 text-white bg-black hover:text-black hover:bg-white hover:border-solid hover:border-black border rounded-full size-2xl"
                     onClick={nextSlide}
-                    // disabled={currentIndex === usecases.length - numVisibleUseCases}
+                // disabled={currentIndex === usecases.length - numVisibleUseCases}
                 >&#8594;</button>
-            </div>
-
-            {/* Small buttons to indicate which usecase has been selected (remove last 2 so you can continuously scroll through) */}
-            <div className="flex space-x-2">
-                {usecases.slice(0, -2).map((_, index) => (
-                    <button
-                        key={index}
-                        className={`p-2 rounded-full hover:bg-teal-300 ${index === currentIndex ? 'bg-teal-300' : 'bg-blue-500'}`}
-                        onClick={() => setCurrentIndex(index)} />
-                ))}
             </div>
         </div>
     );
-};
+}
 
 export default UsecaseBtn;

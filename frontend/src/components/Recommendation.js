@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import useRecommendation from '../components/hooks/useRecommendation.js';
 import useUsecaseName from '../components/hooks/useUsecaseName.js';
+import useUsecases from './hooks/useUsecases.js';
 import Filter from '../components/Filter.js'
 
 const Recommendation = ({ usecaseId, statusFilter, topN }) => {
     const { recommendation, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
+    const { usecases, error } = useUsecases();
     const { usecaseName, error: nameError } = useUsecaseName(usecaseId);
 
-    if (recError || nameError) {
-        return <p>{recError || nameError}</p>;
-    }
+     if(!recommendation.length || !usecases.length){
+        return <p className=''>There are no recommendations for this usecase. Try changing your filter</p>
 
+     }
+        
     const bestLLM = recommendation[0]
     const nextBestLLMs = recommendation.slice(1, 3)
 
-    if (!recommendation.length) {
-        return <p></p>;
-    }
-
     return (
-        <div className='flex flex-col items-center text-center p-4'>
-            <h2 className='font-bold'> The best tool for you is...</h2>
+        
+        <div className='flex flex-col items-center text-center'>
+            <h2 className=''> The best tool for you is...</h2>
 
             {/* Top recommendation */}
             <h1 className='font-bold p-4'>

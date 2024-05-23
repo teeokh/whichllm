@@ -7,10 +7,10 @@ const Filter = ({ onSelect }) => {
     }
 
     return ( 
-        <div className='border-solid border-2 border-sky-500 p-1'>
-            <label htmlFor='statusFilter'>Filter</label>
+        <div className=' p-1'>
+            <label htmlFor='statusFilter' className='text-sm pr-2'>Filter</label>
 
-            <select name='statusFilter' id='statusFilter' onChange={handleSelect}>
+            <select name='statusFilter' id='statusFilter' onChange={handleSelect} className='text-sm cursor-pointer border-black'>
                 <option value='null'>All</option>
                 <option value='free'>Free</option>
                 <option value='paid'>Paid</option>
