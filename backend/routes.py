@@ -46,3 +46,7 @@ def get_recommendations():
         return jsonify({'message': 'No recommendations found for this usecase'}), 404
     
     return jsonify({'recommendations':json_recommendations})
+
+@app.route('/benchmarks', methods=['GET'])
+def get_benchmarks():
+    return null

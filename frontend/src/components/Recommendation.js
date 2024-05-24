@@ -23,29 +23,30 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
             <h2 className=''> The best tool for you is...</h2>
 
             {/* Top recommendation */}
-            <h1 className='font-bold p-4'>
-                <a className='bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 hover:from-teal-400 hover:to-blue-500 text-3xl' href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">{bestLLM.llm.name}</a>
+            <h1 className='font-bold mb-3'>
+                <a className='top-rec' href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">{bestLLM.llm.name}</a>
             </h1>
             
             {/* Recommendations information */}
-            <div className='flex flex-col w-full items-center'>
+            <div className='flex flex-col w-full items-center mb-3'>
                 <p>It scored an average of {bestLLM.score} on the {usecaseName} benchmarks</p>
                 {nextBestLLMs.length === (topN - 1) && (
 
                     // Next best recommendations
-                    <p>Compared to <a className='hover:text-sky-500' href={nextBestLLMs[0].llm.link} target='_blank' rel="noopener noreferrer">
+                    <p>Compared to <a href={nextBestLLMs[0].llm.link} target='_blank' rel="noopener noreferrer">
                         {nextBestLLMs[0].llm.name}
                     </a> ({nextBestLLMs[0].score})
-                        and <a className='hover:text-sky-500' href={nextBestLLMs[1].llm.link} target='_blank' rel="noopener noreferrer">
+                        and <a href={nextBestLLMs[1].llm.link} target='_blank' rel="noopener noreferrer">
                             {nextBestLLMs[1].llm.name}
                         </a> ({nextBestLLMs[1].score})
                     </p>)}
 
-                <p>Link: <a className='hover:text-sky-500' href={bestLLM.llm.link} target="_blank" rel="noopener noreferrer">{bestLLM.llm.link}</a></p>
+                <p>Link: <a href={bestLLM.llm.link} target="_blank" rel="noopener noreferrer">{bestLLM.llm.link}</a></p>
                 <p>Provider: {bestLLM.llm.provider}</p>
             </div>
             <div>
-                <p className=''>This score takes an average of the following benchmarks:</p>
+                <p>This score takes an average of the following benchmarks:</p>
+                <p></p>
             </div>
         </div>
     );

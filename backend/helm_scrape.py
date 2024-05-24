@@ -30,6 +30,7 @@ def scrape_mmlu_data(url):
             if data:
                 leaderboard.append(data)
 
+        # Need to convert to exporting to dictionary instead, to match populate_tables 
         with open('leaderboard.csv', 'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerows(leaderboard)

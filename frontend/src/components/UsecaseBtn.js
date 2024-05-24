@@ -44,9 +44,9 @@ const UsecaseBtn = ({ onSelect }) => {
     return (
 
         
-        <div className='flex flex-col items-center'>
-            <div className='flex flex-col items-center mb-10'>
-                <h1 className='font-bold text-3xl'>Which LLM?</h1>
+        <div className='flex flex-col items-center flex-wrap'>
+            <div className='flex flex-col items-center mb-10 text-center'>
+                <h1 className='font-bold text-4xl'>Which LLM?</h1>
                 <p>Select your desired usecase to find out which AI tool is best for you</p>
             </div>
             
@@ -54,25 +54,25 @@ const UsecaseBtn = ({ onSelect }) => {
             
 
                 {/* Carousel previous slide  */}
-                <button className="px-2 py-1 mr-2 text-white bg-black hover:text-black hover:bg-white hover:border-solid hover:border-black border rounded-full size-2xl"
+                <button className="arrow-btn"
                     onClick={prevSlide}
                 // disabled={currentIndex === 0}
                 >&#8592;
                 </button>
 
-                <div className="flex overflow-hidden">
+                <div className="flex flex-col lg:flex-row overflow-hidden">
                     {visibleUsecases.map((usecase) => (
-                        <div key={usecase.id} className="flex flex-col items-center px-2">
+                        <div key={usecase.id} className="flex flex-col items-center my-2 lg:my-0 lg:-space-x-3">
 
                             {/* Button to indicate which use-case is selected */}
                             <IconContext.Provider value={{ size: 50 }}>
-                                <button onClick={() => onSelect(usecase.id)} className='m-4'>
+                                <button onClick={() => onSelect(usecase.id)} className='lg:mb-4'>
                                     {getUsecaseIcon(usecase.name)}
                                 </button>
                             </IconContext.Provider>
-                            <div className='flex justify-center w-56 p-2'>
+                            <div className='flex justify-center w-56'>
                             <button
-                                className="text-black"
+                                className="text-black font-medium"
                                 onClick={() => onSelect(usecase.id)}
                             >
                                 {usecase.name}
@@ -84,7 +84,7 @@ const UsecaseBtn = ({ onSelect }) => {
                 </div>
 
                 {/* Carousel next slide */}
-                <button className="px-2 py-1 mr-2 text-white bg-black hover:text-black hover:bg-white hover:border-solid hover:border-black border rounded-full size-2xl"
+                <button className="arrow-btn"
                     onClick={nextSlide}
                 // disabled={currentIndex === usecases.length - numVisibleUseCases}
                 >&#8594;</button>

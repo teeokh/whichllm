@@ -10,9 +10,34 @@
   --font-sora: "Sora", sans-serif;
   --font-code: "Source Code Pro", monospace;
   --font-grotesk: "Space Grotesk", sans-serif;
-
+  /* color-scheme: dark; */
+  /* background-color: slategray; */
 }
 
 * {
   scroll-behavior: smooth;
+}
+
+html {
+  @apply m-2;
+}
+
+a:hover {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500
+}
+
+a.top-rec {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 text-3xl;
+}
+
+a.top-rec:hover {
+  @apply from-teal-400 to-blue-500;
+}
+
+.arrow-btn {
+  @apply px-2 py-0.5 text-white bg-black border rounded-full size-8;
+}
+
+.arrow-btn:hover {
+  @apply text-black bg-white border-solid border-black;
 }
