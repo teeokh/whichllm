@@ -11,7 +11,6 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
 
      if(!recommendation.length || !usecases.length){
         return <p className=''>There are no recommendations for this usecase. Try changing your filter</p>
-
      }
         
     const bestLLM = recommendation[0]
@@ -23,7 +22,7 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
             <h2 className=''> The best tool for you is...</h2>
 
             {/* Top recommendation */}
-            <h1 className='font-bold mb-3'>
+            <h1 className='font-bold mb-3 mt-3'>
                 <a className='top-rec' href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">{bestLLM.llm.name}</a>
             </h1>
             

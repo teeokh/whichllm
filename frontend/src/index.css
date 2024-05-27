@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,6 +11,8 @@
   --font-sora: "Sora", sans-serif;
   --font-code: "Source Code Pro", monospace;
   --font-grotesk: "Space Grotesk", sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
+
   /* color-scheme: dark; */
   /* background-color: slategray; */
 }
@@ -19,25 +22,35 @@
 }
 
 html {
-  @apply m-2;
+  @apply bg-white text-blue-950;
+}
+
+body {
+  font-family: var(--font-roboto);
+  min-height: 100vh;
+
+}
+
+.button {
+  @apply text-xs font-bold uppercase tracking-wider
 }
 
 a:hover {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-500
+  @apply transition-colors hover:text-blue-600
 }
 
 a.top-rec {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 text-3xl;
+  @apply transition-colors text-blue-950 text-3xl;
 }
 
 a.top-rec:hover {
-  @apply from-teal-400 to-blue-500;
+  @apply  hover:text-blue-600
 }
 
 .arrow-btn {
-  @apply px-2 py-0.5 text-white bg-black border rounded-full size-8;
+  @apply px-2 py-0.5 text-white bg-blue-950 rounded-full size-8;
 }
 
 .arrow-btn:hover {
-  @apply text-black bg-white border-solid border-black;
+  @apply text-black bg-white border border-solid border-blue-950;
 }

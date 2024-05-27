@@ -5,7 +5,9 @@ import useUsecaseName from './hooks/useUsecaseName.js'
 import UsecaseBtn from './UsecaseBtn.js'
 import useUsecases from './hooks/useUsecases.js'
 import Filter from './Filter.js'
-import Test from '../Test.js'
+import Header from './Header.js'
+import ButtonGradient from "../assets/svg/ButtonGradient";
+
 
 
 const Main = () => {
@@ -16,18 +18,26 @@ const Main = () => {
     const { usecases, error } = useUsecases();
     const { recommendation, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
 
+
     return (
-        <div className='flex flex-col justify-center items-center min-h-screen'>
-            <div className='mb-10'>
-                <UsecaseBtn onSelect={setUsecaseId} />
+        <>
+            <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
+                <Header />
             </div>
-            <div className='mb-10'>
-                <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
+
+            <ButtonGradient />
+            <div className='flex flex-col justify-center items-center pt-[2rem] lg:pt-[4rem] '>
+                <section className='mb-8'>
+                    <UsecaseBtn onSelect={setUsecaseId} />
+                </section>
+                <section className='mb-10'>
+                    <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
+                </section>
+                <section>
+                    <Filter onSelect={setStatusFilter} />
+                </section>
             </div>
-            <div>
-                <Filter onSelect={setStatusFilter} />
-            </div>
-        </div>
+        </>
     )
 }
 

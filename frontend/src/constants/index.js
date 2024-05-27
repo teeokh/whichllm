@@ -1,23 +1,23 @@
 export const navigation = [
     {
         id: "0",
-        title: "Features",
-        url: "#features",
+        title: "Home page",
+        url: "#home-page",
     },
     {
         id: "1",
-        title: "Pricing",
-        url: "#pricing",
+        title: "How it works",
+        url: "#how-it-works",
     },
     {
         id: "2",
-        title: "How to use",
-        url: "#how-to-use",
+        title: "Benchmarks & Data",
+        url: "#data",
     },
     {
         id: "3",
-        title: "Roadmap",
-        url: "#roadmap",
+        title: "About",
+        url: "#about",
     },
     {
         id: "4",
