@@ -38,15 +38,18 @@ def get_recommendations():
     if not usecase:
         return jsonify({'message': f'Usecase with id {usecase_id} not found'}), 404
     
-    recommendations = top_llms_for_usecase(usecase_id=usecase_id, status_filter=status_filter, top_n=top_n)
-    json_recommendations = [{'llm':llm.to_json(), 'score': round(score, 1), 'benchmarks':benchmarks.to_json()} for llm, score, benchmarks in recommendations]
+    recommendations, benchmark_names = top_llms_for_usecase(usecase_id=usecase_id, status_filter=status_filter, top_n=top_n)
+    json_recommendations = [{'llm':llm.to_json(), 'score': round(score, 1)} for llm, score in recommendations]
     
     # If no recommendations found / no benchmarks for that usecase
     if not json_recommendations:
         return jsonify({'message': 'No recommendations found for this usecase'}), 404
-    
-    return jsonify({'recommendations':json_recommendations})
+
+    return jsonify({
+        'recommendations':json_recommendations, 
+        'benchmarks':benchmark_names
+            })
 
 @app.route('/benchmarks', methods=['GET'])
 def get_benchmarks():
-    
+    return None

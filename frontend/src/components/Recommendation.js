@@ -3,21 +3,22 @@ import useRecommendation from '../components/hooks/useRecommendation.js';
 import useUsecaseName from '../components/hooks/useUsecaseName.js';
 import useUsecases from './hooks/useUsecases.js';
 import Filter from '../components/Filter.js'
+import useBenchmark from './hooks/useBenchmark.js';
 
 const Recommendation = ({ usecaseId, statusFilter, topN }) => {
-    const { recommendation, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
+    const { recommendation, benchmarks, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
     const { usecases, error } = useUsecases();
     const { usecaseName, error: nameError } = useUsecaseName(usecaseId);
 
-     if(!recommendation.length || !usecases.length){
+    if (!recommendation.length || !usecases.length) {
         return <p className=''>There are no recommendations for this usecase. Try changing your filter</p>
-     }
-        
+    }
+
     const bestLLM = recommendation[0]
     const nextBestLLMs = recommendation.slice(1, 3)
 
     return (
-        
+
         <div className='flex flex-col items-center text-center'>
             <h2 className=''> The best tool for you is...</h2>
 
@@ -25,7 +26,7 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
             <h1 className='font-bold mb-3 mt-3'>
                 <a className='top-rec' href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">{bestLLM.llm.name}</a>
             </h1>
-            
+
             {/* Recommendations information */}
             <div className='flex flex-col w-full items-center mb-3'>
                 <p>It scored an average of {bestLLM.score} on the {usecaseName} benchmarks</p>
@@ -45,7 +46,9 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
             </div>
             <div>
                 <p>This score takes an average of the following benchmarks:</p>
-                <p></p>
+                <p>
+                    {benchmarks.join(', ')}
+                </p>
             </div>
         </div>
     );

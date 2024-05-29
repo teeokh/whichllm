@@ -55,10 +55,6 @@ a.top-rec:hover {
   @apply text-black bg-white border border-solid border-blue-950;
 }
 
-.p {
-  @apply;
-}
-
 .h1 {
   @apply font-bold text-[2.5rem] leading-[3.5rem] md:text-[3rem] md:leading-[3.5rem] lg:text-[3.5rem] lg:leading-[3.5rem] xl:text-[3.5rem] xl:leading-[4rem];
 }
