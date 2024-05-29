@@ -8,6 +8,7 @@ from recommendations import top_llms_for_usecase
 def home():
     return jsonify({'message': 'WhichLLM coming soon...'})
 
+#TODO See if I can fetch usecase associated benchmarks with this function
 @app.route('/usecases')
 def get_all_usecases():
     usecases = db.session.query(Usecase).join(benchmark_usecase, Usecase.id == benchmark_usecase.c.usecase_id).distinct().all()

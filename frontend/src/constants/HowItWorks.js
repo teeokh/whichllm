@@ -1,4 +1,4 @@
-export const description = "WhichLLM operates using an algorithm which takes into account the average of publically available benchmark scores to calculate a percentage for each LLM. This percentage is used to rank each LLM. Each usecase has been allocated a number of benchmarks which best test for an LLM's ability at this usecase."
+export const description = "WhichLLM operates using an algorithm which takes into account the average of most publically available benchmark scores to calculate a percentage score for each LLM. This percentage is used to rank the LLMs against each other. Each usecase has been allocated a number of benchmarks which best test for an LLM's ability at that usecase."
 
 export const benchmarks = [
     { 'name': 'MMLU', 'subject': 'General' },
