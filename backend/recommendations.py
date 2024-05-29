@@ -11,9 +11,12 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     # Iterate through each benchmark and extract their benchmark ID (excluding elo benchmark unless elo_only)
     if usecase_id == 18:
         benchmark_ids = [b.id for b in benchmarks if b.id == 9]
+        benchmark_names = [b.name for b in benchmarks if b.name == 9]
         
     else:
         benchmark_ids = [b.id for b in benchmarks if b.id != 9]
+        benchmark_names = [b.name for b in benchmarks if b.name != 9]
+
 
     
     # Return a list of all LLMs with any of those benchmarks. Filter for free vs paid
@@ -51,10 +54,10 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     llm_scores.sort(key=lambda x: x[1], reverse=True)
     
     # Return the top n LLMs for the usecase. Returns a list of tuples (which is not serializable innately)
-    # print(f'These are the top {top_n} LLMs for {usecase.name}: {llm_scores[:top_n]}')
-    return llm_scores[:top_n]
+    print(f'These are the top {top_n} LLMs for {usecase.name}: {llm_scores[:top_n]}. This is for these benchmarks: {benchmark_names}')
+    return llm_scores[:top_n], benchmark_names
         
 
-# if __name__ == "__main__":
-#     with app.app_context():
-#         top_llms_for_usecase()
+if __name__ == "__main__":
+    with app.app_context():
+        top_llms_for_usecase(16, status_filter=None, top_n=3)

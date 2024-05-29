@@ -47,7 +47,7 @@ const UsecaseBtn = ({ onSelect }) => {
 
         <div className='flex flex-col items-center flex-wrap'>
             <div className='flex flex-col items-center mb-10 text-center'>
-                <h1 className='font-bold text-4xl text-blue-950'>Which LLM?</h1>
+                <h1 className='h1'>Which LLM?</h1>
                 <p>Select your desired usecase to find out which AI tool is best for you</p>
             </div>
 
@@ -67,15 +67,15 @@ const UsecaseBtn = ({ onSelect }) => {
 
                             {/* Button to indicate which use-case is selected */}
                             <IconContext.Provider value={{ size: 50 }}>
-                                <button onClick={() => {setSelectedUsecase(usecase.id) ; onSelect(usecase.id)}}
+                                <button onClick={() => { setSelectedUsecase(usecase.id); onSelect(usecase.id) }}
                                     className={`lg:mb-4 hover:text-blue-900 ${selectedUsecase === usecase.id ? 'text-blue-900' : 'text-blue-950'}`}
                                 >{getUsecaseIcon(usecase.name)}
                                 </button>
                             </IconContext.Provider>
                             <div className='flex justify-center w-56'>
                                 <button
-                                    className={` font-medium hover:text-blue-900 ${selectedUsecase === usecase.id ? 'font-extrabold' : 'text-blue-950'}`}
-                                    onClick={() => {setSelectedUsecase(usecase.id) ; onSelect(usecase.id)}}
+                                    className={` font-medium hover:text-blue-900 ${selectedUsecase === usecase.id ? 'text-blue-900' : 'text-blue-950'}`}
+                                    onClick={() => { setSelectedUsecase(usecase.id); onSelect(usecase.id) }}
                                 >
                                     {usecase.name}
                                 </button>

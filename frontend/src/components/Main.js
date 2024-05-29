@@ -7,6 +7,8 @@ import useUsecases from './hooks/useUsecases.js'
 import Filter from './Filter.js'
 import Header from './Header.js'
 import ButtonGradient from "../assets/svg/ButtonGradient";
+import Section from './Section.js'
+import HowItWorks from './HowItWorks.js'
 
 
 
@@ -21,21 +23,30 @@ const Main = () => {
 
     return (
         <>
-            <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
-                <Header />
+            <div className='min-h-screen'>
+                <div className='h-[5.125rem]'>
+                    <Header />
+                </div>
+
+                <ButtonGradient />
+                <Section>
+                    <div className='flex flex-col items-center justify-center px-2'>
+                        <section className='mb-[1.5rem] mt-[2.5rem] md:mb-[2rem] lg:mb-[2.5rem] md:mt-[4rem] lg:mt-[6rem]'>
+                            <UsecaseBtn onSelect={setUsecaseId} />
+                        </section>
+                        <section className='mb-10'>
+                            <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
+                        </section>
+                        <section className='mb-10 lg:mb-[11rem]'>
+                            <Filter onSelect={setStatusFilter} />
+                        </section>
+                    </div>
+                </Section>
+
             </div>
 
-            <ButtonGradient />
-            <div className='flex flex-col justify-center items-center pt-[2rem] lg:pt-[4rem] '>
-                <section className='mb-8'>
-                    <UsecaseBtn onSelect={setUsecaseId} />
-                </section>
-                <section className='mb-10'>
-                    <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
-                </section>
-                <section>
-                    <Filter onSelect={setStatusFilter} />
-                </section>
+            <div className='min-h-screen'>
+                <HowItWorks />
             </div>
         </>
     )

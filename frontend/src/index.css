@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -11,7 +11,7 @@
   --font-sora: "Sora", sans-serif;
   --font-code: "Source Code Pro", monospace;
   --font-grotesk: "Space Grotesk", sans-serif;
-  --font-roboto: 'Roboto', sans-serif;
+  --font-roboto: "Roboto", sans-serif;
 
   /* color-scheme: dark; */
   /* background-color: slategray; */
@@ -19,6 +19,7 @@
 
 * {
   scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 html {
@@ -28,15 +29,14 @@ html {
 body {
   font-family: var(--font-roboto);
   min-height: 100vh;
-
 }
 
 .button {
-  @apply text-xs font-bold uppercase tracking-wider
+  @apply text-xs font-bold uppercase tracking-wider;
 }
 
 a:hover {
-  @apply transition-colors hover:text-blue-600
+  @apply transition-colors hover:text-blue-600;
 }
 
 a.top-rec {
@@ -44,7 +44,7 @@ a.top-rec {
 }
 
 a.top-rec:hover {
-  @apply  hover:text-blue-600
+  @apply hover:text-blue-600;
 }
 
 .arrow-btn {
@@ -53,4 +53,20 @@ a.top-rec:hover {
 
 .arrow-btn:hover {
   @apply text-black bg-white border border-solid border-blue-950;
+}
+
+.p {
+  @apply;
+}
+
+.h1 {
+  @apply font-bold text-[2.5rem] leading-[3.5rem] md:text-[3rem] md:leading-[3.5rem] lg:text-[3.5rem] lg:leading-[3.5rem] xl:text-[3.5rem] xl:leading-[4rem];
+}
+
+.h2 {
+  @apply text-[1.75rem] leading-[2.5rem] md:text-[2rem] md:leading-[2.5rem] lg:text-[2.5rem] lg:leading-[3.5rem] xl:text-[3rem] xl:leading-tight;
+}
+
+.container {
+  @apply max-w-[77.5rem] mx-auto px-5 md:px-10 lg:px-[3.75rem] xl:max-w-[87.5rem];
 }

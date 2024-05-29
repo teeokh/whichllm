@@ -2,7 +2,7 @@ export const navigation = [
     {
         id: "0",
         title: "Home page",
-        url: "#home-page",
+        url: "#home",
     },
     {
         id: "1",

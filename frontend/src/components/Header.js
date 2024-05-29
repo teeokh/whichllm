@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { whichllm } from '../assets/index.js'
 import { navigation } from '../constants/index.js'
@@ -10,25 +10,28 @@ import { disablePageScroll, enablePageScroll } from "scroll-lock";
 const Header = () => {
 
     const pathName = useLocation();
-    const [openNavigation, setOpenNavigation] = useState(true);
+    const [openNavigation, setOpenNavigation] = useState(false);
+
+    useEffect(() => {
+        if (openNavigation) {
+            disablePageScroll()
+            console.log('Disabled UEF')
+        } else {
+            enablePageScroll()
+            console.log('Enabled UEF')
+        }
+    }, [openNavigation]);
 
     const toggleNavigation = () => {
-        if (openNavigation) {
-          setOpenNavigation(false);
-        } else {
-          setOpenNavigation(true);
-        }
+        setOpenNavigation(!openNavigation);
       };
     
-      const handleClick = () => {
-        if (!openNavigation) return; // If nav button is clicked and nav is already open, do nothing
-    
-        enablePageScroll(); // Otherwise allow scrolling to section clicked, and set nav to close
+      const handleClick = () => { // If nav button is clicked and nav is already open, do nothing
         setOpenNavigation(false);
       };
 
     return (
-        <div className={`fixed top-0 left-0 w-full z-50  border-b border-blue-200 lg:bg-blue-100 lg:backdrop-blur-sm ${openNavigation ? "bg-blue-100" : "bg-blue-100 backdrop-blur-sm"} `}>
+        <div className={`top-0 left-0 w-full z-50 border-b border-blue-200 lg:bg-blue-100 lg:backdrop-blur-sm ${openNavigation ? "bg-blue-100" : "bg-blue-100 backdrop-blur-sm"} `}>
             <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
 
                 {/* Logo */}
@@ -50,7 +53,7 @@ const Header = () => {
                             <a
                                 key={item.id}
                                 href={item.url}
-                                onClick={handleClick}
+                                onClick={(e) => { handleClick(e)}}
                                 className={`block relative text-2xl uppercase text-blue-900 transition-colors hover:text-blue-600 ${item.onlyMobile ? "lg:hidden" : ""
                                     } px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-xs lg:font-semibold ${item.url === pathName.hash
                                         ? "z-2 lg:text-blue-600"

@@ -39,7 +39,7 @@ def get_recommendations():
         return jsonify({'message': f'Usecase with id {usecase_id} not found'}), 404
     
     recommendations = top_llms_for_usecase(usecase_id=usecase_id, status_filter=status_filter, top_n=top_n)
-    json_recommendations = [{'llm':llm.to_json(), 'score': round(score, 1)} for llm, score in recommendations]
+    json_recommendations = [{'llm':llm.to_json(), 'score': round(score, 1), 'benchmarks':benchmarks.to_json()} for llm, score, benchmarks in recommendations]
     
     # If no recommendations found / no benchmarks for that usecase
     if not json_recommendations:
@@ -49,4 +49,4 @@ def get_recommendations():
 
 @app.route('/benchmarks', methods=['GET'])
 def get_benchmarks():
-    return null
+    
