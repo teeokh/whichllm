@@ -15,20 +15,18 @@ const Header = () => {
     useEffect(() => {
         if (openNavigation) {
             disablePageScroll()
-            console.log('Disabled UEF')
         } else {
             enablePageScroll()
-            console.log('Enabled UEF')
         }
     }, [openNavigation]);
 
     const toggleNavigation = () => {
         setOpenNavigation(!openNavigation);
-      };
-    
-      const handleClick = () => { // If nav button is clicked and nav is already open, do nothing
+    };
+
+    const handleClick = () => { // If nav button is clicked and nav is already open, do nothing
         setOpenNavigation(false);
-      };
+    };
 
     return (
         <div className={`top-0 left-0 w-full z-50 border-b border-blue-200 lg:bg-blue-100 lg:backdrop-blur-sm ${openNavigation ? "bg-blue-100" : "bg-blue-100 backdrop-blur-sm"} `}>
@@ -38,8 +36,8 @@ const Header = () => {
                 <a className='block w-[12rem] xl:mr-8' href='#hero'>
                     <div style={{
                         backgroundImage: `url(${whichllm})`,
-                        backgroundPosition: 'center', 
-                        backgroundSize: 'cover', 
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
                         width: '190px',
                         height: '50px',
                     }}></div>
@@ -53,9 +51,9 @@ const Header = () => {
                             <a
                                 key={item.id}
                                 href={item.url}
-                                onClick={(e) => { handleClick(e)}}
+                                onClick={(e) => { handleClick(e) }}
                                 className={`block relative text-2xl uppercase text-blue-900 transition-colors hover:text-blue-600 ${item.onlyMobile ? "lg:hidden" : ""
-                                    } px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-xs lg:font-semibold ${item.url === pathName.hash
+                                    } px-4 py-4 md:py-6 lg:-mr-0.25 lg:text-xs lg:font-semibold ${item.url === pathName.hash
                                         ? "z-2 lg:text-blue-600"
                                         : "lg:text-blue-900"
                                     }`}
@@ -75,7 +73,7 @@ const Header = () => {
                 </Button>
 
                 <Button className='ml-auto lg:hidden px-3' onClick={toggleNavigation}>
-                    <MenuSvg openNavigation={openNavigation}/>
+                    <MenuSvg openNavigation={openNavigation} />
                 </Button>
             </div>
         </div>

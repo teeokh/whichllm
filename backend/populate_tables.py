@@ -80,6 +80,7 @@ def update_cell(row_id, column_name, new_value):
 # with app.app_context():
 #     update_cell(8, 'name', 'Gemini Ultra')
 
+#TODO Add links for benchmarks so they can be clickable
 benchmark_data = [
     {'name': 'MMLU', 'subject': 'General'},
     {'name': 'HellaSwag', 'subject': 'General', 'notes': 'Sentence completion'},
@@ -205,6 +206,13 @@ def update_usecase(usecase_name, new_name):
         print(f"Usecase '{usecase_name}' updated to '{new_name}'.")
     else:
         print(f"Usecase '{usecase_name}' not found.")
+
+def capitalise()        :
+    usecases = Usecase.query.all()
+    for usecase in usecases:
+        usecase.name = usecase.name.title()
+    db.session.commit()
+    print('Usecases capitalised!')
         
 
 llm_benchmark_data = [

@@ -8,7 +8,6 @@ from recommendations import top_llms_for_usecase
 def home():
     return jsonify({'message': 'WhichLLM coming soon...'})
 
-#TODO See if I can fetch usecase associated benchmarks with this function
 @app.route('/usecases')
 def get_all_usecases():
     usecases = db.session.query(Usecase).join(benchmark_usecase, Usecase.id == benchmark_usecase.c.usecase_id).distinct().all()
@@ -20,6 +19,20 @@ def get_usecase(usecase_id):
     usecase = Usecase.query.get_or_404(usecase_id)
     json_usecase = usecase.to_json()
     return jsonify(json_usecase)
+
+@app.route('/benchmarks-usecases')
+def get_benchmarks_usecases():
+    benchmarks_usecases = db.session.query(Benchmark.name, Usecase.name).\
+        join(benchmark_usecase, Benchmark.id == benchmark_usecase.c.benchmark_id).\
+        join(Usecase, Usecase.id == benchmark_usecase.c.usecase_id).\
+        all()
+    grouped_benchmarks_usecases = {}
+    for benchmark, usecase in benchmarks_usecases:
+        if usecase not in grouped_benchmarks_usecases:
+            grouped_benchmarks_usecases[usecase] = [benchmark]
+        else:
+            grouped_benchmarks_usecases[usecase].append(benchmark)
+    return jsonify(grouped_benchmarks_usecases)
 
 # Recommendations route, displaying top LLMs with score in JSON format
 @app.route('/recommendations', methods=['GET'])
@@ -54,3 +67,6 @@ def get_recommendations():
 @app.route('/benchmarks', methods=['GET'])
 def get_benchmarks():
     return None
+
+with app.app_context():
+    get_benchmarks_usecases()

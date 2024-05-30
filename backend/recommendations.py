@@ -2,7 +2,6 @@ from models import *
 from config import db, app
 
 
-#TODO Change function to return benchmark and associated usecases, rather than just benchmark names (so I can group together for How it works section). Return via /recommendations route. Shouldn't be too hard but may have to create separate function / route for this
 def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     
     usecase = Usecase.query.filter_by(id=usecase_id).first()

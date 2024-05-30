@@ -28,7 +28,7 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
             </h1>
 
             {/* Recommendations information */}
-            <div className='flex flex-col w-full items-center mb-3'>
+            <div className='flex flex-col w-full items-center mb-5'>
                 <p>It scored an average of {bestLLM.score} on the {usecaseName} benchmarks</p>
                 {nextBestLLMs.length === (topN - 1) && (
 
