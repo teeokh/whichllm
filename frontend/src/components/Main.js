@@ -9,6 +9,8 @@ import Header from './Header.js'
 import ButtonGradient from "../assets/svg/ButtonGradient";
 import Section from './Section.js'
 import HowItWorks from './HowItWorks.js'
+import Data from './Data.js'
+import About from './About.js'
 
 
 
@@ -23,31 +25,33 @@ const Main = () => {
 
     return (
         <>
-            <div>
-                <div className='h-[5.125rem]'>
+            <div className='min-h-screen'>
+                <div className='h-[5rem]'>
                     <Header />
                 </div>
 
                 <ButtonGradient />
-                <div>
-                    <div className='flex flex-col items-center justify-center px-4 py-5 lg:pt-5 lg:pb-12 xl:pt-6 xl:pb-[6.5rem'  >
-                        <section className='mb-[1.5rem] mt-[2.5rem] md:mb-[2rem] lg:mb-[2.5rem] md:mt-[4rem] lg:mt-[6rem]'>
-                            <UsecaseBtn onSelect={setUsecaseId} />
-                        </section>
-                        <section className='mb-10'>
-                            <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
-                        </section>
-                        <section className='mb-10'>
-                            <Filter onSelect={setStatusFilter} />
-                        </section>
+                <Section className='' customPosition='' customPaddings=''>
+                    <div>
+                        <div className='flex flex-col items-center justify-center '  >
+                            <section className='mb-[1.5rem] mt-[2rem] md:mb-[2rem] lg:mb-[2.5rem] md:mt-[3rem] lg:mt-[4rem]'>
+                                <UsecaseBtn onSelect={setUsecaseId} />
+                            </section>
+                            <section className='mb-10'>
+                                <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
+                            </section>
+                            <section className='mb-10'>
+                                <Filter onSelect={setStatusFilter} />
+                            </section>
+                        </div>
                     </div>
-                </div>
+                </Section>
+
 
             </div>
 
-            <div className='min-h-screen'>
-                <HowItWorks />
-            </div>
+            <Data />
+            <HowItWorks />
         </>
     )
 }

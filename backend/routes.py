@@ -63,10 +63,26 @@ def get_recommendations():
         'recommendations':json_recommendations, 
         'benchmarks':benchmark_names
             })
+    
+@app.route('/llm-scores', methods=['GET'])
+def get_all_llm_scores():
+    # Fetch all LLM scores
+    llm_scores = db.session.query(llm_benchmark).all()
 
-@app.route('/benchmarks', methods=['GET'])
-def get_benchmarks():
-    return None
+    # Group the LLM scores by LLM
+    grouped_llm_scores = {}
+    for llm_score in llm_scores:
+        llm = db.session.query(LLM).get(llm_score.llm_id)
+        benchmark = db.session.query(Benchmark).get(llm_score.benchmark_id)
+        score = llm_score.score
+
+        if llm.name not in grouped_llm_scores:
+            grouped_llm_scores[llm.name] = [{ 'benchmark': benchmark.name, 'score': score }]
+        else:
+            grouped_llm_scores[llm.name].append({ 'benchmark': benchmark.name, 'score': score })
+
+    # Return the grouped LLM scores in JSON format
+    return jsonify(grouped_llm_scores)
 
 with app.app_context():
     get_benchmarks_usecases()

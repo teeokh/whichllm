@@ -2,11 +2,10 @@ import React from 'react'
 import Section from './Section'
 import Heading from './Heading'
 import { description } from '../constants/HowItWorks.js'
-import useBenchmarksUsecases from './hooks/useBenchmarksUsecases'
+import { about } from '../constants/About.js'
 
 
 const HowItWorks = () => {
-    const { benchmarksUsecases, error } = useBenchmarksUsecases()
 
     return (
         <Section id='how-it-works'>
@@ -18,24 +17,11 @@ const HowItWorks = () => {
                 <div className='flex flex-wrap flex-col gap-10 text-center'>
                     <p>{description}</p>
 
-                    <h3 className='h3'>List of Benchmarks and their associated Usecases:</h3>
-                    <div className='grid grid-cols-2 md:flex md:flex-wrap md:justify-center '>
-                        {Object.entries(benchmarksUsecases).map(([usecase, benchmarks], index) => (
-                            <div key={index} className='mb-6 mx-3 p-3 bg-blue-100 hover:bg-blue-200 transition-colors'>
-                                <h3 className='h3'>{usecase}</h3>
-                                <ul>
-                                    {benchmarks.map((benchmark, index) => (
-                                        <li key={index}>
-                                            <strong>{benchmark}</strong>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-
+                    <h4 className='h4'>About WhichLLM</h4>
+                    <p>{about}</p>
                 </div>
             </div>
+
         </Section >
     )
 }
