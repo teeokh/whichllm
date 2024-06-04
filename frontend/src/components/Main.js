@@ -35,7 +35,7 @@ const Main = () => {
                 <Section className='' customPosition='' customPaddings=''>
                     <div>
                         <div className='flex flex-col items-center justify-center '  >
-                            <section className='mb-[1.5rem] mt-[2rem] md:mb-[2rem] lg:mb-[2.5rem] md:mt-[3rem] lg:mt-[4rem]'>
+                            <section className='mb-[1.5rem] mt-[2rem] md:mb-[2rem] lg:mb-[2.5rem] md:mt-[2.5rem] lg:mt-[3rem]'>
                                 <UsecaseBtn onSelect={setUsecaseId} />
                             </section>
                             <section className='mb-10'>

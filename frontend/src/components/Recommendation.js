@@ -31,21 +31,10 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
             {/* Recommendations information */}
             <div className='flex flex-col w-full items-center mb-5'>
                 <p>It scored an average of {bestLLM.score} on the {usecaseName} benchmarks</p>
-                {nextBestLLMs.length === (topN - 1) && (
-
-                    // Next best recommendations
-                    <p>Compared to <a href={nextBestLLMs[0].llm.link} target='_blank' rel="noopener noreferrer">
-                        {nextBestLLMs[0].llm.name}
-                    </a> ({nextBestLLMs[0].score})
-                        and <a href={nextBestLLMs[1].llm.link} target='_blank' rel="noopener noreferrer">
-                            {nextBestLLMs[1].llm.name}
-                        </a> ({nextBestLLMs[1].score})
-                    </p>)}
-
-                <p>Link: <a href={bestLLM.llm.link} target="_blank" rel="noopener noreferrer">{bestLLM.llm.link}</a></p>
+                {/* <p>Link: <a href={bestLLM.llm.link} target="_blank" rel="noopener noreferrer">{bestLLM.llm.link}</a></p> */}
                 <p>Provider: {bestLLM.llm.provider}</p>
             </div>
-            <div>
+            <div className='flex flex-col w-full items-center mb-8'>
                 <p>This score takes an average of the following benchmarks:</p>
                 <p>
                     {benchmarks.map((benchmark, index) => {
@@ -65,7 +54,26 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
                     }
                 </p>
             </div>
-        </div>
+
+            <div className=''>
+                {nextBestLLMs.length === (topN - 1) && (
+
+                    // Next best recommendations
+                    <div>
+                        <p className='text-xl'>Close Competitors:</p>
+
+                        <a className='h5' href={nextBestLLMs[0].llm.link} target='_blank' rel="noopener noreferrer">
+                            {nextBestLLMs[0].llm.name}
+                        </a> ({nextBestLLMs[0].score})
+                        and <a className='h5' href={nextBestLLMs[1].llm.link} target='_blank' rel="noopener noreferrer">
+                            {nextBestLLMs[1].llm.name}
+                        </a> ({nextBestLLMs[1].score})
+
+                    </div>
+                )}
+
+            </div>
+        </div >
     )
 }
 

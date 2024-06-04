@@ -40,7 +40,7 @@ a:hover {
 }
 
 a.top-rec {
-  @apply transition-colors text-blue-950 text-3xl;
+  @apply transition-colors text-blue-950 text-[2.5rem];
 }
 
 a.top-rec:hover {
@@ -69,6 +69,10 @@ a.top-rec:hover {
 
 .h4 {
   @apply text-[1.25rem] leading-[2rem] md:text-[1.5rem] md:leading-[2.25rem] lg:text-[1.75rem] lg:leading-[2.5rem] xl:text-[2rem] xl:leading-[2.75rem];
+}
+
+.h5 {
+  @apply text-[1rem] leading-[1.75rem] md:text-[1rem] md:leading-[2rem] lg:text-[1.25rem] lg:leading-[2rem] xl:text-[1.5rem] xl:leading-[2.5rem];
 }
 
 .container {
