@@ -11,6 +11,7 @@ import Section from './Section.js'
 import HowItWorks from './HowItWorks.js'
 import Data from './Data.js'
 import About from './About.js'
+import Footer from './Footer.js'
 
 
 
@@ -52,6 +53,7 @@ const Main = () => {
 
             <Data />
             <HowItWorks />
+            <Footer />
         </>
     )
 }

@@ -1,3 +1,12 @@
+import {
+    discordBlack,
+    facebook,
+    instagram,
+    telegram,
+    twitter,
+    github
+} from '../assets'
+
 export const navigation = [
     {
         id: "0",
@@ -36,5 +45,44 @@ export const navigation = [
         title: "Sign in",
         url: "#login",
         onlyMobile: true,
+    },
+];
+
+export const socials = [
+    {
+        id: "0",
+        title: "Discord",
+        iconUrl: discordBlack,
+        url: "https://discord.com/users/tvrxx",
+    },
+    {
+        id: "1",
+        title: "Twitter",
+        iconUrl: twitter,
+        url: "https://x.com/teetalkstech",
+    },
+    {
+        id: "2",
+        title: "Github",
+        iconUrl: github,
+        url: "https://github.com/teeokh/whichllm",
+    },
+    {
+        id: "3",
+        title: "Instagram",
+        iconUrl: instagram,
+        url: "https://instagram.com",
+    },
+    {
+        id: "4",
+        title: "Telegram",
+        iconUrl: telegram,
+        url: "https://telegram.org/",
+    },
+    {
+        id: "5",
+        title: "Facebook",
+        iconUrl: facebook,
+        url: "https://facebook.com",
     },
 ];

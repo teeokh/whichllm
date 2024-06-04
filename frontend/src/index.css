@@ -78,3 +78,7 @@ a.top-rec:hover {
 .thead {
   @apply font-bold text-[1.25rem] border border-blue-200;
 }
+
+.caption {
+  @apply text-sm;
+}
