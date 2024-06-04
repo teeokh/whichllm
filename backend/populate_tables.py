@@ -82,39 +82,39 @@ def update_cell(row_id, column_name, new_value):
 
 #TODO Add links for benchmarks so they can be clickable
 benchmark_data = [
-    {'name': 'MMLU', 'subject': 'General'},
-    {'name': 'HellaSwag', 'subject': 'General', 'notes': 'Sentence completion'},
-    {'name': 'SuperGLUE', 'subject': 'General'},
-    {'name': 'WinoGrande', 'subject': 'General'},
-    {'name': 'ARC', 'subject': 'General'},
-    {'name': 'GPQA', 'subject': 'General'},
-    {'name': 'OpenBookQA', 'subject': 'General'},
-    {'name': 'BIG Bench Hard', 'subject': 'Advanced Reasoning'},
-    {'name': 'Chatbot Arena Elo', 'subject': 'Relative Performance', 'notes': 'User-based / Relative'},
-    {'name': 'MT-Bench', 'subject': 'Conversation'},
-    {'name': 'MATH', 'subject': 'Maths'},
-    {'name': 'GSM8K', 'subject': 'Maths'},
-    {'name': 'MGSM', 'subject': 'Maths'},
-    {'name': 'HumanEval', 'subject': 'Coding'},
-    {'name': 'MBPP', 'subject': 'Coding'},
-    {'name': 'USMLE', 'subject': 'Medicine'},
-    {'name': 'MedQA', 'subject': 'Medicine'},
-    {'name': 'LSAT', 'subject': 'Law'},
-    {'name': 'Bar Exam', 'subject': 'Law'},
-    {'name': 'Graduate Record Exam', 'subject': 'Law'},
-    {'name': 'DocVQA', 'subject': 'Image Understanding'},
-    {'name': 'MMMU', 'subject': 'Image Understanding'},
-    {'name': 'TextVQA', 'subject': 'Image Understanding'},
-    {'name': 'VATEX', 'subject': 'Video Understanding'},
-    {'name': 'CoVoST 2', 'subject': 'Speech Translation'},
-    {'name': 'FLEURS', 'subject': 'Speech Recognition'},
-    {'name': 'MAWPS', 'subject': 'Maths'},
-    {'name': 'PubMedQA', 'subject': 'Medicine'},
-    {'name': 'ChartQA', 'subject': 'Image Understanding', 'notes': 'Chart understanding'},
-    {'name': 'AI2D', 'subject': 'Image Understanding', 'notes': 'Science diagram understanding'},
-    {'name': 'MMLU Medicine', 'subject': 'Medicine', 'notes': 'Average score'},
-    {'name': 'MedMCQA', 'subject': 'Medicine'},
-    {'name' : 'EQ Bench', 'subject': 'Emotional intelligence / creativity'}
+    {'name': 'MMLU', 'subject': 'General', 'link': 'https://crfm.stanford.edu/helm/mmlu/latest/'},
+    {'name': 'HellaSwag', 'subject': 'General', 'notes': 'Sentence completion', 'link': 'https://rowanzellers.com/hellaswag/'},
+    {'name': 'SuperGLUE', 'subject': 'General', 'link': 'https://super.gluebenchmark.com/'},
+    {'name': 'WinoGrande', 'subject': 'General', 'link': 'https://winogrande.allenai.org/'},
+    {'name': 'ARC', 'subject': 'General', 'link': 'https://leaderboard.allenai.org/arc/submissions/public'},
+    {'name': 'GPQA', 'subject': 'General', 'link': 'https://arxiv.org/abs/2311.12022'},
+    {'name': 'OpenBookQA', 'subject': 'General', 'link': 'https://allenai.org/data/open-book-qa'},
+    {'name': 'BIG Bench Hard', 'subject': 'Advanced Reasoning', 'link': 'https://github.com/suzgunmirac/BIG-Bench-Hard'},
+    {'name': 'Chatbot Arena Elo', 'subject': 'Relative Performance', 'notes': 'User-based / Relative', 'link': 'https://leaderboard.lmsys.org/'},
+    {'name': 'MT-Bench', 'subject': 'Conversation', 'link': 'https://huggingface.co/spaces/lmsys/mt-bench'},
+    {'name': 'MATH', 'subject': 'Maths', 'link': 'https://arxiv.org/pdf/2103.03874v2'},
+    {'name': 'GSM8K', 'subject': 'Maths', 'link': 'https://github.com/openai/grade-school-math'},
+    {'name': 'MGSM', 'subject': 'Maths', 'link': 'https://openreview.net/forum?id=fR3wGCk-IXp'},
+    {'name': 'HumanEval', 'subject': 'Coding', 'link': 'https://arxiv.org/abs/2107.03374'},
+    {'name': 'MBPP', 'subject': 'Coding', 'link': 'https://arxiv.org/pdf/2108.07732'},
+    {'name': 'USMLE', 'subject': 'Medicine', 'link': ''},
+    {'name': 'MedQA', 'subject': 'Medicine', 'link': 'https://paperswithcode.com/dataset/medqa-usmle'},
+    {'name': 'LSAT', 'subject': 'Law', 'link': 'https://www.lsac.org/lsat'},
+    {'name': 'Bar Exam', 'subject': 'Law', 'link': ''},
+    {'name': 'Graduate Record Exam', 'subject': 'Law', 'link': 'https://www.ets.org/gre.html'},
+    {'name': 'DocVQA', 'subject': 'Image Understanding', 'link': 'https://www.docvqa.org/'},
+    {'name': 'MMMU', 'subject': 'Image Understanding', 'link': 'https://mmmu-benchmark.github.io/'},
+    {'name': 'TextVQA', 'subject': 'Image Understanding', 'link': 'https://textvqa.org/'},
+    {'name': 'VATEX', 'subject': 'Video Understanding', 'link': 'https://eric-xw.github.io/vatex-website/about.html'},
+    {'name': 'CoVoST 2', 'subject': 'Speech Translation', 'link': 'https://arxiv.org/pdf/2007.10310'},
+    {'name': 'FLEURS', 'subject': 'Speech Recognition', 'link': 'https://arxiv.org/abs/2205.12446'},
+    {'name': 'MAWPS', 'subject': 'Maths', 'link': 'https://aclanthology.org/N16-1136.pdf'},
+    {'name': 'PubMedQA', 'subject': 'Medicine', 'link': 'https://pubmedqa.github.io/'},
+    {'name': 'ChartQA', 'subject': 'Image Understanding', 'notes': 'Chart understanding', 'link': 'https://arxiv.org/abs/2203.10244'},
+    {'name': 'AI2D', 'subject': 'Image Understanding', 'notes': 'Science diagram understanding', 'link': 'https://prior.allenai.org/projects/diagram-understanding'},
+    {'name': 'MMLU Medicine', 'subject': 'Medicine', 'notes': 'Average score', 'link': 'https://crfm.stanford.edu/helm/mmlu/latest/'},
+    {'name': 'MedMCQA', 'subject': 'Medicine', 'link': 'https://medmcqa.github.io/'},
+    {'name' : 'EQ Bench', 'subject': 'Emotional intelligence / creativity', 'link': 'https://eqbench.com/'}
 ]
 
 def populate_benchmark_table():
@@ -122,29 +122,49 @@ def populate_benchmark_table():
         name = benchmark['name']
         subject = benchmark['subject']
         notes = benchmark.get('notes', None)
+        link = benchmark['link']
         
-        new_benchmark = Benchmark(name=name, notes=notes, subject=subject)
+        new_benchmark = Benchmark(name=name, notes=notes, subject=subject, link=link)
         
         db.session.add(new_benchmark)
         
     db.session.commit()
-    print('New Benchmark(s) added!')
+    print('Benchmark(s) added / updated!')
     
 # with app.app_context():
 #     populate_benchmark_table()
     
     
-def update_benchmark(benchmark_name, new_subject):
+def update_benchmark(benchmark_name, new_link):
     benchmark = Benchmark.query.filter_by(name=benchmark_name).first()
     if benchmark:
-        benchmark.subject = new_subject
+        benchmark.link = new_link
         db.session.commit()
-        print(f"Subject for benchmark '{benchmark_name}' updated to '{new_subject}'.")
+        print(f"Link for benchmark '{benchmark_name}' updated to '{new_link}'.")
     else:
         print(f"Benchmark '{benchmark_name}' not found.")
        
 # with app.app_context():
 #     update_benchmark('GPQA', 'Science')
+
+def update_benchmarks():
+    # Fetch all benchmarks from the database
+    benchmarks = Benchmark.query.all()
+
+    # Create a dictionary mapping benchmark names to links
+    link_dict = {benchmark['name']: benchmark['link'] for benchmark in benchmark_data}
+
+    for benchmark in benchmarks:
+        # Update the link if the benchmark's name is in the dictionary
+        if benchmark.name in link_dict:
+            benchmark.link = link_dict[benchmark.name]
+            db.session.commit()
+            print(f"Link for benchmark '{benchmark.name}' updated to '{link_dict[benchmark.name]}'.")
+        else:
+            print(f"Link for benchmark '{benchmark.name}' not found in benchmark_data.")
+
+with app.app_context():
+    update_benchmarks()
 
 def drop_benchmark_row(row_id):
     row = Benchmark.query.get(row_id)
@@ -159,7 +179,6 @@ def drop_benchmark_row(row_id):
 
 # with app.app_context():
 #     drop_benchmark_row()
-
 
 
 usecase_data = [

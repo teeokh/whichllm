@@ -1,0 +1,3 @@
+export const disclaimer1 = "Benchmark data does not reveal the whole performance of a model, and so recommendations should be used only as a guide, and in conjunction with personal experience to decide on the best LLM for your usecase. This is partially because AI companies sometimes train their models specifically to perform well on certain benchmarks, giving the perception of better performance numerically."
+
+export const disclaimer2 = "Benchmark data can change as new models get released, and new testing is performed. To stay as up to date as possible, WhichLLM fetches live data from certain benchmarks for use in its recommendation algorithm. For benchmarks that can't be updated via live sources, a manual update to benchmark data is performed once a month"

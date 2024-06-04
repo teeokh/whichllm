@@ -39,6 +39,7 @@ class Benchmark(db.Model):
     subject = db.Column(db.String(120), nullable=False)
     use_cases = db.relationship('Usecase', secondary='benchmark_usecase', backref='benchmarks')
     notes = db.Column(db.String(220), nullable=True)
+    link = db.Column(db.String(120), nullable=True)
     
     def to_json(self):
         return {
@@ -46,11 +47,12 @@ class Benchmark(db.Model):
             'name': self.name,
             'subject': self.subject,
             'useCases': [usecase.id for usecase in self.use_cases],
-            'notes': self.notes
+            'notes': self.notes,
+            'link': self.link
         }
     
     def __repr__(self):
-            return f'<Benchmark {self.id}: {self.name} ({self.subject}). {self.notes}>' # String representation when printing an ID - for debugging / visualisation
+            return f'<Benchmark {self.id}: {self.name} ({self.subject}). {self.link}. {self.notes}>' # String representation when printing an ID - for debugging / visualisation
 
 
 class Usecase(db.Model):

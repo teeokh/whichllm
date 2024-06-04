@@ -3,7 +3,7 @@ import useRecommendation from '../components/hooks/useRecommendation.js';
 import useUsecaseName from '../components/hooks/useUsecaseName.js';
 import useUsecases from './hooks/useUsecases.js';
 import Filter from '../components/Filter.js'
-import useBenchmark from './hooks/useBenchmark.js';
+import useBenchmark from './hooks/useAllBenchmarks.js';
 
 const Recommendation = ({ usecaseId, statusFilter, topN }) => {
     const { recommendation, benchmarks, error: recError } = useRecommendation(usecaseId, statusFilter, topN);

@@ -12,5 +12,5 @@ db_path = os.path.join(project_dir, 'whichllm.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-with app.app_context():
-    db = SQLAlchemy(app)
+
+db = SQLAlchemy(app)

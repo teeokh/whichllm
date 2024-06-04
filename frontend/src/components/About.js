@@ -1,5 +1,5 @@
 import React from 'react'
-import { about } from '../constants/About.js'
+import { about } from '../constants/about.js'
 import Section from './Section.js'
 import Heading from './Heading.js'
 

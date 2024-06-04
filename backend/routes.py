@@ -34,6 +34,12 @@ def get_benchmarks_usecases():
             grouped_benchmarks_usecases[usecase].append(benchmark)
     return jsonify(grouped_benchmarks_usecases)
 
+@app.route('/benchmarks')
+def get_all_benchmarks():
+    benchmarks = Benchmark.query.all()
+    json_benchmarks = [benchmark.to_json() for benchmark in benchmarks]
+    return jsonify(json_benchmarks)
+
 # Recommendations route, displaying top LLMs with score in JSON format
 @app.route('/recommendations', methods=['GET'])
 def get_recommendations():
