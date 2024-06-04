@@ -11,10 +11,8 @@ const useLLMScores = () => {
             try {
                 const response = await axios.get('/llm-scores');
                 setLlmScores(response.data);
-                console.log(llmScores)
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');
-                console.log(error);
             }
         };
         fetchLLMScores();

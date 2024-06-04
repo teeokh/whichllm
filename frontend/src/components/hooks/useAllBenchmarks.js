@@ -11,10 +11,8 @@ const useAllBenchmarks = () => {
       try {
         const response = await axios.get('/benchmarks');
         setAllBenchmarks(response.data);
-        console.log(allBenchmarks)
       } catch (error) {
         setError(error.response?.data?.message || 'An error occurred');
-        console.log(error);
       }
     }
 

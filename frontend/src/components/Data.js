@@ -11,7 +11,6 @@ const Data = () => {
     const { llmScores, error } = useLLMScores()
 
     useEffect(() => {
-        console.log(llmScores);
     }, [llmScores]);
 
     // Create an array of all unique benchmark names
