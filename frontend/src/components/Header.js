@@ -29,7 +29,7 @@ const Header = () => {
     };
 
     return (
-        <div className={`top-0 left-0 w-full z-50 border-b border-blue-200 lg:bg-blue-100 lg:backdrop-blur-sm ${openNavigation ? "bg-blue-100" : "bg-blue-100 backdrop-blur-sm"} `}>
+        <div className={`absolute top-0 left-0 w-full z-50 border-b border-blue-200 lg:bg-blue-100 lg:backdrop-blur-sm ${openNavigation ? "bg-blue-100" : "bg-blue-100 backdrop-blur-sm"} `}>
             <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
 
                 {/* Logo */}

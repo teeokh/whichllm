@@ -32,8 +32,8 @@ const Data = () => {
 
 
     return (
-        <Section id='data' customPosition='flex flex-col justify-center text-center' >
-            <div className='container relative z-2 min-h-screen'>
+        <Section customPosition='flex flex-col justify-center text-center' >
+            <div id='data' className='container relative z-2 min-h-screen'>
                 <Heading
                     className='md:max-w-md lg:max-w-2xl text-center' // Sets width of Heading, affects space from edge
                     title='WhichLLM Data'

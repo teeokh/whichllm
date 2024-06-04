@@ -1,1 +1,3 @@
 export const description = "WhichLLM operates using an algorithm which takes into account the benchmarks which best measure an LLM's ability to perform a specific task. A final percentage score is used to rank each LLM against the others. Each usecase has been allocated a number of benchmarks which best test for an LLM's ability at that usecase."
+
+export const update_disclaimer = "Benchmark data can change as new models get released, and new testing is performed. To stay as up to date as possible, WhichLLM fetches live data from certain benchmarks for use in its recommendation algorithm. For benchmarks that can't be updated via live sources, a manual update to benchmark data is performed once a month"

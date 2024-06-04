@@ -3,12 +3,13 @@ import useRecommendation from '../components/hooks/useRecommendation.js';
 import useUsecaseName from '../components/hooks/useUsecaseName.js';
 import useUsecases from './hooks/useUsecases.js';
 import Filter from '../components/Filter.js'
-import useBenchmark from './hooks/useAllBenchmarks.js';
+import useAllBenchmarks from './hooks/useAllBenchmarks.js';
 
 const Recommendation = ({ usecaseId, statusFilter, topN }) => {
     const { recommendation, benchmarks, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
     const { usecases, error } = useUsecases();
     const { usecaseName, error: nameError } = useUsecaseName(usecaseId);
+    const { allBenchmarks, error: benchmarkError } = useAllBenchmarks()
 
     if (!recommendation.length || !usecases.length) {
         return <p className=''>There are no recommendations for this usecase. Try changing your filter</p>
@@ -47,11 +48,26 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
             <div>
                 <p>This score takes an average of the following benchmarks:</p>
                 <p>
-                    {benchmarks.join(', ')}
+                    {benchmarks.map((benchmark, index) => {
+                        let allBenchmark = allBenchmarks.find(b => b.name === benchmark);
+                        return (
+                            <span key={index}>
+                                <a href={allBenchmark ? allBenchmark.link : '#'} target="_blank" rel="noopener noreferrer">{benchmark}</a>
+                            </span>
+                        );
+
+                        // Adds ',' after each element in the array
+                    }).reduce((prev, curr, index, array) => {
+                        return index !== array.length - 1 ? [prev, curr, ', '] : [prev, curr]
+
+                        // First value is an empty array  
+                    }, [])
+                    }
                 </p>
             </div>
         </div>
-    );
-};
+    )
+}
+
 
 export default Recommendation;
