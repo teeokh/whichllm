@@ -143,7 +143,8 @@ def update_benchmark(benchmark_name, new_link):
         print(f"Link for benchmark '{benchmark_name}' updated to '{new_link}'.")
     else:
         print(f"Benchmark '{benchmark_name}' not found.")
-       
+
+
 # with app.app_context():
 #     update_benchmark('GPQA', 'Science')
 
@@ -228,6 +229,27 @@ def update_usecase(usecase_name, new_name):
 
 # with app.app_context():      
 #     update_usecase('Maths', 'Mathematics')
+
+usecase_mapping = {
+    'Text Generation': 1,
+    'Text Summation': 2,
+    'General Knowledge': 3,
+    'Conversation': 4,
+    'Translation': 5,
+    'Mathematics': 6,
+    'Programming': 7,
+    'Science': 8,
+    'Medical Knowledge': 9,
+    'Legal Knowledge': 10,
+    'Advanced Reasoning': 11,
+    'Document Analysis': 12,
+    'Image Analysis': 13,
+    'Video Analysis': 14,
+    'Audio Processing': 15,
+    'Basic Reasoning': 16,
+    'Creative Writing': 17,
+    'User Prefences': 18
+}
 
 def capitalise()        :
     usecases = Usecase.query.all()

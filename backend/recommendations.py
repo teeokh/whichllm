@@ -1,12 +1,16 @@
 from models import *
 from config import db, app
+from populate_tables import usecase_mapping
 
-usecase_mapping = {
-    'Text Generation': 1,
-    
-    'General Knowledge'
-}
+# For use when calling from chatbot (as chatbot will generate category in string form, which will be used to fetch usecase ID for recommendation function)
+def get_recommendation_for_category(usecase_category, status_filter=None, top_n=3):
+    try:
+        usecase_id = usecase_mapping[usecase_category]
+    except KeyError:
+        return {'error': 'There is no clear recommendation for your use case, please re-word your request, or try again'}
+    top_llms_for_usecase(usecase_id, status_filter, top_n)
 
+# Recommendation function (for manual user selection, or from chatbot selection)    
 def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     
     usecase = Usecase.query.filter_by(id=usecase_id).first()
@@ -58,10 +62,10 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     llm_scores.sort(key=lambda x: x[1], reverse=True)
     
     # Return the top n LLMs for the usecase. Returns a list of tuples (which is not serializable innately)
-    # print(f'These are the top {top_n} LLMs for {usecase.name}: {llm_scores[:top_n]}. This is for these benchmarks: {benchmark_names}')
+    print(f'These are the top {top_n} LLMs for {usecase.name}: {llm_scores[:top_n]}. This is for these benchmarks: {benchmark_names}')
     return llm_scores[:top_n], benchmark_names
         
 
 if __name__ == "__main__":
     with app.app_context():
-        top_llms_for_usecase(18, status_filter=None, top_n=3)
+        get_recommendation_for_category('Ok', status_filter=None, top_n=5)
