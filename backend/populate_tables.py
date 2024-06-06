@@ -199,7 +199,7 @@ usecase_data = [
     {'name': 'Video Analysis'},
     {'name': 'Audio Processing'},
     {'name': 'Basic Reasoning'},
-    {'name': 'Creative Writing'},
+    {'name': 'Creativity'},
     {'name': 'User Preferences'}
 ]
 
@@ -227,8 +227,8 @@ def update_usecase(usecase_name, new_name):
     else:
         print(f"Usecase '{usecase_name}' not found.")
 
-# with app.app_context():      
-#     update_usecase('Maths', 'Mathematics')
+with app.app_context():      
+    update_usecase('Creative Writing', 'Creativity')
 
 usecase_mapping = {
     'Text Generation': 1,
