@@ -182,24 +182,24 @@ def drop_benchmark_row(row_id):
 
 
 usecase_data = [
-    {'name': 'Text generation'},
-    {'name': 'Text summation'},
+    {'name': 'Text Generation'},
+    {'name': 'Text Summation'},
     {'name': 'General Knowledge'},
     {'name': 'Conversation'},
     {'name': 'Translation'},
-    {'name': 'Maths'},
-    {'name': 'Coding'},
+    {'name': 'Mathematics'},
+    {'name': 'Programming'},
     {'name': 'Science'},
-    {'name': 'Medical knowledge'},
-    {'name': 'Law knowledge'},
-    {'name': 'Advanced reasoning'},
-    {'name': 'Reading documents'},
-    {'name': 'Image input'},
-    {'name': 'Video input'},
-    {'name': 'Audio input'},
-    {'name': 'Basic reasoning'},
-    {'name': 'Creative writing'},
-    {'name': 'Relative User Preference'}
+    {'name': 'Medical Knowledge'},
+    {'name': 'Legal Knowledge'},
+    {'name': 'Advanced Reasoning'},
+    {'name': 'Document Analysis'},
+    {'name': 'Image Analysis'},
+    {'name': 'Video Analysis'},
+    {'name': 'Audio Processing'},
+    {'name': 'Basic Reasoning'},
+    {'name': 'Creative Writing'},
+    {'name': 'User Preferences'}
 ]
 
 def populate_usecase_table():
@@ -225,6 +225,9 @@ def update_usecase(usecase_name, new_name):
         print(f"Usecase '{usecase_name}' updated to '{new_name}'.")
     else:
         print(f"Usecase '{usecase_name}' not found.")
+
+# with app.app_context():      
+#     update_usecase('Maths', 'Mathematics')
 
 def capitalise()        :
     usecases = Usecase.query.all()

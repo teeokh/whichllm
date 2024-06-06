@@ -1,6 +1,11 @@
 from models import *
 from config import db, app
 
+usecase_mapping = {
+    'Text Generation': 1,
+    
+    'General Knowledge'
+}
 
 def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     

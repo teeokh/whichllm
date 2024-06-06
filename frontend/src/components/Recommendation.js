@@ -5,6 +5,9 @@ import useUsecases from './hooks/useUsecases.js';
 import Filter from '../components/Filter.js'
 import useAllBenchmarks from './hooks/useAllBenchmarks.js';
 
+
+//TODO implement simple chatbot function - input field takes users query for usecase, and chatbot categorises request into one of available usecases - and triggers recommendation based on usecase. Let this replace current usecase selection section
+
 const Recommendation = ({ usecaseId, statusFilter, topN }) => {
     const { recommendation, benchmarks, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
     const { usecases, error } = useUsecases();
@@ -35,7 +38,7 @@ const Recommendation = ({ usecaseId, statusFilter, topN }) => {
                 <p>Provider: {bestLLM.llm.provider}</p>
             </div>
             <div className='flex flex-col w-full items-center mb-8'>
-                <p>This score takes an average of the following benchmarks:</p>
+                <p>This score uses the following benchmarks:</p>
                 <p>
                     {benchmarks.map((benchmark, index) => {
                         let allBenchmark = allBenchmarks.find(b => b.name === benchmark);

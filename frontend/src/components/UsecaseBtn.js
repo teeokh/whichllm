@@ -68,13 +68,13 @@ const UsecaseBtn = ({ onSelect }) => {
                             {/* Button to indicate which use-case is selected */}
                             <IconContext.Provider value={{ size: 50 }}>
                                 <button onClick={() => { setSelectedUsecase(usecase.id); onSelect(usecase.id) }}
-                                    className={`lg:mb-4 hover:text-blue-900 ${selectedUsecase === usecase.id ? 'text-blue-900' : 'text-blue-950'}`}
+                                    className={`lg:mb-4 hover:text-blue-600 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
                                 >{getUsecaseIcon(usecase.name)}
                                 </button>
                             </IconContext.Provider>
                             <div className='flex justify-center w-56'>
                                 <button
-                                    className={` font-medium hover:text-blue-900 ${selectedUsecase === usecase.id ? 'text-blue-900' : 'text-blue-950'}`}
+                                    className={`font-medium hover:text-blue-600 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
                                     onClick={() => { setSelectedUsecase(usecase.id); onSelect(usecase.id) }}
                                 >
                                     {usecase.name}

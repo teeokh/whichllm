@@ -20,15 +20,15 @@ export const icons = {
   'Basic Reasoning': FaCog,
   'Science': LuAtom,
   'Advanced Reasoning': FaCogs,
-  'Maths': FaCalculator,
-  'Coding': FaCode,
+  'Mathematics': FaCalculator,
+  'Programming': FaCode,
   'Medical Knowledge': FaUserDoctor,
-  'Law Knowledge': GoLaw,
-  'Reading Documents': IoDocumentText,
-  'Image Input': MdOutlineImageSearch,
-  'Audio Input': FaFileAudio,
-  'Video Input': FaVideo,
+  'Legal Knowledge': GoLaw,
+  'Document Analysis': IoDocumentText,
+  'Image Analysis': MdOutlineImageSearch,
+  'Audio Processing': FaFileAudio,
+  'Video Analysis': FaVideo,
   'Text Generation': MdOutlineEditNote,
   'Creative Writing': FaBookReader,
-  'Relative User Preference': IoPeopleSharp
+  'User Preferences': IoPeopleSharp
 };
