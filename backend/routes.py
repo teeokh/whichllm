@@ -2,6 +2,8 @@ from config import app, db
 from models import *
 from flask import request, jsonify 
 from recommendations import top_llms_for_usecase
+from llm_chatbot.gpt_chatbot import categorise_text
+
 
 @app.route('/')
 @app.route('/home')
@@ -90,5 +92,21 @@ def get_all_llm_scores():
     # Return the grouped LLM scores in JSON format
     return jsonify(grouped_llm_scores)
 
-with app.app_context():
-    get_benchmarks_usecases()
+#TODO needs to return both the usecase name and ID (name for printing the name, ID for inputting into usecase selection component)
+@app.route('/categorise', methods=['POST'])
+def categorise():
+    data = request.json
+    user_input = data.get('text')
+
+    if not user_input:
+        return jsonify({'error': 'No text provided'}), 400
+    
+    try: 
+        category = categorise_text(user_input)
+        usecase = Usecase.query.filter_by(name=category).first()
+        if usecase:
+            return jsonify({'usecase_id': usecase.id, 'usecase_name': category}), 200
+        else:
+            return jsonify({'error': 'Usecase not found'}), 404
+    except RuntimeError as e:
+        return jsonify({'error': str(e)}), 500

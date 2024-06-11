@@ -25,3 +25,9 @@ yarn-debug.log*
 yarn-error.log*
 
 backend/llm_chatbot/gemini_chatbot.ipynb
+backend/llm_chatbot/gemini_chatbot.py
+backend/llm_chatbot/training/gpt_training_data.jsonl
+backend/llm_chatbot/training/gpt_val_data.jsonl
+backend/llm_chatbot/training/gpt_training_prep.py
+backend/llm_chatbot/training/gpt_training_data_extra.jsonl
+

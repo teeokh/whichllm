@@ -200,7 +200,7 @@ usecase_data = [
     {'name': 'Audio Processing'},
     {'name': 'Basic Reasoning'},
     {'name': 'Creativity'},
-    {'name': 'User Preferences'}
+    {'name': 'Relative User Preference'}
 ]
 
 def populate_usecase_table():
@@ -227,8 +227,9 @@ def update_usecase(usecase_name, new_name):
     else:
         print(f"Usecase '{usecase_name}' not found.")
 
-with app.app_context():      
-    update_usecase('Creative Writing', 'Creativity')
+# with app.app_context():      
+#     update_usecase('User Preferences', 'Relative User Preference')
+
 
 usecase_mapping = {
     'Text Generation': 1,
@@ -247,8 +248,8 @@ usecase_mapping = {
     'Video Analysis': 14,
     'Audio Processing': 15,
     'Basic Reasoning': 16,
-    'Creative Writing': 17,
-    'User Prefences': 18
+    'Creativity': 17,
+    'Relative User Preference': 18
 }
 
 def capitalise()        :

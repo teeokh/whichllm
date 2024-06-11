@@ -1,14 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useUsecases from '../components/hooks/useUsecases';
 import { icons } from '../assets/icons.js';
 import { IconContext } from 'react-icons';
 import UsecaseIcon from './UsecaseIcon.js';
+import useCategorise from '../components/hooks/useCategorise';
 
 const UsecaseBtn = ({ onSelect }) => {
     const { usecases, error } = useUsecases();
     const [currentIndex, setCurrentIndex] = useState(0);
     const numVisibleUseCases = 3;
     const [selectedUsecase, setSelectedUsecase] = useState(null);
+    const [userInput, setUserInput] = useState("");
+    const { usecaseId, usecaseName, categoriseError, loading, categoriseText } = useCategorise();
+    const [fetchAttempted, setFetchAttempted] = useState(false);
+
+    const handleInputChange = (e) => {
+        setUserInput(e.target.value);
+    };
+
+    const handleCategorise = () => {
+        setFetchAttempted(true);
+        categoriseText(userInput);
+    };
+
+    useEffect(() => {
+        if (usecaseId) {
+            setSelectedUsecase(usecaseId);
+            onSelect(usecaseId); // Call onSelect to update the parent component
+        }
+        else {
+            setSelectedUsecase(null);
+        }
+    }, [usecaseId, onSelect]);
+
 
     if (error) {
         return <p>{error}</p>;
@@ -42,13 +66,21 @@ const UsecaseBtn = ({ onSelect }) => {
         currentIndex + numVisibleUseCases
     );
 
-    return (
 
+    return (
 
         <div className='flex flex-col items-center flex-wrap'>
             <div className='flex flex-col items-center mb-10 text-center'>
                 <h1 className='h1'>Which LLM?</h1>
                 <p>Select your desired usecase to find out which AI tool is best for you</p>
+
+                {/* Text box for user input to select category (rather than clicking button) */}
+                <input type='text' value={userInput} onChange={handleInputChange} placeholder='What would you like to use AI for?' className='border-2 border-blue-950 rounded-lg p-2 w-80 mt-4 text-center' />
+                <button onClick={handleCategorise} className='mt-2'>Submit</button>
+                {loading && <p>Loading...</p>}
+                {usecaseId && <p> Usecase Category: {usecaseName}</p>}
+                {fetchAttempted && !loading && !usecaseId && <p>No clear use case identified, please retry or select from below</p>}
+
             </div>
 
             <div className="flex items-center">
@@ -94,5 +126,6 @@ const UsecaseBtn = ({ onSelect }) => {
         </div>
     );
 }
+
 
 export default UsecaseBtn;
