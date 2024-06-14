@@ -32,7 +32,7 @@ body {
 }
 
 .button {
-  @apply text-xs font-bold uppercase tracking-wider;
+  @apply text-xs font-bold uppercase tracking-wider transition-colors hover:text-blue-600;
 }
 
 a:hover {

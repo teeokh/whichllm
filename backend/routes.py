@@ -92,7 +92,7 @@ def get_all_llm_scores():
     # Return the grouped LLM scores in JSON format
     return jsonify(grouped_llm_scores)
 
-#TODO needs to return both the usecase name and ID (name for printing the name, ID for inputting into usecase selection component)
+
 @app.route('/categorise', methods=['POST'])
 def categorise():
     data = request.json

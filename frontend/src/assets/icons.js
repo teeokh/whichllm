@@ -32,5 +32,5 @@ export const icons = {
   'Video Analysis': FaVideo,
   'Text Generation': MdOutlineEditNote,
   'Creativity': FaPaintBrush,
-  'User Preferences': IoPeopleSharp
+  'Relative User Preference': IoPeopleSharp
 };

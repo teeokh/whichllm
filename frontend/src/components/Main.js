@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Recommendation from './Recommendation.js'
 import useRecommendation from './hooks/useRecommendation.js'
 import useUsecaseName from './hooks/useUsecaseName.js'
-import UsecaseBtn from './UsecaseBtn.js'
+import UsecaseSelection from './UsecaseSelection.js'
 import useUsecases from './hooks/useUsecases.js'
 import Filter from './Filter.js'
 import Header from './Header.js'
@@ -23,10 +23,19 @@ const Main = () => {
     const { usecases, error } = useUsecases();
     const { recommendation, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
 
+    const [showRecommendation, setShowRecommendation] = useState(false)
+
+    const triggerShowRecommendation = () => {
+        setShowRecommendation(true)
+    }
+
+    const hideRecommendation = () => {
+        setShowRecommendation(false)
+    }
 
     return (
         <>
-            <div className='min-h-screen'>
+            <div className='min-h-screen flex flex-col justify-center'>
                 <div className='h-[5rem]'>
                     <Header />
                 </div>
@@ -34,12 +43,14 @@ const Main = () => {
                 <ButtonGradient />
                 <Section className='' customPosition='' customPaddings=''>
                     <div>
-                        <div className='flex flex-col items-center justify-center '  >
-                            <section className='mb-[1.5rem] mt-[2rem] md:mb-[2rem] lg:mb-[2.5rem] md:mt-[2.5rem] lg:mt-[3rem]'>
-                                <UsecaseBtn onSelect={setUsecaseId} />
+                        <div className='flex flex-grow flex-col items-center justify-center'>
+                            <section className=' mt-[1rem]  md:mt-[1.5rem]  lg:mt-[2rem]'>
+                                <UsecaseSelection onSelect={setUsecaseId} triggerShowRecommendation={triggerShowRecommendation} hideRecommendation={hideRecommendation} />
                             </section>
                             <section className='mb-10'>
-                                <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
+                                {showRecommendation && (
+                                    <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
+                                )}
                             </section>
                             <section className='mb-10'>
                                 <Filter onSelect={setStatusFilter} />
@@ -48,8 +59,11 @@ const Main = () => {
                     </div>
                 </Section>
 
-
+                <div className='absolute bottom-0 left-0 w-full'>
+                    <Footer />
+                </div>
             </div>
+
 
             <Data />
             <HowItWorks />
