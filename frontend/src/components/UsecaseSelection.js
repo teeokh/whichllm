@@ -5,6 +5,7 @@ import { IconContext } from 'react-icons';
 import UsecaseIcon from './UsecaseIcon.js';
 import useCategorise from './hooks/useCategorise.js';
 import Button from './Button.js';
+import Title from './Title.js';
 
 const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendation }) => {
     const { usecases, error } = useUsecases();
@@ -20,6 +21,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
         setUserInput(e.target.value);
     };
 
+    // Currently not in use
     const handleCategorise = () => {
         setFetchAttempted(true);
         categoriseText(userInput);
@@ -88,10 +90,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
 
         <div className='flex flex-col items-center flex-wrap'>
 
-            <div className='flex flex-col items-center text-center'>
-                <h1 className='h1'>Which LLM?</h1>
-                <p>Select your desired usecase to find out which AI tool is best for you</p>
-            </div>
+            <Title />
 
             {/* Text box for user input to select category (rather than clicking button) */}
             <div className='flex flex-col items-center text-center mt-8'>
@@ -102,73 +101,73 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
                     placeholder='What would you like to use AI for?'
                     className='border-2 border-blue-950 rounded-xl p-2 w-96 text-center' />
 
-                <div className='flex flex-col items-center text-center mb-6'>
-                    <button onClick={handleCategorise} className='mt-2 px-4 py-1 border border-blue-950 bg-blue-100 hover:text-blue-600 rounded-lg'>Submit</button>
-                    <div className='mt-8'>Struggling with a use case? Click <button onClick={toggleUsecaseButtons} className='underline hover:text-blue-600'>here</button>  to select from a list of use case categories</div>
+                <div className='flex flex-col items-center text-center'>
+                    <button onClick={handleCategorise} className='button-primary'>Submit</button>
+                    <div className='mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories below</div>
                 </div>
 
                 <div className='mb-8'>
-                    {loading && <p>Loading...</p>}
+                    {loading && <p className='mt-8'>Please wait...</p>}
                     {usecaseId && <p> Use case Category: {usecaseName}</p>}
-                    {fetchAttempted && !loading && !usecaseId && <p>No clear use case identified, please retry or choose from the use case list using the link above</p>}
+                    {fetchAttempted && !loading && !usecaseId && <p className='mt-8'>No clear use case identified, please retry or choose from the use case list using the link above</p>}
                 </div>
 
             </div>
 
             {/* Carousel of buttons for use-case selection */}
 
-            {usecaseButtonsVisible && (
-                <div className="flex items-center mb-[1rem] md:mb-[1.5rem] lg:mb-[2rem]">
 
-                    {/* Carousel previous slide  */}
-                    <button className="arrow-btn"
-                        onClick={prevSlide}
-                    // disabled={currentIndex === 0}
-                    >&#8592;
-                    </button>
+            <div className="flex items-center mb-[1rem] md:mb-[1.5rem] lg:mb-[2rem]">
 
-                    <div className="flex flex-col lg:flex-row overflow-hidden">
-                        {visibleUsecases.map((usecase) => (
-                            <div key={usecase.id} className="flex flex-col items-center my-2 lg:my-0 ">
+                {/* Carousel previous slide  */}
+                <button className="arrow-btn"
+                    onClick={prevSlide}
+                // disabled={currentIndex === 0}
+                >&#8592;
+                </button>
 
-                                {/* Button to indicate which use-case is selected */}
-                                <IconContext.Provider value={{ size: 45 }}>
-                                    <button
-                                        onClick={() => {
-                                            setSelectedUsecase(usecase.id);
-                                            onSelect(usecase.id);
-                                            triggerShowRecommendation()
-                                        }}
-                                        className={`lg:mb-4 hover:text-blue-600 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
-                                    >
-                                        {getUsecaseIcon(usecase.name)}
-                                    </button>
-                                </IconContext.Provider>
-                                <div className='flex justify-center w-56'>
-                                    <button
-                                        className={`font-medium hover:text-blue-600 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
-                                        onClick={() => {
-                                            setSelectedUsecase(usecase.id);
-                                            onSelect(usecase.id);
-                                            triggerShowRecommendation()
-                                        }}
-                                    >
-                                        {usecase.name}
-                                    </button>
-                                </div>
+                <div className="flex flex-col lg:flex-row overflow-hidden">
+                    {visibleUsecases.map((usecase) => (
+                        <div key={usecase.id} className="flex flex-col items-center my-2 lg:my-0 ">
 
+                            {/* Button to indicate which use-case is selected */}
+                            <IconContext.Provider value={{ size: 45 }}>
+                                <button
+                                    onClick={() => {
+                                        setSelectedUsecase(usecase.id);
+                                        onSelect(usecase.id);
+                                        triggerShowRecommendation()
+                                    }}
+                                    className={`lg:mb-4 hover:text-blue-600 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
+                                >
+                                    {getUsecaseIcon(usecase.name)}
+                                </button>
+                            </IconContext.Provider>
+                            <div className='flex justify-center w-56'>
+                                <button
+                                    className={`font-medium hover:text-blue-600 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
+                                    onClick={() => {
+                                        setSelectedUsecase(usecase.id);
+                                        onSelect(usecase.id);
+                                        triggerShowRecommendation()
+                                    }}
+                                >
+                                    {usecase.name}
+                                </button>
                             </div>
-                        ))}
-                    </div>
 
-                    {/* Carousel next slide */}
-                    <button className="arrow-btn"
-                        onClick={nextSlide}
-                    // disabled={currentIndex === usecases.length - numVisibleUseCases}
-                    >&#8594;</button>
+                        </div>
+                    ))}
                 </div>
-            )
-            }
+
+                {/* Carousel next slide */}
+                <button className="arrow-btn"
+                    onClick={nextSlide}
+                // disabled={currentIndex === usecases.length - numVisibleUseCases}
+                >&#8594;</button>
+            </div>
+
+
 
         </div>
     );

@@ -12,8 +12,7 @@ import HowItWorks from './HowItWorks.js'
 import Data from './Data.js'
 import About from './About.js'
 import Footer from './Footer.js'
-
-
+import useShowRecommendation from './hooks/useShowRecommendation.js'
 
 const Main = () => {
     const [usecaseId, setUsecaseId] = useState(1);
@@ -22,16 +21,7 @@ const Main = () => {
 
     const { usecases, error } = useUsecases();
     const { recommendation, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
-
-    const [showRecommendation, setShowRecommendation] = useState(false)
-
-    const triggerShowRecommendation = () => {
-        setShowRecommendation(true)
-    }
-
-    const hideRecommendation = () => {
-        setShowRecommendation(false)
-    }
+    const { showRecommendation, triggerShowRecommendation, hideRecommendation } = useShowRecommendation();
 
     return (
         <>
@@ -44,17 +34,23 @@ const Main = () => {
                 <Section className='' customPosition='' customPaddings=''>
                     <div>
                         <div className='flex flex-grow flex-col items-center justify-center'>
-                            <section className=' mt-[1rem]  md:mt-[1.5rem]  lg:mt-[2rem]'>
-                                <UsecaseSelection onSelect={setUsecaseId} triggerShowRecommendation={triggerShowRecommendation} hideRecommendation={hideRecommendation} />
-                            </section>
-                            <section className='mb-10'>
-                                {showRecommendation && (
-                                    <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} />
-                                )}
-                            </section>
+
+                            {!showRecommendation && (
+                                <section className=' mt-[1rem]  md:mt-[1.5rem]  lg:mt-[2rem]'>
+                                    <UsecaseSelection onSelect={setUsecaseId} triggerShowRecommendation={triggerShowRecommendation} hideRecommendation={hideRecommendation} />
+                                </section>
+                            )}
+
+                            {showRecommendation && (
+                                <section className='mb-10'>
+                                    <Recommendation usecaseId={usecaseId} statusFilter={statusFilter} topN={topN} triggerShowRec={triggerShowRecommendation} hideRec={hideRecommendation} />
+                                </section>
+                            )}
+
                             <section className='mb-10'>
                                 <Filter onSelect={setStatusFilter} />
                             </section>
+
                         </div>
                     </div>
                 </Section>
@@ -63,7 +59,6 @@ const Main = () => {
                     <Footer />
                 </div>
             </div>
-
 
             <Data />
             <HowItWorks />

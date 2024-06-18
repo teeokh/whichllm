@@ -145,8 +145,8 @@ def update_benchmark(benchmark_name, new_link):
         print(f"Benchmark '{benchmark_name}' not found.")
 
 
-# with app.app_context():
-#     update_benchmark('GPQA', 'Science')
+with app.app_context():
+    update_benchmark('Bar Exam', 'https://www.barbri.com/about-the-bar-exam/')
 
 def update_benchmarks():
     # Fetch all benchmarks from the database
