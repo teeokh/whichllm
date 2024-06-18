@@ -11,6 +11,7 @@ const Header = () => {
 
     const pathName = useLocation();
     const [openNavigation, setOpenNavigation] = useState(false);
+    const [showPopup, setShowPopup] = useState(false)
 
     useEffect(() => {
         if (openNavigation) {
@@ -24,12 +25,19 @@ const Header = () => {
         setOpenNavigation(!openNavigation);
     };
 
-    const handleClick = () => { // If nav button is clicked and nav is already open, do nothing
+    const handleNavClick = () => { // If nav button is clicked and nav is already open, do nothing
         setOpenNavigation(false);
     };
 
+    const handleLoginClick = () => {
+        setShowPopup(true)
+        setTimeout(() => {
+            setShowPopup(false)
+        }, 3000)
+    }
+
     return (
-        <div className={`absolute top-0 left-0 w-full z-50 border-b border-blue-200 lg:bg-blue-100 lg:backdrop-blur-sm ${openNavigation ? "bg-blue-100" : "bg-blue-100 backdrop-blur-sm"} `}>
+        <div className={`absolute top-0 left-0 w-full z-50 border-b bg-blue-950 lg:bg-blue-950 lg:backdrop-blur-sm ${openNavigation ? "bg-blue-950" : "bg-blue-100 backdrop-blur-sm"} `}>
             <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
 
                 {/* Logo */}
@@ -51,11 +59,11 @@ const Header = () => {
                             <a
                                 key={item.id}
                                 href={item.url}
-                                onClick={(e) => { handleClick(e) }}
-                                className={`block relative text-2xl uppercase text-blue-900 transition-colors hover:text-blue-600 ${item.onlyMobile ? "lg:hidden" : ""
+                                onClick={(e) => { handleNavClick(e) }}
+                                className={`block relative text-2xl uppercase text-white transition-colors hover:text-blue-600 ${item.onlyMobile ? "lg:hidden" : ""
                                     } px-4 py-4 md:py-6 lg:-mr-0.25 lg:text-xs lg:font-semibold ${item.url === pathName.hash
                                         ? "z-2 lg:text-blue-600"
-                                        : "lg:text-blue-900"
+                                        : "lg:text-white"
                                     }`}
                             >
                                 {item.title}
@@ -65,10 +73,15 @@ const Header = () => {
                     <HamburgerMenu />
                 </nav>
 
-                <a href='#signup' className='button hidden mr-8 text-blue-900 transition-colors hover:text-blue-600 lg:block'>
+                <a href='#signup' className='button hidden mr-8 text-white transition-colors hover:text-blue-600 lg:block'>
                     New Account
+                    {showPopup && (
+                        <div className='absolute bottom-0 transform -translate-y-full bg-blue-500 text-white px-4 py-2 rounded'>
+                            Profiles coming soon
+                        </div>
+                    )}
                 </a>
-                <Button href="#login" className="hidden lg:flex">
+                <Button href="#login" className="hidden lg:flex text-white">
                     Sign In
                 </Button>
 
