@@ -11,7 +11,7 @@ const useRecommendation = (usecaseId, statusFilter, topN) => {
         const fetchRecommendation = async () => {
 
             try {
-                const response = await axios.get('/recommendations', {
+                const response = await axios.get('/api/recommendations', {
                     params: {
                         usecase_id: usecaseId,
                         status_filter: statusFilter,

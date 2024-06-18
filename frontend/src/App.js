@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Main from './components/Main.js'
 import './index.css'
 
 const App = () => {
-  return (  
+  return (
     <Router>
       <div>
         <Routes>
@@ -15,5 +15,5 @@ const App = () => {
     </Router>
   );
 }
- 
+
 export default App;

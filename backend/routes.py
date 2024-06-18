@@ -9,21 +9,21 @@ from llm_chatbot.gpt_chatbot import categorise_text
 @app.route('/')
 @app.route('/home')
 def home():
-    return jsonify({'message': 'WhichLLM coming soon...'})
+    return jsonify({'message': 'Welcome to WhichLLM'})
 
-@app.route('/usecases')
+@app.route('/api/usecases')
 def get_all_usecases():
     usecases = db.session.query(Usecase).join(benchmark_usecase, Usecase.id == benchmark_usecase.c.usecase_id).distinct().all()
     json_usecases = [usecase.to_json() for usecase in usecases]
     return jsonify(json_usecases)
 
-@app.route('/usecase/<int:usecase_id>', methods=['GET'])
+@app.route('/api/usecase/<int:usecase_id>', methods=['GET'])
 def get_usecase(usecase_id):
     usecase = Usecase.query.get_or_404(usecase_id)
     json_usecase = usecase.to_json()
     return jsonify(json_usecase)
 
-@app.route('/benchmarks-usecases')
+@app.route('/api/benchmarks-usecases')
 def get_benchmarks_usecases():
     benchmarks_usecases = db.session.query(Benchmark.name, Usecase.name).\
         join(benchmark_usecase, Benchmark.id == benchmark_usecase.c.benchmark_id).\
@@ -37,14 +37,14 @@ def get_benchmarks_usecases():
             grouped_benchmarks_usecases[usecase].append(benchmark)
     return jsonify(grouped_benchmarks_usecases)
 
-@app.route('/benchmarks')
+@app.route('/api/benchmarks')
 def get_all_benchmarks():
     benchmarks = Benchmark.query.all()
     json_benchmarks = [benchmark.to_json() for benchmark in benchmarks]
     return jsonify(json_benchmarks)
 
 # Recommendations route, displaying top LLMs with score in JSON format
-@app.route('/recommendations', methods=['GET'])
+@app.route('/api/recommendations', methods=['GET'])
 def get_recommendations():
     
     # Set query parameters for URL routing -> can dynamically change recommendation parameters
@@ -73,7 +73,7 @@ def get_recommendations():
         'benchmarks':benchmark_names
             })
     
-@app.route('/llm-scores', methods=['GET'])
+@app.route('/api/llm-scores', methods=['GET'])
 def get_all_llm_scores():
     # Fetch all LLM scores
     llm_scores = db.session.query(llm_benchmark).all()
@@ -94,7 +94,7 @@ def get_all_llm_scores():
     return jsonify(grouped_llm_scores)
 
 
-@app.route('/categorise', methods=['POST'])
+@app.route('/api/categorise', methods=['POST'])
 def categorise():
     data = request.json
     user_input = data.get('text')

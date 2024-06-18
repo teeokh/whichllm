@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 const Filter = ({ onSelect }) => {
     const handleSelect = (event) => {
@@ -6,7 +6,7 @@ const Filter = ({ onSelect }) => {
         onSelect(value)
     }
 
-    return ( 
+    return (
         <div className=' p-1'>
             <label htmlFor='statusFilter' className='text-sm pr-2'>Filter</label>
 
@@ -18,5 +18,5 @@ const Filter = ({ onSelect }) => {
         </div>
     );
 }
- 
+
 export default Filter;

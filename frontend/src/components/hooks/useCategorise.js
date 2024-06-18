@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 const useCategorise = (userInput) => {
@@ -10,7 +10,7 @@ const useCategorise = (userInput) => {
     const categoriseText = async (input) => {
         setLoading(true);
         try {
-            const response = await axios.post('/categorise', { text: input })
+            const response = await axios.post('/api/categorise', { text: input })
             setUsecaseId(response.data.usecase_id);
             setUsecaseName(response.data.usecase_name)
             setCategoriseError('')

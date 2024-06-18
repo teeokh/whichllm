@@ -9,7 +9,7 @@ const useBenchmarksUsecases = () => {
     useEffect(() => {
         const fetchBenchmarksUsecases = async () => {
             try {
-                const response = await axios.get('/benchmarks-usecases')
+                const response = await axios.get('/api/benchmarks-usecases')
                 setBenchmarksUsecases(response.data)
 
             } catch (error) {

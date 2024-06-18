@@ -6,7 +6,7 @@ import useBenchmarksUsecases from './hooks/useBenchmarksUsecases';
 import useAllBenchmarks from './hooks/useAllBenchmarks.js';
 
 const Data = () => {
-    const { llmScores, error } = useLLMScores();
+    const { llmScores } = useLLMScores();
 
     useEffect(() => { }, [llmScores]);
 
@@ -17,8 +17,8 @@ const Data = () => {
         return scoreObj ? scoreObj.score : 'N/A';
     }));
 
-    const { benchmarksUsecases, buErrors } = useBenchmarksUsecases();
-    const { allBenchmarks, benchError } = useAllBenchmarks();
+    const { benchmarksUsecases } = useBenchmarksUsecases();
+    const { allBenchmarks } = useAllBenchmarks();
 
     return (
         <Section customPosition='flex flex-col justify-center text-center'>

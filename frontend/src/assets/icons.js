@@ -11,7 +11,7 @@ import { MdOutlineImageSearch } from "react-icons/md";
 import { FaFileAudio } from "react-icons/fa";
 import { FaVideo } from "react-icons/fa";
 import { MdOutlineEditNote } from "react-icons/md";
-import { FaBookReader } from "react-icons/fa";
+// import { FaBookReader } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaPaintBrush } from "react-icons/fa";
 

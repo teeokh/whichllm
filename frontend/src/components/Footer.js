@@ -10,7 +10,7 @@ const Footer = () => {
 
                 <ul className='flex gap-5 flex-wrap'>
                     {socials.map((item) => (
-                        <a key={item.id} href={item.url} target='_blank' className='flex items-center justify-center w-10 h-10 rounded-full  transition-colors hover:bg-blue-50'>
+                        <a key={item.id} href={item.url} target='_blank' rel="noreferrer" className='flex items-center justify-center w-10 h-10 rounded-full  transition-colors hover:bg-blue-50'>
                             <img src={item.iconUrl} width={16} height={16} alt={item.title} />
                         </a>
                     ))}

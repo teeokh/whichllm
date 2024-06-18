@@ -2,18 +2,15 @@ import React, { useState, useEffect } from 'react';
 import useRecommendation from '../components/hooks/useRecommendation.js';
 import useUsecaseName from '../components/hooks/useUsecaseName.js';
 import useUsecases from './hooks/useUsecases.js';
-import Filter from '../components/Filter.js'
 import useAllBenchmarks from './hooks/useAllBenchmarks.js';
 import Title from './Title.js'
-import useShowRecommendation from './hooks/useShowRecommendation.js';
 
 
 const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec }) => {
-    const { recommendation, benchmarks, error: recError } = useRecommendation(usecaseId, statusFilter, topN);
-    const { usecases, error } = useUsecases();
-    const { usecaseName, error: nameError } = useUsecaseName(usecaseId);
-    const { allBenchmarks, error: benchmarkError } = useAllBenchmarks()
-    const { showRecommendation, triggerShowRecommendation, hideRecommendation } = useShowRecommendation();
+    const { recommendation, benchmarks } = useRecommendation(usecaseId, statusFilter, topN);
+    const { usecases } = useUsecases();
+    const { usecaseName } = useUsecaseName(usecaseId);
+    const { allBenchmarks } = useAllBenchmarks()
     const [loading, setLoading] = useState(true);
 
     const bestLLM = recommendation[0]

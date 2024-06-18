@@ -9,7 +9,7 @@ const useUsecaseName = (usecaseId) => {
     useEffect(() => {
         const fetchUsecaseName = async () => {
             try {
-                const response = await axios.get(`/usecase/${usecaseId}`);
+                const response = await axios.get(`/api/usecase/${usecaseId}`);
                 setUsecaseName(response.data.name);
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');

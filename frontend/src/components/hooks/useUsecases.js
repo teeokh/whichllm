@@ -8,7 +8,7 @@ const useUsecases = () => {
     useEffect(() => {
         const fetchUsecases = async () => {
             try {
-                const response = await axios.get('/usecases');
+                const response = await axios.get('/api/usecases');
                 setUsecases(response.data);
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');

@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useUsecases from './hooks/useUsecases.js';
 import { icons } from '../assets/icons.js';
 import { IconContext } from 'react-icons';
-import UsecaseIcon from './UsecaseIcon.js';
 import useCategorise from './hooks/useCategorise.js';
-import Button from './Button.js';
 import Title from './Title.js';
 
 const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendation }) => {
@@ -13,9 +11,8 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
     const numVisibleUseCases = 3;
     const [selectedUsecase, setSelectedUsecase] = useState(null);
     const [userInput, setUserInput] = useState("");
-    const { usecaseId, usecaseName, categoriseError, loading, categoriseText } = useCategorise();
+    const { usecaseId, usecaseName, loading, categoriseText } = useCategorise();
     const [fetchAttempted, setFetchAttempted] = useState(false);
-    const [usecaseButtonsVisible, setUsecaseButtonsVisible] = useState(false);
 
     const handleInputChange = (e) => {
         setUserInput(e.target.value);
@@ -47,11 +44,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
             hideRecommendation()
             console.log('Rec hidden')
         }
-    }, [usecaseId, onSelect]);
-
-    const toggleUsecaseButtons = () => {
-        setUsecaseButtonsVisible(!usecaseButtonsVisible);
-    }
+    }, [usecaseId, onSelect, hideRecommendation, triggerShowRecommendation]);
 
     if (error) {
         return <p>{error}</p>;

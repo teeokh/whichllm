@@ -9,7 +9,7 @@ const useLLMScores = () => {
     useEffect(() => {
         const fetchLLMScores = async () => {
             try {
-                const response = await axios.get('/llm-scores');
+                const response = await axios.get('/api/llm-scores');
                 setLlmScores(response.data);
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');

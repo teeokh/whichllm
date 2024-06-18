@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const useAllBenchmarks = () => {
@@ -9,7 +9,7 @@ const useAllBenchmarks = () => {
   useEffect(() => {
     const fetchBenchmarks = async () => {
       try {
-        const response = await axios.get('/benchmarks');
+        const response = await axios.get('/api/benchmarks');
         setAllBenchmarks(response.data);
       } catch (error) {
         setError(error.response?.data?.message || 'An error occurred');
