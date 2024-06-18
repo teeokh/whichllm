@@ -90,3 +90,11 @@ a.top-rec:hover {
 .caption {
   @apply text-sm;
 }
+
+.login-popup {
+  @apply opacity-0;
+}
+
+.login-popup.show {
+  @apply opacity-100 duration-300 ease-in-out fixed top-20 left-[84%] bg-blue-950 text-white px-4 py-2 rounded;
+}

@@ -31,8 +31,8 @@ const Data = () => {
                 <h3 className='text-2xl font-semibold mb-6'>List of benchmarks and their associated usecases:</h3>
                 <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
                     {Object.entries(benchmarksUsecases).map(([usecase, benchmarks], index) => (
-                        <div key={index} className='bg-white hover:shadow-md transition-shadow hover:shadow-blue-600 rounded-md p-4'>
-                            <h4 className='text-xl font-medium mb-4'>{usecase}</h4>
+                        <div key={index} className='bg-blue-950 hover:shadow-md transition-shadow hover:shadow-blue-950 rounded-md p-4'>
+                            <h4 className='text-xl font-medium mb-4 text-white'>{usecase}</h4>
                             <ul>
                                 {benchmarks.map((benchmark, index) => {
                                     let allBenchmark = allBenchmarks.find(b => b.name === benchmark);
@@ -42,7 +42,7 @@ const Data = () => {
                                                 href={allBenchmark ? allBenchmark.link : '#'}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className='text-blue-600 hover:underline'
+                                                className='text-white text-sm hover:underline'
                                             >
                                                 <strong>{benchmark}</strong>
                                             </a>
@@ -57,9 +57,9 @@ const Data = () => {
                 <h3 className='text-2xl font-semibold mt-12 mb-6'>LLM Scores for each benchmark:</h3>
                 <div className='max-w-full overflow-x-auto'>
                     <table className='table-auto w-full border-collapse text-center'>
-                        <thead className='bg-blue-600 text-white'>
+                        <thead className='bg-blue-950 text-white'>
                             <tr>
-                                <th className='border p-4 max-w-[120px] lg:min-w-[150px] sticky left-0 bg-blue-600'>LLM / Benchmark</th>
+                                <th className='border p-4 max-w-[120px] lg:min-w-[150px] sticky left-0 bg-blue-950'>LLM / Benchmark</th>
                                 {benchmarks.map((benchmark, index) => (
                                     <th key={index} className='border p-4 max-w-[120px] lg:min-w-[120px]'>{benchmark}</th>
                                 ))}
@@ -67,8 +67,8 @@ const Data = () => {
                         </thead>
                         <tbody>
                             {llms.map((llm, i) => (
-                                <tr key={i} className={i % 2 === 0 ? 'bg-blue-100' : 'bg-white'}>
-                                    <td className={`border p-4 sticky left-0 ${i % 2 === 0 ? 'bg-blue-100' : 'bg-white'}`}>{llm}</td>
+                                <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-blue-950 text-white'}>
+                                    <td className={`border p-4 sticky left-0 ${i % 2 === 0 ? 'bg-white' : 'bg-blue-950 text-white'}`}>{llm}</td>
                                     {scores[i].map((score, j) => (
                                         <td key={j} className='border p-4'>{score}</td>
                                     ))}

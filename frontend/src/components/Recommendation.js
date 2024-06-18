@@ -10,7 +10,7 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
     const { recommendation, benchmarks } = useRecommendation(usecaseId, statusFilter, topN);
     const { usecases } = useUsecases();
     const { usecaseName } = useUsecaseName(usecaseId);
-    const { allBenchmarks, error: benchmarkError } = useAllBenchmarks()
+    const { allBenchmarks } = useAllBenchmarks()
     const [loading, setLoading] = useState(true);
 
     const bestLLM = recommendation[0]

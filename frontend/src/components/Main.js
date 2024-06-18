@@ -9,6 +9,8 @@ import HowItWorks from './HowItWorks.js'
 import Data from './Data.js'
 import Footer from './Footer.js'
 import useShowRecommendation from './hooks/useShowRecommendation.js'
+import LoginPopup from './LoginPopup.js';
+
 
 const Main = () => {
     const [usecaseId, setUsecaseId] = useState(1);
@@ -16,11 +18,25 @@ const Main = () => {
     const [topN] = useState(3);
     const { showRecommendation, triggerShowRecommendation, hideRecommendation } = useShowRecommendation();
 
+    const [showPopup, setShowPopup] = useState(false)
+    const [popupMessage, setPopupMessage] = useState('')
+
+    const handleLoginClick = (message) => {
+        setShowPopup(true)
+        setPopupMessage(message)
+        console.log('Popup shown')
+        setTimeout(() => {
+            setShowPopup(false)
+            setPopupMessage('')
+        }, 3000)
+    }
+
     return (
         <>
             <div className='min-h-screen flex flex-col justify-center'>
                 <div className='h-[5rem]'>
-                    <Header />
+                    <LoginPopup show={showPopup} message={popupMessage} />
+                    <Header handleLoginClick={handleLoginClick} />
                 </div>
 
                 <ButtonGradient />

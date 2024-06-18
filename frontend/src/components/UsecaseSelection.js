@@ -24,11 +24,9 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
         categoriseText(userInput);
         if (usecaseId) {
             triggerShowRecommendation()
-            console.log('Rec shown')
         }
         if (!usecaseId) {
             hideRecommendation()
-            console.log('Rec hidden')
         }
     };
 

@@ -7,11 +7,10 @@ import { HamburgerMenu } from '../components/design/Header.jsx'
 import MenuSvg from '../assets/svg/MenuSvg.js'
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
 
-const Header = () => {
+const Header = ({ handleLoginClick }) => {
 
     const pathName = useLocation();
     const [openNavigation, setOpenNavigation] = useState(false);
-    const [showPopup, setShowPopup] = useState(false)
 
     useEffect(() => {
         if (openNavigation) {
@@ -28,13 +27,6 @@ const Header = () => {
     const handleNavClick = () => { // If nav button is clicked and nav is already open, do nothing
         setOpenNavigation(false);
     };
-
-    const handleLoginClick = () => {
-        setShowPopup(true)
-        setTimeout(() => {
-            setShowPopup(false)
-        }, 3000)
-    }
 
     return (
         <div className={`absolute top-0 left-0 w-full z-50 border-b bg-blue-950 lg:bg-blue-950 lg:backdrop-blur-sm ${openNavigation ? "bg-blue-950" : "bg-blue-100 backdrop-blur-sm"} `}>
@@ -73,15 +65,10 @@ const Header = () => {
                     <HamburgerMenu />
                 </nav>
 
-                <a href='#signup' className='button hidden mr-8 text-white transition-colors hover:text-blue-600 lg:block'>
+                <a href='#signup' onClick={() => handleLoginClick('Profiles coming soon!')} className='button hidden mr-8 text-white transition-colors hover:text-blue-600 lg:block'>
                     New Account
-                    {showPopup && (
-                        <div className='absolute bottom-0 transform -translate-y-full bg-blue-500 text-white px-4 py-2 rounded'>
-                            Profiles coming soon
-                        </div>
-                    )}
                 </a>
-                <Button href="#login" className="hidden lg:flex text-white">
+                <Button href="#login" onClick={() => handleLoginClick('Profiles coming soon!')} className="hidden lg:flex text-white">
                     Sign In
                 </Button>
 

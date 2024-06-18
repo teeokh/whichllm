@@ -7,9 +7,8 @@ const Button = ({ className, href, onClick, children, px, white }) => {
   // If there is a className passed when actually rendering the button from App.jsx, it will add that, otherwise it will set to an empty string (to not break concatenation)
 
   // Basically gives some default design for all buttons, then if we want to edit more we can use the className prop in App.jsx
-  const classes = `button relative inline-flex items-center justify-center h-11 transition-colors hover:text-blue-600 ${
-    px || "px-7"
-  } ${className || ""}`;
+  const classes = `button relative inline-flex items-center justify-center h-11 transition-colors hover:text-blue-600 ${px || "px-7"
+    } ${className || ""}`;
 
   const spanClasses = `relative z-10`;
 
@@ -21,7 +20,7 @@ const Button = ({ className, href, onClick, children, px, white }) => {
   );
 
   const renderLink = () => (
-    <a href={href} className={classes}>
+    <a href={href} className={classes} onClick={onClick}>
       <span className={spanClasses}>{children}</span>
       {ButtonSvg()}
     </a>
