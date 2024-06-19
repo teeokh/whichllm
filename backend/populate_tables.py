@@ -1,6 +1,9 @@
 from models import *
 from config import app, db, db_path
 
+# TODO think about adding provider logos to display in recommendation
+# TODO Perplexity for all wildcard / internet search (no benchmarks, more obscure). For this to work, have to create fake benchmarks. Can make these a clickable link, which pop up a modal saying 'Personal preference / known fact'
+# TODO Perplexity usecase link?
 
 llm_data = [
     # {'name': 'ChatGPT', 'link': 'https://chat.openai.com/', 'status': 'free', 'provider': 'OpenAI'},
@@ -25,6 +28,9 @@ llm_data = [
     # {'name': 'Code Llama', 'link': 'https://llama.meta.com/', 'status': 'free', 'provider': 'Meta', 'speciality': 'Coding'},
     # {'name': 'Mistral 7B', 'link': 'https://mistral.ai/', 'status': 'free', 'provider': 'Mitral AI'},
     # {'name': 'Midnight Miqu', 'link': 'https://huggingface.co/sophosympatheia/Midnight-Miqu-70B-v1.5', 'status': 'free', 'provider': 'Sophosympatheia', 'speciality': 'Writing'}
+    # {'name': 'Mixtral', 'link': 'https://mistral.ai/news/mixtral-of-experts/', 'status': 'free', 'provider': 'Mistral AI'},
+    # {'name': 'Llama 3', 'link': 'https://www.meta.ai/', 'status': 'free', 'provider': 'Meta'},
+    # {'name': 'Perplexity', 'link': 'https://www.perplexity.ai/', 'status': 'free', 'provider': 'Perplexity AI', 'specialty': ['Internet Search', 'Wildcard'], 'notes', 'Perplexity uses a combination of language models (such as GPT-4o and Claude Opus) to leverage the internet, summarizing live information and citing sources.'}
 ]
 
 def populate_llm_table():
@@ -79,7 +85,7 @@ def update_cell(row_id, column_name, new_value):
         print(f"Row with ID {row_id} not found.")
 
 # with app.app_context():
-#     update_cell(8, 'name', 'Gemini Ultra')
+#     update_cell(25, 'notes', 'Perplexity uses a combination of language models (such as GPT-4o and Claude Opus) to leverage the internet, summarizing live information and citing sources.')
 
 benchmark_data = [
     # {'name': 'MMLU', 'subject': 'General', 'link': 'https://crfm.stanford.edu/helm/mmlu/latest/'},
@@ -115,6 +121,8 @@ benchmark_data = [
     # {'name': 'MMLU Medicine', 'subject': 'Medicine', 'notes': 'Average score', 'link': 'https://crfm.stanford.edu/helm/mmlu/latest/'},
     # {'name': 'MedMCQA', 'subject': 'Medicine', 'link': 'https://medmcqa.github.io/'},
     # {'name' : 'EQ Bench', 'subject': 'Emotional intelligence / creativity', 'link': 'https://eqbench.com/'}
+    # {'name' : 'Internet', 'subject': 'Internet', 'link': ''},
+    # {'name': 'Wildcard', 'subject': 'Wildcard', 'link': ''}
 ]
 
 def populate_benchmark_table():
@@ -146,26 +154,7 @@ def update_benchmark(benchmark_name, new_link):
 
 
 # with app.app_context():
-#     update_benchmark('Bar Exam', 'https://www.barbri.com/about-the-bar-exam/')
-
-def update_benchmarks():
-    # Fetch all benchmarks from the database
-    benchmarks = Benchmark.query.all()
-
-    # Create a dictionary mapping benchmark names to links
-    link_dict = {benchmark['name']: benchmark['link'] for benchmark in benchmark_data}
-
-    for benchmark in benchmarks:
-        # Update the link if the benchmark's name is in the dictionary
-        if benchmark.name in link_dict:
-            benchmark.link = link_dict[benchmark.name]
-            db.session.commit()
-            print(f"Link for benchmark '{benchmark.name}' updated to '{link_dict[benchmark.name]}'.")
-        else:
-            print(f"Link for benchmark '{benchmark.name}' not found in benchmark_data.")
-
-# with app.app_context():
-#     update_benchmarks()
+#     update_benchmark('EQ Bench', 'https://eqbench.com/creative_writing.html')
 
 def drop_benchmark_row(row_id):
     row = Benchmark.query.get(row_id)
@@ -183,24 +172,27 @@ def drop_benchmark_row(row_id):
 
 
 usecase_data = [
-    {'name': 'Text Generation'},
-    {'name': 'Text Summation'},
-    {'name': 'General Knowledge'},
-    {'name': 'Conversation'},
-    {'name': 'Translation'},
-    {'name': 'Mathematics'},
-    {'name': 'Programming'},
-    {'name': 'Science'},
-    {'name': 'Medical Knowledge'},
-    {'name': 'Legal Knowledge'},
-    {'name': 'Advanced Reasoning'},
-    {'name': 'Document Analysis'},
-    {'name': 'Image Analysis'},
-    {'name': 'Video Analysis'},
-    {'name': 'Audio Processing'},
-    {'name': 'Basic Reasoning'},
-    {'name': 'Creativity'},
-    {'name': 'Relative User Preference'}
+    # {'name': 'Text Generation'},
+    # {'name': 'Text Summation'},
+    # {'name': 'General Knowledge'},
+    # {'name': 'Conversation'},
+    # {'name': 'Translation'},
+    # {'name': 'Mathematics'},
+    # {'name': 'Programming'},
+    # {'name': 'Science'},
+    # {'name': 'Medical Knowledge'},
+    # {'name': 'Legal Knowledge'},
+    # {'name': 'Advanced Reasoning'},
+    # {'name': 'Document Analysis'},
+    # {'name': 'Image Analysis'},
+    # {'name': 'Video Analysis'},
+    # {'name': 'Audio Processing'},
+    # {'name': 'Basic Reasoning'},
+    # {'name': 'Creativity'},
+    # {'name': 'Relative User Preference'}
+    # {'name': 'Internet Search'},
+    # {'name': 'Wildcard'}
+
 ]
 
 def populate_usecase_table():
@@ -249,7 +241,9 @@ usecase_mapping = {
     'Audio Processing': 15,
     'Basic Reasoning': 16,
     'Creativity': 17,
-    'Relative User Preference': 18
+    'Relative User Preference': 18,
+    'Internet Search': 19,
+    'Wildcard': 20
 }
 
 def capitalise()        :
@@ -278,7 +272,7 @@ llm_benchmark_data = [
     # {'llm_id': 1, 'benchmark_id': 20, 'score': 88.5},
     # {'llm_id': 1, 'benchmark_id': 6, 'score': 28.1},
     # {'llm_id': 1, 'benchmark_id': 9, 'score': 1119},
-    # {'llm_id': 1, 'benchmark_id': 33, 'score': 70.67},
+    # {'llm_id': 1, 'benchmark_id': 33, 'score': 49.08},
     # {'llm_id': 2, 'benchmark_id': 1, 'score': 86.4},
     # {'llm_id': 2, 'benchmark_id': 2, 'score': 95.3},
     # {'llm_id': 2, 'benchmark_id': 3, 'score': 89.5},
@@ -371,17 +365,22 @@ llm_benchmark_data = [
     # {'llm_id': 6, 'benchmark_id': 30, 'score': 88.1},
     # {'llm_id': 6, 'benchmark_id': 9, 'score': 1248},
     # {'llm_id': 6, 'benchmark_id': 33, 'score': 82.19},
-    # {'llm_id': 17, 'benchmark_id': 1, 'score': 81.9},
-    # {'llm_id': 17, 'benchmark_id': 2, 'score': 92.5},
-    # {'llm_id': 17, 'benchmark_id': 8, 'score': 84.0},
-    # {'llm_id': 17, 'benchmark_id': 11, 'score': 58.5},
-    # {'llm_id': 17, 'benchmark_id': 12, 'score': 91.7},
-    # {'llm_id': 17, 'benchmark_id': 13, 'score': 88.7},
-    # {'llm_id': 17, 'benchmark_id': 14, 'score': 71.9},
-    # {'llm_id': 17, 'benchmark_id': 21, 'score': 86.5},
-    # {'llm_id': 17, 'benchmark_id': 22, 'score': 58.5},
-    # {'llm_id': 17, 'benchmark_id': 29, 'score': 81.3},
-    # {'llm_id': 17, 'benchmark_id': 30, 'score': 80.3},
+    # {'llm_id': 17, 'benchmark_id': 1, 'score': 85.9},
+    # {'llm_id': 17, 'benchmark_id': 2, 'score': 93.3},
+    # {'llm_id': 17, 'benchmark_id': 6, 'score': 46.2}
+    # {'llm_id': 17, 'benchmark_id': 8, 'score': 89.2},
+    # {'llm_id': 17, 'benchmark_id': 11, 'score': 67.7},
+    # {'llm_id': 17, 'benchmark_id': 12, 'score': 90.8},
+    # {'llm_id': 17, 'benchmark_id': 13, 'score': 87.5},
+    # {'llm_id': 17, 'benchmark_id': 14, 'score': 84.1},
+    # {'llm_id': 17, 'benchmark_id': 21, 'score': 93.1},
+    # {'llm_id': 17, 'benchmark_id': 22, 'score': 62.2},
+    # {'llm_id': 17, 'benchmark_id': 23, 'score': 78.7}
+    # {'llm_id': 17, 'benchmark_id': 24, 'score': 64.6}
+    # {'llm_id': 17, 'benchmark_id': 25, 'score': 39.4}
+    # {'llm_id': 17, 'benchmark_id': 26, 'score': 93.5}
+    # {'llm_id': 17, 'benchmark_id': 29, 'score': 87.7},
+    # {'llm_id': 17, 'benchmark_id': 30, 'score': 94.4},
     # {'llm_id': 17, 'benchmark_id': 9, 'score': 1267},
     # {'llm_id': 8, 'benchmark_id': 1, 'score': 90.0},
     # {'llm_id': 8, 'benchmark_id': 2, 'score': 87.8},
@@ -440,6 +439,27 @@ llm_benchmark_data = [
     # {'llm_id': 22, 'benchmark_id': 29, 'score': 85.7},
     # {'llm_id': 22, 'benchmark_id': 30, 'score': 92.8},
     # {'llm_id': 22, 'benchmark_id': 9, 'score': 1287} 
+    # {'llm_id': 23, 'benchmark_id': 1, 'score': 70.6},
+    # {'llm_id': 23, 'benchmark_id': 2, 'score': 86.7},
+    # {'llm_id': 23, 'benchmark_id': 4, 'score': 81.2},
+    # {'llm_id': 23, 'benchmark_id': 5, 'score': 85.8},
+    # {'llm_id': 23, 'benchmark_id': 9, 'score': 1146},
+    # {'llm_id': 23, 'benchmark_id': 11, 'score': 41.8},
+    # {'llm_id': 23, 'benchmark_id': 12, 'score': 58.4},
+    # {'llm_id': 23, 'benchmark_id': 14, 'score': 40.2},
+    # {'llm_id': 23, 'benchmark_id': 15, 'score': 60.7},
+    # {'llm_id': 23, 'benchmark_id': 33, 'score': 65.32},
+    # {'llm_id': 24, 'benchmark_id': 33, 'score': 74.68},
+    # {'llm_id': 24, 'benchmark_id': 1, 'score': 82.0},
+    # {'llm_id': 24, 'benchmark_id': 4, 'score': 83.1},
+    # {'llm_id': 24, 'benchmark_id': 5, 'score': 93.0},
+    # {'llm_id': 24, 'benchmark_id': 6, 'score': 39.5},
+    # {'llm_id': 24, 'benchmark_id': 8, 'score': 81.3},
+    # {'llm_id': 24, 'benchmark_id': 11, 'score': 50.4},
+    # {'llm_id': 24, 'benchmark_id': 12, 'score': 93.0},
+    # {'llm_id': 24, 'benchmark_id': 14, 'score': 81.7}
+    # {'llm_id': 25, 'benchmark_id': 34, 'score': 100},
+    # {'llm_id': 25, 'benchmark_id': 35, 'score': 100}
 ]
 
 def populate_llm_benchmark_table():
@@ -456,6 +476,7 @@ def populate_llm_benchmark_table():
 
 # with app.app_context():
 #     populate_llm_benchmark_table()
+    
 
 def update_llm_score(llm_id, benchmark_id, new_score):
     llm_benchmark_cell = db.session.query(llm_benchmark).filter(
@@ -467,7 +488,7 @@ def update_llm_score(llm_id, benchmark_id, new_score):
 
 
 # with app.app_context():
-#     update_llm_score()
+#     update_llm_score(1, 33, 41.08)
 
 
 def delete_llm_benchmark(llm_id):
@@ -483,39 +504,41 @@ def delete_llm_benchmark(llm_id):
 
 
 benchmark_usecase_data = [
-    {'benchmark_id': 1, 'usecase_id': 3},
-    {'benchmark_id': 2, 'usecase_id': 16},
-    {'benchmark_id': 4, 'usecase_id': 16},
-    {'benchmark_id': 5, 'usecase_id': 16},
-    {'benchmark_id': 6, 'usecase_id': 8},
-    {'benchmark_id': 30, 'usecase_id': 8},
-    {'benchmark_id': 7, 'usecase_id': 16},
-    {'benchmark_id': 8, 'usecase_id': 11},
-    {'benchmark_id': 12, 'usecase_id': 6},
-    {'benchmark_id': 13, 'usecase_id': 6},
-    {'benchmark_id': 11, 'usecase_id': 6},
-    {'benchmark_id': 14, 'usecase_id': 7},
-    {'benchmark_id': 15, 'usecase_id': 7},
-    {'benchmark_id': 17, 'usecase_id': 9},
-    {'benchmark_id': 28, 'usecase_id': 9},
-    {'benchmark_id': 18, 'usecase_id': 10},
-    {'benchmark_id': 19, 'usecase_id': 10},
-    {'benchmark_id': 20, 'usecase_id': 10},
-    {'benchmark_id': 21, 'usecase_id': 12},
-    {'benchmark_id': 21, 'usecase_id': 13},
-    {'benchmark_id': 22, 'usecase_id': 13},
-    {'benchmark_id': 23, 'usecase_id': 13},
-    {'benchmark_id': 24, 'usecase_id': 14},
-    {'benchmark_id': 25, 'usecase_id': 15},
-    {'benchmark_id': 26, 'usecase_id': 15},
-    {'benchmark_id': 28, 'usecase_id': 10},
-    {'benchmark_id': 29, 'usecase_id': 12},
-    {'benchmark_id': 30, 'usecase_id': 12},
-    {'benchmark_id': 31, 'usecase_id': 9},
-    {'benchmark_id': 32, 'usecase_id': 9},
-    {'benchmark_id': 2, 'usecase_id': 1},
-    {'benchmark_id': 33, 'usecase_id': 17},
-    {'benchmark_id': 9, 'usecase_id': 18}
+    # {'benchmark_id': 1, 'usecase_id': 3},
+    # {'benchmark_id': 2, 'usecase_id': 16},
+    # {'benchmark_id': 4, 'usecase_id': 16},
+    # {'benchmark_id': 5, 'usecase_id': 16},
+    # {'benchmark_id': 6, 'usecase_id': 8},
+    # {'benchmark_id': 30, 'usecase_id': 8},
+    # {'benchmark_id': 7, 'usecase_id': 16},
+    # {'benchmark_id': 8, 'usecase_id': 11},
+    # {'benchmark_id': 12, 'usecase_id': 6},
+    # {'benchmark_id': 13, 'usecase_id': 6},
+    # {'benchmark_id': 11, 'usecase_id': 6},
+    # {'benchmark_id': 14, 'usecase_id': 7},
+    # {'benchmark_id': 15, 'usecase_id': 7},
+    # {'benchmark_id': 17, 'usecase_id': 9},
+    # {'benchmark_id': 28, 'usecase_id': 9},
+    # {'benchmark_id': 18, 'usecase_id': 10},
+    # {'benchmark_id': 19, 'usecase_id': 10},
+    # {'benchmark_id': 20, 'usecase_id': 10},
+    # {'benchmark_id': 21, 'usecase_id': 12},
+    # {'benchmark_id': 21, 'usecase_id': 13},
+    # {'benchmark_id': 22, 'usecase_id': 13},
+    # {'benchmark_id': 23, 'usecase_id': 13},
+    # {'benchmark_id': 24, 'usecase_id': 14},
+    # {'benchmark_id': 25, 'usecase_id': 15},
+    # {'benchmark_id': 26, 'usecase_id': 15},
+    # {'benchmark_id': 28, 'usecase_id': 10},
+    # {'benchmark_id': 29, 'usecase_id': 12},
+    # {'benchmark_id': 30, 'usecase_id': 12},
+    # {'benchmark_id': 31, 'usecase_id': 9},
+    # {'benchmark_id': 32, 'usecase_id': 9},
+    # {'benchmark_id': 2, 'usecase_id': 1},
+    # {'benchmark_id': 33, 'usecase_id': 17},
+    # {'benchmark_id': 9, 'usecase_id': 18},
+    # {'benchmark_id': 34, 'usecase_id': 19},
+    # {'benchmark_id': 35, 'usecase_id': 20},
 ]
 
 

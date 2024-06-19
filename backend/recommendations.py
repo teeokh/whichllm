@@ -22,6 +22,8 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     if usecase_id == 18:
         benchmark_ids = [b.id for b in benchmarks if b.id == 9]
         benchmark_names = [b.name for b in benchmarks if b.name == 'Chatbot Arena Elo']
+    
+    
         
     else:
         benchmark_ids = [b.id for b in benchmarks if b.id != 9]

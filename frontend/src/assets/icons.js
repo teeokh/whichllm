@@ -14,6 +14,8 @@ import { MdOutlineEditNote } from "react-icons/md";
 // import { FaBookReader } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaPaintBrush } from "react-icons/fa";
+import { TbWorldWww } from "react-icons/tb";
+import { FaQuestion } from "react-icons/fa";
 
 
 
@@ -32,5 +34,7 @@ export const icons = {
   'Video Analysis': FaVideo,
   'Text Generation': MdOutlineEditNote,
   'Creativity': FaPaintBrush,
-  'Relative User Preference': IoPeopleSharp
+  'Relative User Preference': IoPeopleSharp,
+  'Internet Search': TbWorldWww,
+  'Wildcard': FaQuestion
 };

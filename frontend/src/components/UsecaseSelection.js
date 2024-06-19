@@ -40,7 +40,6 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
         if (!usecaseId) {
             setSelectedUsecase(null);
             hideRecommendation()
-            console.log('Rec hidden')
         }
     }, [usecaseId, onSelect, hideRecommendation, triggerShowRecommendation]);
 
