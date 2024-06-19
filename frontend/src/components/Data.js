@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useLLMScores from './hooks/useLLMScores.js';
 import Section from './Section.js';
 import Heading from './Heading.js';
 import useBenchmarksUsecases from './hooks/useBenchmarksUsecases';
 import useAllBenchmarks from './hooks/useAllBenchmarks.js';
+import { internetMessage, wildcardMessage } from '../constants/dataNotes.js'
 
-const Data = () => {
+const Data = ({ setShowModal, setModalMessage, setModalHeader }) => {
     const { llmScores } = useLLMScores();
 
     useEffect(() => { }, [llmScores]);
@@ -43,6 +44,14 @@ const Data = () => {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className='text-white text-sm hover:underline'
+                                                onClick={(event) => {
+                                                    if (allBenchmark && (allBenchmark.name === 'Internet' || allBenchmark.name === 'Wildcard')) {
+                                                        event.preventDefault();
+                                                        setShowModal(true);
+                                                        setModalMessage(allBenchmark.name === 'Internet' ? internetMessage : wildcardMessage);
+                                                        setModalHeader(allBenchmark.name)
+                                                    }
+                                                }}
                                             >
                                                 <strong>{benchmark}</strong>
                                             </a>
@@ -78,7 +87,7 @@ const Data = () => {
                     </table>
                 </div>
             </div>
-        </Section>
+        </Section >
     );
 };
 

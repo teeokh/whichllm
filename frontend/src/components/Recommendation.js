@@ -19,12 +19,15 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
     useEffect(() => {
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 200);
+        }, 3000);
+
+        if (recommendation.length) {
+            clearTimeout(timer)
+            setLoading(false)
+        }
 
         return () => clearTimeout(timer); // This will clear the timeout if the component unmounts before the timeout finishes
-    }, []);
-
-    // TODO filter button not working once recommendation selected
+    }, [recommendation]);
 
     if (loading) {
         return <p>Fetching...</p>;

@@ -10,7 +10,7 @@ import Data from './Data.js'
 import Footer from './Footer.js'
 import useShowRecommendation from './hooks/useShowRecommendation.js'
 import LoginPopup from './LoginPopup.js';
-
+import Modal from './Modal.js'
 
 const Main = () => {
     const [usecaseId, setUsecaseId] = useState(1);
@@ -20,6 +20,10 @@ const Main = () => {
 
     const [showPopup, setShowPopup] = useState(false)
     const [popupMessage, setPopupMessage] = useState('')
+
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState('')
+    const [modalHeader, setModalHeader] = useState('')
 
     const handleLoginClick = (message) => {
         setShowPopup(true)
@@ -69,7 +73,8 @@ const Main = () => {
                 </div>
             </div>
 
-            <Data />
+            <Data setShowModal={setShowModal} setModalMessage={setModalMessage} setModalHeader={setModalHeader} />
+            <Modal show={showModal} message={modalMessage} header={modalHeader} hide={() => setShowModal(false)} />
             <HowItWorks />
             <Footer />
         </>
