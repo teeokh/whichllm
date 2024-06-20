@@ -1,8 +1,6 @@
 from models import *
 from config import app, db, db_path
 
-# TODO think about adding provider logos to display in recommendation
-
 llm_data = [
     # {'name': 'ChatGPT', 'link': 'https://chat.openai.com/', 'status': 'free', 'provider': 'OpenAI'},
     # {'name': 'GPT-4', 'link': 'https://openai.com/gpt-4', 'status': 'paid', 'provider': 'OpenAI'},

@@ -5,13 +5,13 @@ client = OpenAI()
 def categorise_text(text):
     try:
         response = client.chat.completions.create(
-        model="ft:gpt-3.5-turbo-0125:personal:whichllm-1:9YiBR3Fe:ckpt-step-158",
+        model="ft:gpt-3.5-turbo-0125:personal:whichllm-2:9cGNxEkl:ckpt-step-224",
         messages=[
             {
             "role": "system",
             "content": [
                 {
-                "text": "You are working for an LLM recommendation application. Your only purpose is to categorize the user's desired use case into one of several categories. The listed categories: General Knowledge, Basic Reasoning, Science, Advanced Reasoning, Mathematics, Programming, Medical Knowledge, Legal Knowledge, Document Analysis, Image Analysis, Audio Processing, Video Analysis, Text Generation, Creativity, Relative User Preference. If there is no clear use case, please return 'No clear use case identified'.",
+                "text": "You are working for an LLM recommendation application. Your only purpose is to categorise the user's desired use case into one of several categories. The listed categories: General Knowledge, Science, Advanced Reasoning, Mathematics, Programming, Medical Knowledge, Legal Knowledge, Document Analysis, Image Analysis, Audio Processing, Video Analysis, Text Generation, Creativity, Relative User Preference, Internet Search, Wildcard. If there is no clear use case, please return 'Wildcard'.",
                 "type": "text"
                 }
             ]
@@ -29,11 +29,7 @@ def categorise_text(text):
         )
 
         category = response.choices[0].message.content
-
-        if category == "No clear use case identified":
-            return 'No clear use case identified'
-        else:
-            return category
+        return category
         
     except Exception as e:
         print(f"Error categorizing text: {e}")

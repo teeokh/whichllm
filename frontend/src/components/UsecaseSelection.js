@@ -104,7 +104,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
                 <div className='mb-4 lg:mb-8'>
                     {loading && <p className='mt-8'>Please wait...</p>}
                     {usecaseId && <p> Use case Category: {usecaseName}</p>}
-                    {fetchAttempted && !loading && !usecaseId && <p className='mt-8'>No clear use case identified, please retry or choose from the use case list using the link above</p>}
+                    {/* {fetchAttempted && !loading && !usecaseId && <p className='mt-8'>No clear use case identified, please retry or choose from the use case list using the link above</p>} */}
                 </div>
 
             </div>
