@@ -8,7 +8,7 @@ const svgVariants = {
     },
     animate: {
         rotate: 0,
-        transition: { duration: 1 }
+        transition: { duration: 1, ease: [0.575, 0.395, 0.425, 1.400] }
     }
 }
 
@@ -23,7 +23,11 @@ const OpenaiIcon = () => (
 )
 
 const Perplexity = () => (
-    <motion.div>
+    <motion.div
+        variants={svgVariants}
+        initial='initial'
+        animate='animate'
+    >
         <SiPerplexity size={50} style={{ strokeWidth: "0.5", stroke: "currentColor", fill: "currentcolor" }} />
     </motion.div>
 
@@ -82,12 +86,8 @@ const AnthropicIcon = ({ width, height }) => (
         height={height}
         viewBox="0 0 256 176"
         variants={svgVariants}
-        initial={{
-            rotate: '-180deg',
-            scale: 0
-        }}
-        animate={{ scale: 1, rotate: '0deg' }}
-        transition={{ duration: 1 }}
+        initial='initial'
+        animate='animate'
         className='pt-1'>
         <motion.path fill="#1d2e4e" d="m147.487 0l70.081 175.78H256L185.919 0zM66.183 106.221l23.98-61.774l23.98 61.774zM70.07 0L0 175.78h39.18l14.33-36.914h73.308l14.328 36.914h39.179L110.255 0z" />
     </motion.svg>
