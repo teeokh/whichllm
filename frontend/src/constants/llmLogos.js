@@ -24,7 +24,7 @@ const OpenaiIcon = () => (
 
 const Perplexity = () => (
     <motion.div>
-        <SiPerplexity size={50} />
+        <SiPerplexity size={50} style={{ strokeWidth: "0.5", stroke: "currentColor", fill: "currentcolor" }} />
     </motion.div>
 
 )
