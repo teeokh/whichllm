@@ -4,8 +4,6 @@ from flask import request, jsonify
 from recommendations import top_llms_for_usecase
 from llm_chatbot.gpt_chatbot import categorise_text
 
-# TODO add '/api' to the api routes (and change this in the frontend parts that receive the routes)
-
 @app.route('/')
 @app.route('/home')
 def home():

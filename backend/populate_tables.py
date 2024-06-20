@@ -2,8 +2,6 @@ from models import *
 from config import app, db, db_path
 
 # TODO think about adding provider logos to display in recommendation
-# TODO Perplexity for all wildcard / internet search (no benchmarks, more obscure). For this to work, have to create fake benchmarks. Can make these a clickable link, which pop up a modal saying 'Personal preference / known fact'
-# TODO Perplexity usecase link?
 
 llm_data = [
     # {'name': 'ChatGPT', 'link': 'https://chat.openai.com/', 'status': 'free', 'provider': 'OpenAI'},
@@ -26,7 +24,7 @@ llm_data = [
     # {'name': 'Gemini 1.5 Pro', 'link': 'https://gemini.google.com/app', 'status': 'free', 'provider': 'Google'},
     # {'name': 'Llama 2', 'link': 'https://llama.meta.com/', 'status': 'free', 'provider': 'Meta'},
     # {'name': 'Code Llama', 'link': 'https://llama.meta.com/', 'status': 'free', 'provider': 'Meta', 'speciality': 'Coding'},
-    # {'name': 'Mistral 7B', 'link': 'https://mistral.ai/', 'status': 'free', 'provider': 'Mitral AI'},
+    # {'name': 'Mistral 7B', 'link': 'https://mistral.ai/', 'status': 'free', 'provider': 'Mistral AI'},
     # {'name': 'Midnight Miqu', 'link': 'https://huggingface.co/sophosympatheia/Midnight-Miqu-70B-v1.5', 'status': 'free', 'provider': 'Sophosympatheia', 'speciality': 'Writing'}
     # {'name': 'Mixtral', 'link': 'https://mistral.ai/news/mixtral-of-experts/', 'status': 'free', 'provider': 'Mistral AI'},
     # {'name': 'Llama 3', 'link': 'https://www.meta.ai/', 'status': 'free', 'provider': 'Meta'},
@@ -222,6 +220,14 @@ def update_usecase(usecase_name, new_name):
 # with app.app_context():      
 #     update_usecase('User Preferences', 'Relative User Preference')
 
+def drop_usecase(usecase_name):
+    usecase = Usecase.query.filter_by(name=usecase_name).first()
+    if usecase:
+        db.session.delete(usecase)
+        print(f'{usecase} deleted')
+    db.session.commit
+
+# drop_usecase('Basic Reasoning')
 
 usecase_mapping = {
     'Text Generation': 1,

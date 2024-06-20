@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion'
 import useRecommendation from '../components/hooks/useRecommendation.js';
 import useUsecaseName from '../components/hooks/useUsecaseName.js';
 import useUsecases from './hooks/useUsecases.js';
 import useAllBenchmarks from './hooks/useAllBenchmarks.js';
 import Title from './Title.js'
+import { llmLogos } from '../constants/llmLogos.js'
 
 
 const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec }) => {
@@ -15,6 +17,8 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
 
     const bestLLM = recommendation[0]
     const nextBestLLMs = recommendation.slice(1, 3)
+
+    const Logo = bestLLM && bestLLM.llm ? llmLogos[bestLLM.llm.provider] : undefined;
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -54,8 +58,15 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
                     <h2 className=''>The best tool for you is...</h2>
 
                     {/* Top recommendation */}
-                    <h1 className='font-bold mb-3 mt-3'>
+                    <h1 className='flex items-center justify-center gap-5 font-bold mb-3 mt-3'>
                         <a className='top-rec' href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">{bestLLM.llm.name}</a>
+                        {Logo ?
+                            <a href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">
+                                <Logo
+                                    width='40'
+                                    height='40' />
+                            </a>
+                            : ''}
                     </h1>
 
                     {/* Recommendations information */}
@@ -103,7 +114,10 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
                 </div>
 
                 <div className='mt-10'>
-                    <button className='button-primary' onClick={hideRec}>Search Again?</button>
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        className='button-primary' onClick={hideRec}>Search Again?
+                    </motion.button>
                 </div>
             </div>
         )

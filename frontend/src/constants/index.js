@@ -29,11 +29,11 @@ export const navigation = [
         title: "About",
         url: "#about",
     },
-    {
-        id: "4",
-        title: "References",
-        url: "#references",
-    },
+    // {
+    //     id: "4",
+    //     title: "References",
+    //     url: "#references",
+    // },
     {
         id: "5",
         title: "New account",

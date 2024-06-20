@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion'
 import useUsecases from './hooks/useUsecases.js';
 import { icons } from '../assets/icons.js';
 import { IconContext } from 'react-icons';
@@ -92,11 +93,15 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
                     className='border-2 border-blue-950 rounded-xl p-2 w-96 text-center' />
 
                 <div className='flex flex-col items-center text-center'>
-                    <button onClick={handleCategorise} className='button-primary'>Submit</button>
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        onClick={handleCategorise}
+                        className='button-primary'>Submit
+                    </motion.button>
                     <div className='mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories below</div>
                 </div>
 
-                <div className='mb-8'>
+                <div className='mb-4 lg:mb-8'>
                     {loading && <p className='mt-8'>Please wait...</p>}
                     {usecaseId && <p> Use case Category: {usecaseName}</p>}
                     {fetchAttempted && !loading && !usecaseId && <p className='mt-8'>No clear use case identified, please retry or choose from the use case list using the link above</p>}
@@ -122,20 +127,22 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
 
                             {/* Button to indicate which use-case is selected */}
                             <IconContext.Provider value={{ size: 45 }}>
-                                <button
+                                <motion.button
+                                    whileHover={{ scale: 1.1 }}
                                     onClick={() => {
                                         setSelectedUsecase(usecase.id);
                                         onSelect(usecase.id);
                                         triggerShowRecommendation()
                                     }}
-                                    className={`lg:mb-4 hover:text-blue-600 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
+                                    className={`lg:mb-4 pt-4 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
                                 >
                                     {getUsecaseIcon(usecase.name)}
-                                </button>
+                                </motion.button>
                             </IconContext.Provider>
                             <div className='flex justify-center w-56'>
-                                <button
-                                    className={`font-medium hover:text-blue-600 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    className={`font-medium  ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
                                     onClick={() => {
                                         setSelectedUsecase(usecase.id);
                                         onSelect(usecase.id);
@@ -143,7 +150,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
                                     }}
                                 >
                                     {usecase.name}
-                                </button>
+                                </motion.button>
                             </div>
 
                         </div>

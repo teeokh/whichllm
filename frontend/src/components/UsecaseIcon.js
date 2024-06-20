@@ -1,5 +1,7 @@
 import React from 'react';
 
+//TODO add some framer motion to these or the socials svgs
+
 const UsecaseIcon = ({ icon, text, onClick, isActive }) => {
     return (
         <button

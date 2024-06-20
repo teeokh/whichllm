@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion'
 import useLLMScores from './hooks/useLLMScores.js';
 import Section from './Section.js';
 import Heading from './Heading.js';
@@ -29,10 +30,14 @@ const Data = ({ setShowModal, setModalMessage, setModalHeader }) => {
                     title='WhichLLM Data'
                 />
 
+                {/* Grid of benchmarks and usecases */}
                 <h3 className='text-2xl font-semibold mb-6'>List of benchmarks and their associated usecases:</h3>
                 <div className='grid grid-cols-2 lg:grid-cols-3 gap-4'>
                     {Object.entries(benchmarksUsecases).map(([usecase, benchmarks], index) => (
-                        <div key={index} className='bg-blue-950 hover:shadow-md transition-shadow hover:shadow-blue-950 rounded-md p-4'>
+                        <motion.div
+                            whileHover={{ scale: 1.02 }}
+                            key={index}
+                            className='bg-blue-950 hover:shadow-md transition-shadow hover:shadow-blue-950 rounded-md p-4'>
                             <h4 className='text-xl font-medium mb-4 text-white'>{usecase}</h4>
                             <ul>
                                 {benchmarks.map((benchmark, index) => {
@@ -59,10 +64,11 @@ const Data = ({ setShowModal, setModalMessage, setModalHeader }) => {
                                     );
                                 })}
                             </ul>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
+                {/* Table of benchmark scores */}
                 <h3 className='text-2xl font-semibold mt-12 mb-6'>LLM Scores for each benchmark:</h3>
                 <div className='max-w-full overflow-x-auto'>
                     <table className='table-auto w-full border-collapse text-center'>
