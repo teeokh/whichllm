@@ -39,7 +39,7 @@ const Main = () => {
         <>
             <div className='min-h-screen flex flex-col justify-center'>
                 <div className='h-[5rem]'>
-                    <LoginPopup show={showPopup} message={popupMessage} />
+                    <LoginPopup show={showPopup} message={popupMessage} className='flex justify-center items-center' />
                     <Header handleLoginClick={handleLoginClick} />
                 </div>
 
@@ -49,7 +49,7 @@ const Main = () => {
                         <div className='flex flex-grow flex-col items-center justify-center'>
 
                             {!showRecommendation && (
-                                <section className=' mt-[1rem]  md:mt-[1.5rem]  lg:mt-[2rem]'>
+                                <section className=' mt-[1rem]  md:mt-[1.5rem]  lg:mt-[2rem] mb-[1rem] md:mb-[1.5rem] lg:mb-[2rem]'>
                                     <UsecaseSelection onSelect={setUsecaseId} triggerShowRecommendation={triggerShowRecommendation} hideRecommendation={hideRecommendation} />
                                 </section>
                             )}
@@ -60,7 +60,7 @@ const Main = () => {
                                 </section>
                             )}
 
-                            <section className='mb-10'>
+                            <section className='hidden mb-10 items-center sm:flex flex-col'>
                                 <Filter onSelect={setStatusFilter} />
                             </section>
 

@@ -51,7 +51,9 @@ const Header = ({ handleLoginClick }) => {
                             <a
                                 key={item.id}
                                 href={item.url}
-                                onClick={(e) => { handleNavClick(e) }}
+                                onClick={(e) => {
+                                    (handleNavClick(e))
+                                }}
                                 className={`block relative text-2xl uppercase text-white transition-colors hover:text-blue-600 ${item.onlyMobile ? "lg:hidden" : ""
                                     } px-4 py-4 md:py-6 lg:-mr-0.25 lg:text-xs lg:font-semibold ${item.url === pathName.hash
                                         ? "z-2 lg:text-blue-600"

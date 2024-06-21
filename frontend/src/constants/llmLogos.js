@@ -4,7 +4,7 @@ import { AiOutlineOpenAI } from "react-icons/ai";
 
 const svgVariants = {
     initial: {
-        rotate: -180,
+        rotate: -90,
     },
     animate: {
         rotate: 0,

@@ -7,7 +7,7 @@ const Filter = ({ onSelect }) => {
     }
 
     return (
-        <div className=' p-1'>
+        <div className=' p-1 flex justify-justify'>
             <label htmlFor='statusFilter' className='text-sm pr-2'>Filter</label>
 
             <select name='statusFilter' id='statusFilter' onChange={handleSelect} className='text-sm cursor-pointer border-black'>

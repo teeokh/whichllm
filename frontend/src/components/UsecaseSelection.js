@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion'
+import { useMediaQuery } from 'react-responsive'
+import { motion, AnimatePresence } from 'framer-motion'
 import useUsecases from './hooks/useUsecases.js';
 import { icons } from '../assets/icons.js';
 import { IconContext } from 'react-icons';
@@ -14,6 +15,16 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
     const [userInput, setUserInput] = useState("");
     const { usecaseId, usecaseName, loading, categoriseText } = useCategorise();
     const [fetchAttempted, setFetchAttempted] = useState(false);
+    const isSmallScreen = useMediaQuery({ minWidth: 640 })
+    const [showUsecaseButtons, setShowUsecaseButtons] = useState(isSmallScreen)
+
+    const toggleUsecaseButtons = () => {
+        setShowUsecaseButtons(!showUsecaseButtons)
+    }
+
+    useEffect(() => {
+        setShowUsecaseButtons(isSmallScreen);
+    }, [isSmallScreen]);
 
     const handleInputChange = (e) => {
         setUserInput(e.target.value);
@@ -98,10 +109,12 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
                         onClick={handleCategorise}
                         className='button-primary'>Submit
                     </motion.button>
-                    <div className='mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories below</div>
+                    <div className='hidden sm:block mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories below</div>
+
+                    <div className='block sm:hidden mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories <button onClick={toggleUsecaseButtons} className='underline' href='#'>here</button></div>
                 </div>
 
-                <div className='mb-4 lg:mb-8'>
+                <div className='lg:mb-8'>
                     {loading && <p className='mt-8'>Please wait...</p>}
                     {usecaseId && <p> Use case Category: {usecaseName}</p>}
                     {/* {fetchAttempted && !loading && !usecaseId && <p className='mt-8'>No clear use case identified, please retry or choose from the use case list using the link above</p>} */}
@@ -110,61 +123,66 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
             </div>
 
             {/* Carousel of buttons for use-case selection */}
+            <AnimatePresence mode='popLayout'>
+                {showUsecaseButtons && (
+                    <motion.div
+                        initial={{ scale: 0.8, opacity: 0, height: 0 }}
+                        animate={{ scale: 1, opacity: 1, height: 'auto' }}
+                        exit={{ scale: 0.1, opacity: 0, height: 0 }}
+                        transition={{ type: 'spring' }}
+                        className="flex items-center mb-[1rem] md:mb-[1.5rem] lg:mb-[2rem]"
+                    >
+                        {/* Carousel previous slide  */}
+                        <button className="arrow-btn"
+                            onClick={prevSlide}
+                        // disabled={currentIndex === 0}
+                        >&#8592;
+                        </button>
 
+                        <div className="flex flex-col lg:flex-row overflow-hidden">
+                            {visibleUsecases.map((usecase) => (
+                                <div key={usecase.id} className="flex flex-col items-center my-2 lg:my-0 ">
 
-            <div className="flex items-center mb-[1rem] md:mb-[1.5rem] lg:mb-[2rem]">
+                                    {/* Button to indicate which use-case is selected */}
+                                    <IconContext.Provider value={{ size: 45 }}>
+                                        <motion.button
+                                            whileHover={{ scale: 1.1 }}
+                                            onClick={() => {
+                                                setSelectedUsecase(usecase.id);
+                                                onSelect(usecase.id);
+                                                triggerShowRecommendation()
+                                            }}
+                                            className={`lg:mb-4 pt-4 pb-2 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
+                                        >
+                                            {getUsecaseIcon(usecase.name)}
+                                        </motion.button>
+                                    </IconContext.Provider>
+                                    <div className='flex justify-center w-56'>
+                                        <motion.button
+                                            whileHover={{ scale: 1.05 }}
+                                            className={`font-medium  ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
+                                            onClick={() => {
+                                                setSelectedUsecase(usecase.id);
+                                                onSelect(usecase.id);
+                                                triggerShowRecommendation()
+                                            }}
+                                        >
+                                            {usecase.name}
+                                        </motion.button>
+                                    </div>
 
-                {/* Carousel previous slide  */}
-                <button className="arrow-btn"
-                    onClick={prevSlide}
-                // disabled={currentIndex === 0}
-                >&#8592;
-                </button>
-
-                <div className="flex flex-col lg:flex-row overflow-hidden">
-                    {visibleUsecases.map((usecase) => (
-                        <div key={usecase.id} className="flex flex-col items-center my-2 lg:my-0 ">
-
-                            {/* Button to indicate which use-case is selected */}
-                            <IconContext.Provider value={{ size: 45 }}>
-                                <motion.button
-                                    whileHover={{ scale: 1.1 }}
-                                    onClick={() => {
-                                        setSelectedUsecase(usecase.id);
-                                        onSelect(usecase.id);
-                                        triggerShowRecommendation()
-                                    }}
-                                    className={`lg:mb-4 pt-4 ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
-                                >
-                                    {getUsecaseIcon(usecase.name)}
-                                </motion.button>
-                            </IconContext.Provider>
-                            <div className='flex justify-center w-56'>
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    className={`font-medium  ${selectedUsecase === usecase.id ? 'text-blue-600' : 'text-blue-950'}`}
-                                    onClick={() => {
-                                        setSelectedUsecase(usecase.id);
-                                        onSelect(usecase.id);
-                                        triggerShowRecommendation()
-                                    }}
-                                >
-                                    {usecase.name}
-                                </motion.button>
-                            </div>
-
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
 
-                {/* Carousel next slide */}
-                <button className="arrow-btn"
-                    onClick={nextSlide}
-                // disabled={currentIndex === usecases.length - numVisibleUseCases}
-                >&#8594;</button>
-            </div>
-
-
+                        {/* Carousel next slide */}
+                        <button className="arrow-btn"
+                            onClick={nextSlide}
+                        // disabled={currentIndex === usecases.length - numVisibleUseCases}
+                        >&#8594;</button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
         </div>
     );
