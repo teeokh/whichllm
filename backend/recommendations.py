@@ -68,6 +68,9 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     return llm_scores[:top_n], benchmark_names
         
 
-if __name__ == "__main__":
-    with app.app_context():
-        get_recommendation_for_category('Ok', status_filter=None, top_n=5)
+# if __name__ == "__main__":
+#     with app.app_context():
+#         get_recommendation_for_category('Ok', status_filter=None, top_n=5)
+
+# with app.app_context():
+#     top_llms_for_usecase(11, None, 3)

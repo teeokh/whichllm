@@ -27,6 +27,8 @@ llm_data = [
     # {'name': 'Mixtral', 'link': 'https://mistral.ai/news/mixtral-of-experts/', 'status': 'free', 'provider': 'Mistral AI'},
     # {'name': 'Llama 3', 'link': 'https://www.meta.ai/', 'status': 'free', 'provider': 'Meta'},
     # {'name': 'Perplexity', 'link': 'https://www.perplexity.ai/', 'status': 'free', 'provider': 'Perplexity AI', 'specialty': ['Internet Search', 'Wildcard'], 'notes', 'Perplexity uses a combination of language models (such as GPT-4o and Claude Opus) to leverage the internet, summarizing live information and citing sources.'}
+    # {'name': 'Claude 3.5 Sonnet', 'link': 'https://claude.ai/', 'status': 'free', 'provider': 'Anthropic'},
+
 ]
 
 def populate_llm_table():
@@ -464,6 +466,17 @@ llm_benchmark_data = [
     # {'llm_id': 24, 'benchmark_id': 14, 'score': 81.7}
     # {'llm_id': 25, 'benchmark_id': 34, 'score': 100},
     # {'llm_id': 25, 'benchmark_id': 35, 'score': 100}
+    # {'llm_id': 26, 'benchmark_id': 1, 'score': 88.7},
+    # {'llm_id': 26, 'benchmark_id': 6, 'score': 59.4},
+    # {'llm_id': 26, 'benchmark_id': 8, 'score': 93.1},
+    # {'llm_id': 26, 'benchmark_id': 11, 'score': 71.1},
+    # {'llm_id': 26, 'benchmark_id': 12, 'score': 96.4},
+    # {'llm_id': 26, 'benchmark_id': 13, 'score': 91.6},
+    # {'llm_id': 26, 'benchmark_id': 14, 'score': 92.0},
+    # {'llm_id': 26, 'benchmark_id': 30, 'score': 94.7},
+    # {'llm_id': 26, 'benchmark_id': 29, 'score': 90.8},
+    # {'llm_id': 26, 'benchmark_id': 21, 'score': 95.2},
+    # {'llm_id': 26, 'benchmark_id': 22, 'score': 68.3}
 ]
 
 def populate_llm_benchmark_table():

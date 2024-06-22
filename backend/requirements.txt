@@ -1,11 +1,12 @@
 Flask==3.0.3
 Flask_Cors==4.0.0
 flask_sqlalchemy==3.1.1
+gunicorn==22.0.0
 numpy==2.0.0
-openai==1.35.2
+openai==1.35.3
 protobuf==5.27.1
 python-dotenv==1.0.1
-selenium==4.21.0
+selenium==4.22.0
 SQLAlchemy==2.0.29
 tiktoken==0.7.0
 webdriver_manager==4.0.1

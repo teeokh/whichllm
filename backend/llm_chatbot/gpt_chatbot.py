@@ -1,5 +1,8 @@
+import os
 from openai import OpenAI
-client = OpenAI()
+
+openai_api_key = os.getenv('OPENAI_API_KEY')
+client = OpenAI(api_key=openai_api_key)
 
 # Returns the usecase category based on user text input
 def categorise_text(text):
