@@ -1,6 +1,5 @@
 import {
     discordBlack,
-    facebook,
     instagram,
     telegram,
     twitter,
@@ -79,10 +78,10 @@ export const socials = [
         iconUrl: telegram,
         url: "https://telegram.org/",
     },
-    {
-        id: "5",
-        title: "Facebook",
-        iconUrl: facebook,
-        url: "https://facebook.com",
-    },
+    // {
+    //     id: "5",
+    //     title: "Facebook",
+    //     iconUrl: facebook,
+    //     url: "https://facebook.com",
+    // },
 ];

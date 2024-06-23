@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4edab0e0.css",
+    "main.js": "/static/js/main.716b77e0.js",
+    "static/media/whichllm-logo.svg": "/static/media/whichllm-logo.fd7554d8d3c042c9a8a5a6528d81119f.svg",
+    "static/media/discord.svg": "/static/media/discord.69bf844ae562da6698b9ea565ca670c0.svg",
+    "static/media/telegram.svg": "/static/media/telegram.7a763517465696c52c353c4c3c08d4bc.svg",
+    "static/media/twitter.svg": "/static/media/twitter.80dc747f8105417777460ae01c1c15a6.svg",
+    "static/media/instagram.svg": "/static/media/instagram.8f1a80d3b687154ccfb820a24bf8d5cd.svg",
+    "static/media/github-mark.svg": "/static/media/github-mark.66318ae5e0abecc9de46dd674e0cc8f0.svg",
+    "static/media/facebook.svg": "/static/media/facebook.4ebcf6d1e867b4850f9ee9907965cce4.svg",
+    "index.html": "/index.html",
+    "main.4edab0e0.css.map": "/static/css/main.4edab0e0.css.map",
+    "main.716b77e0.js.map": "/static/js/main.716b77e0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4edab0e0.css",
+    "static/js/main.716b77e0.js"
+  ]
+}

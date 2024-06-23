@@ -14,9 +14,9 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
     const [selectedUsecase, setSelectedUsecase] = useState(null);
     const [userInput, setUserInput] = useState("");
     const { usecaseId, usecaseName, loading, categoriseText } = useCategorise();
-    const [fetchAttempted, setFetchAttempted] = useState(false);
     const isSmallScreen = useMediaQuery({ minWidth: 640 })
     const [showUsecaseButtons, setShowUsecaseButtons] = useState(isSmallScreen)
+    const [emptyInput, setEmptyInput] = useState(false)
 
     const toggleUsecaseButtons = () => {
         setShowUsecaseButtons(!showUsecaseButtons)
@@ -30,10 +30,11 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
         setUserInput(e.target.value);
     };
 
-    // Currently not in use
     const handleCategorise = () => {
-        setFetchAttempted(true);
         categoriseText(userInput);
+        if (userInput === '') {
+            setEmptyInput(true)
+        }
         if (usecaseId) {
             triggerShowRecommendation()
         }
@@ -95,32 +96,41 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
             <Title />
 
             {/* Text box for user input to select category (rather than clicking button) */}
-            <div className='flex flex-col items-center text-center mt-8'>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    handleCategorise()
+                }} className='flex flex-col items-center text-center mt-8'>
                 <input
                     type='text'
                     value={userInput}
                     onChange={handleInputChange}
                     placeholder='What would you like to use AI for?'
-                    className='border-2 border-blue-950 rounded-xl p-2 w-96 text-center' />
+                    className='border-2 border-blue-950 rounded-xl p-2 w-full text-center' />
 
                 <div className='flex flex-col items-center text-center'>
                     <motion.button
                         whileHover={{ scale: 1.05 }}
-                        onClick={handleCategorise}
+                        type='submit'
                         className='button-primary'>Submit
                     </motion.button>
                     <div className='hidden sm:block mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories below</div>
 
                     <div className='block sm:hidden mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories <button onClick={toggleUsecaseButtons} className='underline' href='#'>here</button></div>
                 </div>
+            </form>
 
-                <div className='lg:mb-8'>
-                    {loading && <p className='mt-8'>Please wait...</p>}
-                    {usecaseId && <p> Use case Category: {usecaseName}</p>}
-                    {/* {fetchAttempted && !loading && !usecaseId && <p className='mt-8'>No clear use case identified, please retry or choose from the use case list using the link above</p>} */}
-                </div>
-
+            <div className='lg:mb-8 lg:mt-4'>
+                {loading ? (
+                    <p>Please wait...</p>
+                ) : emptyInput ? (
+                    <p>No use case entered</p>
+                ) : null}
+                {usecaseId && <p>Use case Category: {usecaseName}</p>}
+                {/* {fetchAttempted && !loading && !usecaseId && <p className='mt-8'>No clear use case identified, please retry or choose from the use case list using the link above</p>} */}
             </div>
+
+
 
             {/* Carousel of buttons for use-case selection */}
             <AnimatePresence mode='popLayout'>
