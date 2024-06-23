@@ -68,7 +68,7 @@ const Main = () => {
                     </div>
                 </Section>
 
-                <div className='absolute bottom-0 left-0 w-full my-20 sm:my-0'>
+                <div className='absolute bottom-0 left-0 w-full'>
                     <Footer />
                 </div>
             </div>

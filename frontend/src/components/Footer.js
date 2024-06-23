@@ -4,8 +4,8 @@ import { socials } from '../constants'
 
 const Footer = () => {
     return (
-        <Section customPaddings='py-2 px-0 md:px-10' className='bottom-0 mb-5 sm:mb-0'>
-            <div className='container flex sm:justify-between justify-center items-center gap-8 max-sm:flex-col'>
+        <Section customPaddings='py-2 px-0 md:px-8' className='bottom-0 mb-5 sm:mb-0'>
+            <div className='container flex sm:justify-between justify-center items-center max-sm:flex-col'>
                 <p className='caption hidden sm:block'>© {new Date().getFullYear()}. All rights reserved.
                 </p>
 
