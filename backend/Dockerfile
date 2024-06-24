@@ -13,4 +13,4 @@ ENV SQLALCHEMY_DATABASE_URI=sqlite:////app/data/whichllm.db
 
 VOLUME /backend/data
 
-CMD ["gunicorn", "wsgi:app", "-w 2", "-b 0.0.0.0:8080", "-t 30"]
+CMD ["python", "app.py"]
