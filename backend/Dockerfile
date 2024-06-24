@@ -14,4 +14,4 @@ COPY backend/ .
 
 VOLUME /backend/data
 
-CMD ["python", "app.py"]
+CMD ["python", "./backend/app.py"]
