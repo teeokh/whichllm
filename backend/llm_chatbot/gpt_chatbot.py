@@ -1,7 +1,7 @@
-import os
 from openai import OpenAI
+from getsecret import get_secret
 
-openai_api_key = os.getenv('OPENAI_API_KEY')
+openai_api_key = get_secret("OPENAI_API_KEY")
 client = OpenAI(api_key=openai_api_key)
 
 # Returns the usecase category based on user text input

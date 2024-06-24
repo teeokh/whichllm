@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.7a7ada27.css",
-    "main.js": "/static/js/main.effe6749.js",
+    "main.css": "/static/css/main.a2e94d79.css",
+    "main.js": "/static/js/main.40010b6c.js",
     "static/media/whichllm-logo.svg": "/static/media/whichllm-logo.fd7554d8d3c042c9a8a5a6528d81119f.svg",
     "static/media/discord.svg": "/static/media/discord.69bf844ae562da6698b9ea565ca670c0.svg",
     "static/media/telegram.svg": "/static/media/telegram.7a763517465696c52c353c4c3c08d4bc.svg",
@@ -10,11 +10,11 @@
     "static/media/github-mark.svg": "/static/media/github-mark.66318ae5e0abecc9de46dd674e0cc8f0.svg",
     "index.html": "/index.html",
     "static/media/facebook.svg": "/static/media/facebook.4ebcf6d1e867b4850f9ee9907965cce4.svg",
-    "main.7a7ada27.css.map": "/static/css/main.7a7ada27.css.map",
-    "main.effe6749.js.map": "/static/js/main.effe6749.js.map"
+    "main.a2e94d79.css.map": "/static/css/main.a2e94d79.css.map",
+    "main.40010b6c.js.map": "/static/js/main.40010b6c.js.map"
   },
   "entrypoints": [
-    "static/css/main.7a7ada27.css",
-    "static/js/main.effe6749.js"
+    "static/css/main.a2e94d79.css",
+    "static/js/main.40010b6c.js"
   ]
 }
