@@ -9,8 +9,6 @@ EXPOSE 8080
 
 COPY . .
 
-ENV SQLALCHEMY_DATABASE_URI=sqlite:////app/data/whichllm.db
-
 VOLUME /backend/data
 
 CMD ["python", "app.py"]
