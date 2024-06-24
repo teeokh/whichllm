@@ -12,4 +12,4 @@ COPY . .
 
 VOLUME /backend/data
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "wsgi:app", "-w 2", "-b 0.0.0.0:5000", "-t 30"]
