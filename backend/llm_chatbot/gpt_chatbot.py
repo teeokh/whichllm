@@ -4,32 +4,32 @@ import json
 import boto3
 from botocore.exceptions import ClientError
 
-# def get_secret(secret_name):
+def get_secret(secret_name):
 
-#     secret_name = secret_name
-#     region_name = "eu-west-2"
+    secret_name = secret_name
+    region_name = "eu-west-2"
 
-#     # Create a Secrets Manager client
-#     session = boto3.session.Session()
-#     client = session.client(
-#         service_name='secretsmanager',
-#         region_name=region_name
-#     )
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
 
-#     try:
-#         get_secret_value_response = client.get_secret_value(
-#             SecretId=secret_name
-#         )
+    try:
+        get_secret_value_response = client.get_secret_value(
+            SecretId=secret_name
+        )
 
-#     except ClientError as e:
-#         raise e
+    except ClientError as e:
+        raise e
 
 
-#     secret = get_secret_value_response['SecretString']
-#     secret=json.loads(secret)
-#     for key, value in secret.items():os.environ[key] = value
+    secret = get_secret_value_response['SecretString']
+    secret=json.loads(secret)
+    for key, value in secret.items():os.environ[key] = value
 
-openai_api_key = os.environ.get("OPENAI_API_KEY")
+openai_api_key = get_secret("OPENAI_API_KEY")
 client = OpenAI(api_key=openai_api_key)
 
 # Returns the usecase category based on user text input
