@@ -2,7 +2,7 @@ FROM python:3.12-slim
 
 WORKDIR /backend
 
-COPY requirements.txt requirements.txt
+COPY backend/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 EXPOSE 8080
