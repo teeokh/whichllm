@@ -1,8 +1,8 @@
 FROM python:3.12-slim
 
-WORKDIR /app
+WORKDIR /backend
 
-COPY requirements.txt .
+COPY backend/requirements.txt .
 
 RUN pip install -r requirements.txt
 
@@ -12,4 +12,4 @@ COPY . .
 
 VOLUME /backend/data
 
-CMD ["python", "app.py"]
+CMD ["python", "backend/app.py"]
