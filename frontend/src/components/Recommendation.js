@@ -78,7 +78,7 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
 
                         {/* Recommendations information */}
                         <div className='flex flex-col w-full items-center mb-5'>
-                            <p>It scored an average of {bestLLM.score} on the <a className='text-lg font-black hover:text-blue-600' href='#data'>{usecaseName}</a> benchmarks</p>
+                            <p>It scored an average of {bestLLM.score} on the <a className='font-black hover:text-blue-600' href='#data'>{usecaseName}</a> benchmarks</p>
                             <p>Provider: {bestLLM.llm.provider}</p>
                         </div>
                         <div className='flex flex-col w-full items-center mb-8'>
@@ -101,7 +101,7 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
                         <div className=''>
                             {nextBestLLMs.length >= 1 && (
                                 <div>
-                                    <p className='text-xl'>Close Competitors:</p>
+                                    <p className='text-xl font-black'>Close Competitors:</p>
                                     <span>
                                         <a className='h5' href={nextBestLLMs[0].llm.link} target='_blank' rel="noopener noreferrer">
                                             {nextBestLLMs[0].llm.name}
