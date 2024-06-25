@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-const baseURL = process.env.REACT_APP_API_BASE_URL || '';
+const baseURL = process.env.BACKEND_API_BASE_URL || '';
 
 const useRecommendation = (usecaseId, statusFilter, topN) => {
     const [recommendation, setRecommendation] = useState([]);
