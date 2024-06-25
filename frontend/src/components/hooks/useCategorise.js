@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios'
-const baseURL = process.env.BACKEND_API_BASE_URL || '';
+const baseURL = process.env.REACT_APP_API_BASE_URL || '';
 
 const useCategorise = (userInput) => {
     const [usecaseId, setUsecaseId] = useState('');
