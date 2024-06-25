@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+const baseURL = process.env.REACT_APP_API_BASE_URL || '';
 
 const useLLMScores = () => {
 
@@ -9,7 +10,7 @@ const useLLMScores = () => {
     useEffect(() => {
         const fetchLLMScores = async () => {
             try {
-                const response = await axios.get('/api/llm-scores');
+                const response = await axios.get(`${baseURL}/api/llm-scores`);
                 setLlmScores(response.data);
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');

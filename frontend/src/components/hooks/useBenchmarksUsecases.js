@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-
+const baseURL = process.env.REACT_APP_API_BASE_URL || '';
 
 const useBenchmarksUsecases = () => {
     const [benchmarksUsecases, setBenchmarksUsecases] = useState([])
@@ -9,7 +9,7 @@ const useBenchmarksUsecases = () => {
     useEffect(() => {
         const fetchBenchmarksUsecases = async () => {
             try {
-                const response = await axios.get('/api/benchmarks-usecases')
+                const response = await axios.get(`${baseURL}/api/benchmarks-usecases`)
                 setBenchmarksUsecases(response.data)
 
             } catch (error) {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+const baseURL = process.env.REACT_APP_API_BASE_URL || '';
 
 const useRecommendation = (usecaseId, statusFilter, topN) => {
     const [recommendation, setRecommendation] = useState([]);
@@ -11,7 +12,7 @@ const useRecommendation = (usecaseId, statusFilter, topN) => {
         const fetchRecommendation = async () => {
 
             try {
-                const response = await axios.get('/api/recommendations', {
+                const response = await axios.get(`${baseURL}/api/recommendations`, {
                     params: {
                         usecase_id: usecaseId,
                         status_filter: statusFilter,
