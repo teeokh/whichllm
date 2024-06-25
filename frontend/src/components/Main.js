@@ -60,7 +60,7 @@ const Main = () => {
                                 </section>
                             )}
 
-                            <section className='hidden mb-10 items-center sm:flex flex-col'>
+                            <section className='flex mb-10 items-center flex-col'>
                                 <Filter onSelect={setStatusFilter} />
                             </section>
 
