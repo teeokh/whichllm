@@ -64,7 +64,7 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
                         <h2 className=''>The best tool for you is...</h2>
 
                         {/* Top recommendation */}
-                        <h1 className='flex items-center justify-center gap-4 font-bold mb-3 mt-3'>
+                        <h1 className='flex items-center justify-center gap-2 sm:gap-4 font-bold mb-3 mt-3'>
                             <a className='top-rec' href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">{bestLLM.llm.name}</a>
                             {Logo ?
                                 <a href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">

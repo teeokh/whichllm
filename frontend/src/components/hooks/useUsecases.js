@@ -14,6 +14,7 @@ const useUsecases = () => {
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');
                 console.log(error);
+                console.log(`${baseURL}/api/usecases`)
             }
         };
 
