@@ -10,21 +10,27 @@ const HowItWorks = () => {
 
     return (
         <Section>
-            <div id='how-it-works' className='container relative z-2'>
+            <div id='how-it-works' className='container relative z-2 '>
                 <Heading
-                    className='md:max-w-md lg:max-w-2xl text-center' // Sets width of Heading, affects space from edge
-                    title='How WhichLLM works, using LLM benchmarks'
+                    className='md:max-w-md lg:max-w-2xl text-center !mb-4' // Sets width of Heading, affects space from edge
+                    title='How it Works'
                 />
                 <div className='flex flex-wrap flex-col gap-10 text-center'>
-                    <p>{description}</p>
-                    <p>{update_disclaimer}</p>
+                    <div>
+                        <p className='mb-6'>{description}</p>
+                        <p>{update_disclaimer}</p>
+                    </div>
 
-                    <h4 id='about' className='h4'>About WhichLLM</h4>
-                    <p>{about}</p>
+                    <div>
+                        <h4 id='about' className='h4 mb-4'>About WhichLLM</h4>
+                        <p>{about}</p>
+                    </div>
 
-                    <h4 className='h4'>Disclaimer</h4>
-                    <p>{main_disclaimer}</p>
-                    <p>{missing_data_disclaimer}</p>
+                    <div>
+                        <h4 className='h4 mb-4'>Disclaimer</h4>
+                        <p className='mb-6'>{main_disclaimer}</p>
+                        <p>{missing_data_disclaimer}</p>
+                    </div>
                 </div>
             </div>
 
