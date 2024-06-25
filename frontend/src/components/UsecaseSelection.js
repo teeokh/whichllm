@@ -93,7 +93,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
 
         <div className='flex flex-col items-center flex-wrap'>
 
-            <Title />
+            <Title showSubtitle={true} />
 
             {/* Text box for user input to select category (rather than clicking button) */}
             <form
@@ -123,9 +123,8 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
             <div className='lg:mb-8 mt-4'>
                 {loading ? (
                     <p>Please wait...</p>
-                ) : emptyInput ? (
-                    <p>No use case entered</p>
-                ) : null}
+                )
+                    : null}
                 {usecaseId && <p>Use case Category: {usecaseName}</p>}
                 {/* {fetchAttempted && !loading && !usecaseId && <p className='mt-8'>No clear use case identified, please retry or choose from the use case list using the link above</p>} */}
             </div>

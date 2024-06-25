@@ -14,6 +14,7 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
     const { usecaseName } = useUsecaseName(usecaseId);
     const { allBenchmarks } = useAllBenchmarks()
     const [loading, setLoading] = useState(true);
+    const [showSubtitle, setShowSubtitle] = useState(true)
 
     const bestLLM = recommendation[0]
     const nextBestLLMs = recommendation.slice(1, 3)
@@ -58,13 +59,13 @@ const Recommendation = ({ usecaseId, statusFilter, topN, triggerShowRec, hideRec
                     transition={{ type: 'spring', bounce: 0.25 }}
                     className='flex flex-col items-center text-center'>
 
-                    <Title />
+                    <Title showSubtitle={false} />
 
                     <div className='mt-10'>
                         <h2 className=''>The best tool for you is...</h2>
 
                         {/* Top recommendation */}
-                        <h1 className='flex items-center justify-center gap-2 sm:gap-4 font-bold mb-3 mt-3'>
+                        <h1 className='flex flex-col sm:flex-row items-center justify-center gap-0 sm:gap-4 font-bold mb-3 mt-3'>
                             <a className='top-rec' href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">{bestLLM.llm.name}</a>
                             {Logo ?
                                 <a href={bestLLM.llm.link} target='_blank' rel="noopener noreferrer">
