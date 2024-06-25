@@ -3,7 +3,12 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
-app = Flask(__name__) # For initialising app 
+app = Flask(__name__,
+            static_url_path='',
+            static_folder='../frontend/build',
+            template_folder='../frontend/build'
+) # For initialising app 
+
 CORS(app, resources={r'/*':{'origins':'*'}}) # Stops CORS errors - allows interaction between front and backend
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
