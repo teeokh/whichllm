@@ -120,7 +120,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
                 </div>
             </form>
 
-            <div className='lg:mb-8 mt-4'>
+            <div className='mt-4'>
                 {loading ? (
                     <p>Please wait...</p>
                 )
