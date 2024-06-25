@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
 app = Flask(__name__,
-            static_url_path='https://whichllm.onrender.com',
+            static_url_path='',
             static_folder='../frontend/build',
             template_folder='../frontend/build'
 ) # For initialising app 
