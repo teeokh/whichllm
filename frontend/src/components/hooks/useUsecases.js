@@ -12,7 +12,7 @@ const useUsecases = () => {
                 setUsecases(response.data);
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');
-                console.log(`${baseURL}/api/usecases`)
+                console.log(`${process.env.BACKEND_API_BASE_URL}/api/usecases`)
                 console.log(error);
             }
         };
