@@ -37,8 +37,8 @@ const Data = ({ setShowModal, setModalMessage, setModalHeader }) => {
                         <motion.div
                             whileHover={{ scale: 1.02 }}
                             key={index}
-                            className='bg-blue-950 hover:shadow-md transition-shadow hover:shadow-blue-950 rounded-md p-4'>
-                            <h4 className='text-xl font-medium mb-4 text-white'>{usecase}</h4>
+                            className='bg-blue-950 hover:shadow-md transition-shadow hover:shadow-blue-950 rounded-md p-4 text-center flex flex-col items-center'>
+                            <h4 className='text-xl font-medium mb-4 text-white text-center'>{usecase}</h4>
                             <ul>
                                 {benchmarks.map((benchmark, index) => {
                                     let allBenchmark = allBenchmarks.find(b => b.name === benchmark);
