@@ -10,6 +10,7 @@ const useUsecases = () => {
         const fetchUsecases = async () => {
             try {
                 const response = await axios.get(`${baseURL}/api/usecases`);
+                console.log(`${baseURL}/api/usecases`)
                 setUsecases(response.data);
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');
