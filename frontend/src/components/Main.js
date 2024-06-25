@@ -68,7 +68,7 @@ const Main = () => {
                     </div>
                 </Section>
 
-                <div className='hidden sm:absolute bottom-0 left-0 w-full'>
+                <div className='hidden sm:block sm:absolute bottom-0 left-0 w-full'>
                     <Footer />
                 </div>
             </div>
