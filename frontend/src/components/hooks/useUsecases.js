@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-const baseURL = process.env.BACKEND_API_BASE_URL || '';
 
 const useUsecases = () => {
     const [usecases, setUsecases] = useState([]);
@@ -9,7 +8,7 @@ const useUsecases = () => {
     useEffect(() => {
         const fetchUsecases = async () => {
             try {
-                const response = await axios.get(`${baseURL}/api/usecases`)
+                const response = await axios.get(`${process.env.BACKEND_API_BASE_URL}/api/usecases`)
                 setUsecases(response.data);
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');
