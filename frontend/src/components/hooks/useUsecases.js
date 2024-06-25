@@ -9,12 +9,10 @@ const useUsecases = () => {
     useEffect(() => {
         const fetchUsecases = async () => {
             try {
-                console.log(process.env)
                 const response = await axios.get(`${baseURL}/api/usecases`)
                 setUsecases(response.data);
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');
-                console.log(`${process.env.REACT_APP_API_BASE_URL}/api/usecases`)
                 console.log(error);
             }
         };
