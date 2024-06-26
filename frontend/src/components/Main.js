@@ -28,7 +28,6 @@ const Main = () => {
     const handleLoginClick = (message) => {
         setShowPopup(true)
         setPopupMessage(message)
-        console.log('Popup shown')
         setTimeout(() => {
             setShowPopup(false)
             setPopupMessage('')
