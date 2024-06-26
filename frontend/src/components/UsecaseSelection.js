@@ -16,7 +16,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
     const { usecaseId, usecaseName, loading, categoriseText } = useCategorise();
     const isSmallScreen = useMediaQuery({ minWidth: 640 })
     const [showUsecaseButtons, setShowUsecaseButtons] = useState(isSmallScreen)
-    const [emptyInput, setEmptyInput] = useState(false)
+    // const [emptyInput, setEmptyInput] = useState(false)
 
     const toggleUsecaseButtons = () => {
         setShowUsecaseButtons(!showUsecaseButtons)
@@ -33,7 +33,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
     const handleCategorise = () => {
         categoriseText(userInput);
         if (userInput === '') {
-            setEmptyInput(true)
+            // setEmptyInput(true)
         }
         if (usecaseId) {
             triggerShowRecommendation()
