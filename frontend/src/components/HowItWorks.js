@@ -22,7 +22,7 @@ const HowItWorks = () => {
                     </div>
 
                     <div>
-                        <h4 id='about' className='h4 mb-4'>About WhichLLM</h4>
+                        <h4 id='about' className='h4 mb-6'>About WhichLLM</h4>
                         <p>{about}</p>
                     </div>
 
