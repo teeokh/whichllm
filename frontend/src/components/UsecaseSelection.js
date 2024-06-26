@@ -121,10 +121,7 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
             </form>
 
             <div className='mt-4'>
-                {loading ? (
-                    <p>Please wait...</p>
-                )
-                    : null}
+                {loading && userInput ? <p>Please wait...</p> : null}
                 {usecaseId && <p>Use case Category: {usecaseName}</p>}
                 {/* {fetchAttempted && !loading && !usecaseId && <p className='mt-8'>No clear use case identified, please retry or choose from the use case list using the link above</p>} */}
             </div>
