@@ -15,16 +15,16 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
     const [userInput, setUserInput] = useState("");
     const { usecaseId, usecaseName, loading, categoriseText } = useCategorise();
     const isSmallScreen = useMediaQuery({ minWidth: 640 })
-    const [showUsecaseButtons, setShowUsecaseButtons] = useState(isSmallScreen)
+    const [showUsecaseButtons, setShowUsecaseButtons] = useState(false)
     // const [emptyInput, setEmptyInput] = useState(false)
 
     const toggleUsecaseButtons = () => {
         setShowUsecaseButtons(!showUsecaseButtons)
     }
 
-    useEffect(() => {
-        setShowUsecaseButtons(isSmallScreen);
-    }, [isSmallScreen]);
+    // useEffect(() => {
+    //     setShowUsecaseButtons(isSmallScreen);
+    // }, [isSmallScreen]);
 
     const handleInputChange = (e) => {
         setUserInput(e.target.value);
@@ -114,9 +114,9 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
                         type='submit'
                         className='button-primary'>Submit
                     </motion.button>
-                    <div className='hidden sm:block mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories below</div>
+                    {/* <div className='hidden sm:block mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories below</div> */}
 
-                    <div className='block sm:hidden mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories <button onClick={toggleUsecaseButtons} className='underline' href='#'>here</button></div>
+                    <div className='block mt-8 text-slate-500'>Struggling with a use case? Select from a list of use case categories <button onClick={toggleUsecaseButtons} className='underline' href='#'>here</button></div>
                 </div>
             </form>
 
