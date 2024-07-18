@@ -78,8 +78,8 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
         
 
 # if __name__ == "__main__":
-    with app.app_context():
-        get_recommendation_for_category('Ok', status_filter=None, top_n=5)
+    # with app.app_context():
+    #     get_recommendation_for_category('Ok', status_filter=None, top_n=5)
 
-with app.app_context():
-    top_llms_for_usecase(10, None, 3)
+# with app.app_context():
+#     top_llms_for_usecase(10, None, 3)
