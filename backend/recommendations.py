@@ -11,22 +11,23 @@ def get_recommendation_for_category(usecase_category, status_filter=None, top_n=
     except KeyError:
         return {'error': 'There is no clear recommendation for your use case, please re-word your request, or try again'}
     top_llms_for_usecase(usecase_id, status_filter, top_n)
-    
-@lru_cache(maxsize=128)
-def fetch_benchmarks(usecase_id):
-    usecase = Usecase.query.filter_by(id=usecase_id).first()
-    benchmarks = Benchmark.query.join(benchmark_usecase).filter(benchmark_usecase.c.usecase_id == usecase_id).all()
-    return benchmarks, usecase
+
+# Helper function for fetching benchmarks for chosen usecase   
+# @lru_cache(maxsize=128)
+# def fetch_benchmarks(usecase_id):
+#     usecase = Usecase.query.filter_by(id=usecase_id).first()
+#     benchmarks = Benchmark.query.join(benchmark_usecase).filter(benchmark_usecase.c.usecase_id == usecase_id).all()
+#     return benchmarks, usecase
 
 # Recommendation function (for manual user selection, or from chatbot selection)    
 def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     
-    # usecase = Usecase.query.filter_by(id=usecase_id).first()
+    usecase = Usecase.query.filter_by(id=usecase_id).first()
     
-    # # Returns the benchmarks associated with the given usecase
-    # benchmarks = Benchmark.query.join(benchmark_usecase).filter(benchmark_usecase.c.usecase_id == usecase_id).all() 
+    # Returns the benchmarks associated with the given usecase
+    benchmarks = Benchmark.query.join(benchmark_usecase).filter(benchmark_usecase.c.usecase_id == usecase_id).all() 
     
-    benchmarks, usecase = fetch_benchmarks(usecase_id)
+    # benchmarks, usecase = fetch_benchmarks(usecase_id)
     
     # Iterate through each benchmark and extract their benchmark ID (excluding elo benchmark unless elo_only)
     if usecase_id == 18:
@@ -72,14 +73,13 @@ def top_llms_for_usecase(usecase_id, status_filter=None, top_n=3):
     llm_scores.sort(key=lambda x: x[1], reverse=True)
     
     # Return the top n LLMs for the usecase. Returns a list of tuples (which is not serializable innately)
-    print(f'These are the top {top_n} LLMs for {usecase.name}: {llm_scores[:top_n]}. This is for these benchmarks: {benchmark_names}')
-    print()
+    # print(f'These are the top {top_n} LLMs for {usecase.name}: {llm_scores[:top_n]}. This is for these benchmarks: {benchmark_names}')
     return llm_scores[:top_n], benchmark_names
         
 
 # if __name__ == "__main__":
-#     with app.app_context():
-#         get_recommendation_for_category('Ok', status_filter=None, top_n=5)
+    with app.app_context():
+        get_recommendation_for_category('Ok', status_filter=None, top_n=5)
 
 with app.app_context():
-    top_llms_for_usecase(1, None, 3)
+    top_llms_for_usecase(10, None, 3)
