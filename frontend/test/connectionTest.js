@@ -9,7 +9,7 @@ const useUsecases = () => {
     useEffect(() => {
         const fetchUsecases = async () => {
             try {
-                const response = await axios.get(`https://whichllm-backend-w5v6.onrender.com/api/usecases`);
+                const response = await axios.get(`https://https://whichllm-backend.fly.dev/api/usecases`);
                 setUsecases(response.data);
             } catch (error) {
                 setError(error.response?.data?.message || 'An error occurred');

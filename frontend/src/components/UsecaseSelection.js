@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useMediaQuery } from 'react-responsive'
+// import { useMediaQuery } from 'react-responsive'
 import { motion, AnimatePresence } from 'framer-motion'
 import useUsecases from './hooks/useUsecases.js';
 import { icons } from '../assets/icons.js';
@@ -14,8 +14,8 @@ const UsecaseSelection = ({ onSelect, triggerShowRecommendation, hideRecommendat
     const [selectedUsecase, setSelectedUsecase] = useState(null);
     const [userInput, setUserInput] = useState("");
     const { usecaseId, usecaseName, loading, categoriseText } = useCategorise();
-    const isSmallScreen = useMediaQuery({ minWidth: 640 })
     const [showUsecaseButtons, setShowUsecaseButtons] = useState(false)
+    // const isSmallScreen = useMediaQuery({ minWidth: 640 })
     // const [emptyInput, setEmptyInput] = useState(false)
 
     const toggleUsecaseButtons = () => {
